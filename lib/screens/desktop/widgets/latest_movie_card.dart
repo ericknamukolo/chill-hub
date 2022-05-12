@@ -1,26 +1,100 @@
 import 'package:chill_hub/constants/colors.dart';
+import 'package:chill_hub/constants/text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-class LatestMovieCard extends StatelessWidget {
+class LatestMovieCard extends StatefulWidget {
   final String imgUrl;
+  final String title;
+  final int year;
+  final double rating;
+
   const LatestMovieCard({
     Key? key,
     required this.imgUrl,
+    required this.title,
+    required this.year,
+    required this.rating,
   }) : super(key: key);
 
   @override
+  State<LatestMovieCard> createState() => _LatestMovieCardState();
+}
+
+class _LatestMovieCardState extends State<LatestMovieCard> {
+  bool _isHovered = false;
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(right: 20),
-      decoration: BoxDecoration(
-        color: kSecondaryColorDark,
-        borderRadius: BorderRadius.circular(15.0),
-        image: DecorationImage(
-          image: NetworkImage(imgUrl),
-          fit: BoxFit.cover,
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) {
+        setState(() {
+          _isHovered = true;
+        });
+      },
+      onExit: (_) {
+        setState(() {
+          _isHovered = false;
+        });
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.easeIn,
+        margin: const EdgeInsets.only(right: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        decoration: BoxDecoration(
+          color: kSecondaryColorDark,
+          borderRadius: BorderRadius.circular(15.0),
+          image: DecorationImage(
+            image: NetworkImage(widget.imgUrl),
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(
+              Colors.black.withOpacity(0.5),
+              BlendMode.overlay,
+            ),
+          ),
+        ),
+        width: _isHovered ? 190 : 200,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: kAccentColor.withOpacity(.5),
+                  ),
+                  child: Center(
+                    child: Text(
+                      widget.rating.toString(),
+                      style: kBodyTextStyleWhite.copyWith(fontSize: 10),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const Spacer(),
+            Text(
+              widget.title,
+              style: kBodyTextStyleWhite,
+            ),
+            const SizedBox(height: 5),
+            Text(
+              widget.year.toString(),
+              style: kBodyTextStyleGrey.copyWith(
+                fontWeight: FontWeight.bold,
+                fontSize: 12,
+              ),
+            ),
+          ],
         ),
       ),
-      width: 400,
     );
   }
 }

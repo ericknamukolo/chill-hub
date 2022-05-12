@@ -4,6 +4,7 @@ import 'package:chill_hub/providers/movies.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 import 'widgets/latest_movie_card.dart';
 
@@ -17,10 +18,17 @@ class DesktopHomeScreen extends StatefulWidget {
 }
 
 class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
+  bool _isLoading = false;
   @override
   void initState() {
     Future.delayed(Duration.zero).then((_) async {
+      setState(() {
+        _isLoading = true;
+      });
       await Provider.of<Movies>(context, listen: false).fetchLatestMovies();
+      setState(() {
+        _isLoading = false;
+      });
     });
     super.initState();
   }
@@ -43,7 +51,7 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 320,
+                    height: 360,
                     child: Row(
                       children: [
                         Expanded(
@@ -88,17 +96,40 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
                               Expanded(
                                 child: Consumer<Movies>(
                                   builder: (context, movieData, __) =>
-                                      ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    physics: const BouncingScrollPhysics(),
-                                    itemBuilder: (context, index) =>
-                                        LatestMovieCard(
-                                      imgUrl: movieData
-                                          .latestMovies[index].coverImg,
-                                    ),
-                                    itemCount: movieData.latestMovies.length,
-                                    shrinkWrap: true,
-                                  ),
+                                      _isLoading
+                                          ? ListView.builder(
+                                              itemBuilder: (context, index) =>
+                                                  Shimmer.fromColors(
+                                                child: Container(
+                                                  width: 200,
+                                                ),
+                                                baseColor: kSecondaryColorDark,
+                                                highlightColor:
+                                                    kPrimaryColorDark,
+                                              ),
+                                              itemCount: 10,
+                                              shrinkWrap: true,
+                                            )
+                                          : ListView.builder(
+                                              scrollDirection: Axis.horizontal,
+                                              physics:
+                                                  const BouncingScrollPhysics(),
+                                              itemBuilder: (context, index) =>
+                                                  LatestMovieCard(
+                                                imgUrl: movieData
+                                                    .latestMovies[index]
+                                                    .coverImg,
+                                                title: movieData
+                                                    .latestMovies[index].title,
+                                                year: movieData
+                                                    .latestMovies[index].year,
+                                                rating: movieData
+                                                    .latestMovies[index].rating,
+                                              ),
+                                              itemCount:
+                                                  movieData.latestMovies.length,
+                                              shrinkWrap: true,
+                                            ),
                                 ),
                               ),
                             ],

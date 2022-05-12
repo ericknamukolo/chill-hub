@@ -8,7 +8,7 @@ class Movies with ChangeNotifier {
   List<Movie> get latestMovies => _latestMovies;
 
   Future<void> fetchLatestMovies() async {
-    String url = 'https://yts.mx/api/v2/list_movies.json?sort_by=rating';
+    String url = 'https://yts.mx/api/v2/list_movies.json?sort_by=year';
     var response = await http.get(Uri.parse(url));
     var data = json.decode(response.body);
     if (data['status'] == 'ok') {
@@ -21,6 +21,7 @@ class Movies with ChangeNotifier {
             title: movie['title'],
             year: movie['year'],
             coverImg: movie['large_cover_image'],
+            rating: movie['rating'],
           ),
         );
       });
