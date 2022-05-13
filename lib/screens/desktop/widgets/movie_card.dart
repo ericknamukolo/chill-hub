@@ -43,7 +43,7 @@ class _MovieCardState extends State<MovieCard> {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
           color: kSecondaryColorDark,
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(15.0),
           image: DecorationImage(
             image: NetworkImage(widget.imgUrl),
             fit: BoxFit.cover,

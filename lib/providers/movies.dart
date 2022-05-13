@@ -40,8 +40,15 @@ class Movies with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> fetchCatMovies(int pageNumber) async {
-    String url = 'https://yts.mx/api/v2/list_movies.json?page=$pageNumber';
+  Future<void> fetchCatMovies(int pageNumber, String genre) async {
+    String url;
+    if (genre == 'All') {
+      url = 'https://yts.mx/api/v2/list_movies.json?page=$pageNumber&limit=50';
+    } else {
+      url =
+          'https://yts.mx/api/v2/list_movies.json?page=$pageNumber&limit=50&genre=$genre';
+    }
+
     var response = await http.get(Uri.parse(url), headers: {
       'Bearer': 'Token 73ccc363e9074a98b0411dc1a6565531',
     });
@@ -52,7 +59,7 @@ class Movies with ChangeNotifier {
       List<Movie> _loadedMovies = [];
 
       data['data']['movies'].forEach((movie) {
-        _loadedMovies.add(
+        _catMovies.add(
           Movie(
             id: movie['id'],
             title: movie['title'],
@@ -62,7 +69,7 @@ class Movies with ChangeNotifier {
           ),
         );
       });
-      _catMovies = _loadedMovies;
+      // _catMovies = _loadedMovies;
     } else {
       throw Exception('error');
     }

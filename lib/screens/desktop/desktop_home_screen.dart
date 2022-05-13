@@ -1,5 +1,6 @@
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
+import 'package:chill_hub/providers/movie_categories.dart';
 import 'package:chill_hub/providers/movies.dart';
 import 'package:chill_hub/screens/desktop/widgets/latest_movies_widget.dart';
 import 'package:chill_hub/widgets/logo.dart';
@@ -8,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'widgets/movie_card.dart';
 
@@ -24,6 +26,8 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
   int pageNumber = 1;
   bool _isLoading = false;
   bool _isCatLoading = false;
+  bool _loadMore = false;
+  String genre = 'All';
   ScrollController _scrollController = ScrollController();
   @override
   void initState() {
@@ -34,12 +38,12 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
       setState(() {
         _isCatLoading = true;
       });
-      //  await Provider.of<Movies>(context, listen: false).fetchLatestMovies();
+      await Provider.of<Movies>(context, listen: false).fetchLatestMovies();
       setState(() {
         _isLoading = false;
       });
       await Provider.of<Movies>(context, listen: false)
-          .fetchCatMovies(pageNumber);
+          .fetchCatMovies(pageNumber, genre);
       setState(() {
         _isCatLoading = false;
       });
@@ -48,20 +52,19 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
     _scrollController.addListener(() async {
       if (_scrollController.position.pixels >=
           _scrollController.position.maxScrollExtent) {
-        pageNumber = pageNumber + 1;
-        _scrollController.jumpTo(
-          300,
-          //  duration: const Duration(milliseconds: 500),
-          //  curve: Curves.ease,
-        );
-        setState(() {
-          _isCatLoading = true;
-        });
-        await Provider.of<Movies>(context, listen: false)
-            .fetchCatMovies(pageNumber);
-        setState(() {
-          _isCatLoading = false;
-        });
+        if (!_loadMore) {
+          pageNumber = pageNumber + 1;
+          setState(() {
+            _loadMore = true;
+          });
+
+          await Provider.of<Movies>(context, listen: false)
+              .fetchCatMovies(pageNumber, genre);
+
+          setState(() {
+            _loadMore = false;
+          });
+        }
       }
     });
   }
@@ -75,6 +78,18 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: _loadMore
+          ? FloatingActionButton(
+              elevation: 10.0,
+              onPressed: () {},
+              backgroundColor: kAccentColor,
+              child: const CircularProgressIndicator(
+                color: Colors.white,
+                strokeWidth: 3.0,
+              ),
+            )
+          : null,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -153,11 +168,101 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
                           ),
                           const SizedBox(width: 10),
                           Expanded(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: kSecondaryColorDark,
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Designed & Built By',
+                                  style: GoogleFonts.dosis(
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                                GestureDetector(
+                                  onTap: () async {
+                                    await launch(
+                                        'https://ericknamukolo.github.io/');
+                                  },
+                                  child: MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: Text(
+                                      'Erick Namukolo',
+                                      style: GoogleFonts.dosis(
+                                        fontSize: 22,
+                                        color: kAccentColor,
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 2,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: SingleChildScrollView(
+                                    controller: ScrollController(),
+                                    child: Container(
+                                      margin: const EdgeInsets.only(top: 25),
+                                      child: Consumer<MovieCategories>(
+                                        builder: (context, catData, __) =>
+                                            Column(
+                                          children: catData.categories
+                                              .map(
+                                                (category) => MouseRegion(
+                                                  cursor:
+                                                      SystemMouseCursors.click,
+                                                  child: GestureDetector(
+                                                    onTap: () async {
+                                                      catData.selectCategory(
+                                                          category);
+                                                      pageNumber = 1;
+                                                      genre = category.category;
+                                                      setState(() {
+                                                        _isCatLoading = true;
+                                                      });
+                                                      await Provider.of<Movies>(
+                                                              context,
+                                                              listen: false)
+                                                          .fetchCatMovies(
+                                                              pageNumber,
+                                                              genre);
+                                                      setState(() {
+                                                        _isCatLoading = false;
+                                                      });
+                                                    },
+                                                    child: Container(
+                                                      height: 40,
+                                                      margin: const EdgeInsets
+                                                              .symmetric(
+                                                          horizontal: 10,
+                                                          vertical: 5),
+                                                      width: double.infinity,
+                                                      decoration: BoxDecoration(
+                                                        color: category
+                                                                .isSelected
+                                                            ? kAccentColor
+                                                            : kSecondaryColorDark,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: Text(
+                                                        category.category,
+                                                        style:
+                                                            kBodyTextStyleWhite,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                              .toList(),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
@@ -166,9 +271,18 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
                     const SizedBox(height: 10),
                     Row(
                       children: [
-                        const Text(
-                          'Movies',
-                          style: kTitleTextStyle,
+                        Consumer<MovieCategories>(
+                          builder: (context, cat, __) {
+                            String activeCategory = cat.categories
+                                .firstWhere((element) => element.isSelected)
+                                .category;
+                            return Text(
+                              activeCategory == 'All'
+                                  ? 'Movies'
+                                  : activeCategory,
+                              style: kTitleTextStyle,
+                            );
+                          },
                         ),
                         const Spacer(),
                         const Text(

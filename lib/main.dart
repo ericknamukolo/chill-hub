@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:chill_hub/providers/movie_categories.dart';
 import 'package:chill_hub/providers/movies.dart';
 import 'package:chill_hub/widgets/responsive_layout.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class ChillHub extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => Movies()),
+        ChangeNotifierProvider(create: (context) => MovieCategories()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
