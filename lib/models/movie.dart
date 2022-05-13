@@ -3,7 +3,7 @@ class Movie {
   String title;
   int year;
   String coverImg;
-  double rating;
+  num rating;
 
   Movie({
     required this.id,

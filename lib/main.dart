@@ -25,6 +25,7 @@ class ChillHub extends StatelessWidget {
         scrollBehavior: MyCustomScrollBehavior(),
         theme: ThemeData(
           fontFamily: 'VarelaRound',
+          brightness: Brightness.dark,
         ),
         home: const ResponsiveLayout(
           desktopBody: DesktopHomeScreen(),

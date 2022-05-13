@@ -1,15 +1,14 @@
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-class LatestMovieCard extends StatefulWidget {
+class MovieCard extends StatefulWidget {
   final String imgUrl;
   final String title;
   final int year;
-  final double rating;
+  final num rating;
 
-  const LatestMovieCard({
+  const MovieCard({
     Key? key,
     required this.imgUrl,
     required this.title,
@@ -18,10 +17,10 @@ class LatestMovieCard extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<LatestMovieCard> createState() => _LatestMovieCardState();
+  State<MovieCard> createState() => _MovieCardState();
 }
 
-class _LatestMovieCardState extends State<LatestMovieCard> {
+class _MovieCardState extends State<MovieCard> {
   bool _isHovered = false;
   @override
   Widget build(BuildContext context) {
@@ -44,7 +43,7 @@ class _LatestMovieCardState extends State<LatestMovieCard> {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
           color: kSecondaryColorDark,
-          borderRadius: BorderRadius.circular(15.0),
+          borderRadius: BorderRadius.circular(10.0),
           image: DecorationImage(
             image: NetworkImage(widget.imgUrl),
             fit: BoxFit.cover,
