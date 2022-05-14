@@ -16,7 +16,7 @@ class Logo extends StatelessWidget {
         Text(
           'Chill',
           style: GoogleFonts.dosis(
-            fontSize: 45,
+            fontSize: 60,
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
@@ -24,7 +24,7 @@ class Logo extends StatelessWidget {
         Text(
           ' Hub',
           style: GoogleFonts.dosis(
-            fontSize: 45,
+            fontSize: 60,
             color: kAccentColor,
             fontWeight: FontWeight.bold,
           ),

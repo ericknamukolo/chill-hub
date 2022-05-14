@@ -20,6 +20,7 @@ class LatestMoviesWidget extends StatelessWidget {
       child: Consumer<Movies>(
         builder: (context, movieData, __) => _isLoading
             ? ListView.builder(
+                scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) => Shimmer.fromColors(
                   child: Container(
                     margin: const EdgeInsets.only(right: 20),
@@ -27,7 +28,7 @@ class LatestMoviesWidget extends StatelessWidget {
                     height: 300,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(15.0),
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
                   baseColor: kSecondaryColorDark,

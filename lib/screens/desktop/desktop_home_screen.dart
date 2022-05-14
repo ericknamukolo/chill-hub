@@ -98,9 +98,7 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
               color: kSecondaryColorDark,
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: Column(
-                children: const [
-                  Logo(),
-                ],
+                children: const [],
               ),
             ),
           ),
@@ -108,7 +106,7 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
             flex: 5,
             child: Container(
               color: kPrimaryColorDark,
-              padding: const EdgeInsets.only(left: 15, right: 15),
+              // padding: const EdgeInsets.only(left: 15, right: 15),
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 controller: _scrollController,
@@ -117,33 +115,30 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Container(
-                      padding: const EdgeInsets.only(top: 20),
-                      height: 360,
+                      height: 300,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: kSecondaryColorDark,
+                        image: DecorationImage(
+                          image: const AssetImage('assets/hd2.jpg'),
+                          fit: BoxFit.cover,
+                          colorFilter: ColorFilter.mode(
+                              Colors.black.withOpacity(.5), BlendMode.srcOver),
+                        ),
+                      ),
+                      child: const Center(child: Logo()),
+                    ),
+                    Container(
+                      //padding: const EdgeInsets.only(top: 20),
+                      padding:
+                          const EdgeInsets.only(left: 15, right: 15, top: 20),
+                      height: 320,
                       child: Row(
                         children: [
                           Expanded(
                             flex: 3,
                             child: Column(
                               children: [
-                                TextField(
-                                  style: kBodyTextStyleWhite,
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    filled: true,
-                                    fillColor:
-                                        kSecondaryColorDark.withOpacity(.5),
-                                    hintText: 'Search Movie',
-                                    hintStyle: kBodyTextStyleGrey,
-                                    hoverColor:
-                                        kSecondaryColorDark.withOpacity(.08),
-                                    prefixIcon: const Icon(
-                                      Icons.search,
-                                      color: kAccentColor,
-                                      // size: 25,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 5),
                                 Row(
                                   children: [
                                     const Text(
@@ -166,140 +161,99 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
                               ],
                             ),
                           ),
-                          const SizedBox(width: 10),
                           Expanded(
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Designed & Built By',
-                                  style: GoogleFonts.dosis(
-                                    fontSize: 18,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(height: 5),
-                                GestureDetector(
-                                  onTap: () async {
-                                    await launch(
-                                        'https://ericknamukolo.github.io/');
-                                  },
-                                  child: MouseRegion(
-                                    cursor: SystemMouseCursors.click,
-                                    child: Text(
-                                      'Erick Namukolo',
-                                      style: GoogleFonts.dosis(
-                                        fontSize: 22,
-                                        color: kAccentColor,
-                                        fontWeight: FontWeight.bold,
-                                        letterSpacing: 2,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: SingleChildScrollView(
-                                    controller: ScrollController(),
-                                    child: Container(
-                                      margin: const EdgeInsets.only(top: 25),
-                                      child: Consumer<MovieCategories>(
-                                        builder: (context, catData, __) =>
-                                            Column(
-                                          children: catData.categories
-                                              .map(
-                                                (category) => MouseRegion(
-                                                  cursor:
-                                                      SystemMouseCursors.click,
-                                                  child: GestureDetector(
-                                                    onTap: () async {
-                                                      catData.selectCategory(
-                                                          category);
-                                                      pageNumber = 1;
-                                                      genre = category.category;
-                                                      setState(() {
-                                                        _isCatLoading = true;
-                                                      });
-                                                      await Provider.of<Movies>(
-                                                              context,
-                                                              listen: false)
-                                                          .fetchCatMovies(
-                                                              pageNumber,
-                                                              genre);
-                                                      setState(() {
-                                                        _isCatLoading = false;
-                                                      });
-                                                    },
-                                                    child: Container(
-                                                      height: 40,
-                                                      margin: const EdgeInsets
-                                                              .symmetric(
-                                                          horizontal: 10,
-                                                          vertical: 5),
-                                                      width: double.infinity,
-                                                      decoration: BoxDecoration(
-                                                        color: category
-                                                                .isSelected
-                                                            ? kAccentColor
-                                                            : kSecondaryColorDark,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                      ),
-                                                      alignment:
-                                                          Alignment.center,
-                                                      child: Text(
-                                                        category.category,
-                                                        style:
-                                                            kBodyTextStyleWhite,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              )
-                                              .toList(),
+                            child: SingleChildScrollView(
+                              controller: ScrollController(),
+                              child: Consumer<MovieCategories>(
+                                builder: (context, catData, __) => Column(
+                                  children: catData.categories
+                                      .map(
+                                        (category) => MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
+                                            onTap: () async {
+                                              catData.selectCategory(
+                                                  category, context);
+                                              pageNumber = 1;
+                                              genre = category.category;
+                                              setState(() {
+                                                _isCatLoading = true;
+                                              });
+                                              await Provider.of<Movies>(context,
+                                                      listen: false)
+                                                  .fetchCatMovies(
+                                                      pageNumber, genre);
+                                              setState(() {
+                                                _isCatLoading = false;
+                                              });
+                                            },
+                                            child: Container(
+                                              height: 40,
+                                              margin: const EdgeInsets.only(
+                                                left: 10,
+                                                bottom: 10,
+                                              ),
+                                              width: double.infinity,
+                                              decoration: BoxDecoration(
+                                                color: category.isSelected
+                                                    ? kAccentColor
+                                                    : kSecondaryColorDark,
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                category.category,
+                                                style: kBodyTextStyleWhite,
+                                              ),
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                  ),
+                                      )
+                                      .toList(),
                                 ),
-                              ],
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        Consumer<MovieCategories>(
-                          builder: (context, cat, __) {
-                            String activeCategory = cat.categories
-                                .firstWhere((element) => element.isSelected)
-                                .category;
-                            return Text(
-                              activeCategory == 'All'
-                                  ? 'Movies'
-                                  : activeCategory,
-                              style: kTitleTextStyle,
-                            );
-                          },
-                        ),
-                        const Spacer(),
-                        const Text(
-                          'See all',
-                          style: kBodyTextStyleGrey,
-                        ),
-                        Icon(
-                          MdiIcons.chevronRight,
-                          color: kBodyTextStyleGrey.color,
-                        )
-                      ],
+                    Container(
+                      padding: const EdgeInsets.only(left: 15, right: 15),
+                      child: Row(
+                        children: [
+                          Consumer<MovieCategories>(
+                            builder: (context, cat, __) {
+                              String activeCategory = cat.categories
+                                  .firstWhere((element) => element.isSelected)
+                                  .category;
+                              return Text(
+                                activeCategory == 'All'
+                                    ? 'Movies'
+                                    : activeCategory,
+                                style: kTitleTextStyle,
+                              );
+                            },
+                          ),
+                          const Spacer(),
+                          const Text(
+                            'See all',
+                            style: kBodyTextStyleGrey,
+                          ),
+                          Icon(
+                            MdiIcons.chevronRight,
+                            color: kBodyTextStyleGrey.color,
+                          )
+                        ],
+                      ),
                     ),
                     Consumer<Movies>(
                       builder: (context, catMovieData, __) => _isCatLoading
                           ? GridView.builder(
                               controller: ScrollController(),
-                              padding: const EdgeInsets.only(top: 10),
+                              padding: const EdgeInsets.only(
+                                  top: 10, bottom: 20, left: 15, right: 15),
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 5,
@@ -313,7 +267,7 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
                                   margin: const EdgeInsets.only(right: 20),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
-                                    borderRadius: BorderRadius.circular(15.0),
+                                    borderRadius: BorderRadius.circular(10.0),
                                   ),
                                 ),
                                 baseColor: kSecondaryColorDark,
@@ -325,13 +279,13 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
                             )
                           : GridView.builder(
                               controller: ScrollController(),
-                              padding:
-                                  const EdgeInsets.only(top: 10, bottom: 20),
+                              padding: const EdgeInsets.only(
+                                  top: 10, bottom: 20, left: 15, right: 15),
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 5,
                                 childAspectRatio: 6 / 7, //7 / 8,
-                                crossAxisSpacing: 5.0,
+                                crossAxisSpacing: 15.0,
                                 mainAxisSpacing: 15.0,
                               ),
                               itemBuilder: (context, index) => MovieCard(
@@ -339,6 +293,7 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
                                 title: catMovieData.catMovies[index].title,
                                 year: catMovieData.catMovies[index].year,
                                 rating: catMovieData.catMovies[index].rating,
+                                isGrid: true,
                               ),
                               itemCount: catMovieData.catMovies.length,
                               shrinkWrap: true,

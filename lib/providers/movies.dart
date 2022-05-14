@@ -11,11 +11,9 @@ class Movies with ChangeNotifier {
   List<Movie> get catMovies => _catMovies;
 
   Future<void> fetchLatestMovies() async {
-    String url = 'https://yts.mx/api/v2/list_movies.json?sort_by=year';
-    var response = await http.get(Uri.parse(url), headers: {
-      'Bearer': 'Token 73ccc363e9074a98b0411dc1a6565531',
-      'Content-type': 'application/json',
-    });
+    String url =
+        'https://yts.torrentbay.to/api/v2/list_movies.json?sort_by=year';
+    var response = await http.get(Uri.parse(url));
 
     var data = json.decode(response.body);
 
@@ -28,7 +26,7 @@ class Movies with ChangeNotifier {
             id: movie['id'],
             title: movie['title'],
             year: movie['year'],
-            coverImg: movie['large_cover_image'],
+            coverImg: movie['medium_cover_image'],
             rating: movie['rating'],
           ),
         );
@@ -43,28 +41,25 @@ class Movies with ChangeNotifier {
   Future<void> fetchCatMovies(int pageNumber, String genre) async {
     String url;
     if (genre == 'All') {
-      url = 'https://yts.mx/api/v2/list_movies.json?page=$pageNumber&limit=50';
+      url =
+          'https://yts.torrentbay.to/api/v2/list_movies.json?page=$pageNumber&limit=50';
     } else {
       url =
-          'https://yts.mx/api/v2/list_movies.json?page=$pageNumber&limit=50&genre=$genre';
+          'https://yts.torrentbay.to/api/v2/list_movies.json?page=$pageNumber&limit=50&genre=$genre';
     }
 
-    var response = await http.get(Uri.parse(url), headers: {
-      'Bearer': 'Token 73ccc363e9074a98b0411dc1a6565531',
-    });
+    var response = await http.get(Uri.parse(url));
 
     var data = json.decode(response.body);
 
     if (data['status'] == 'ok') {
-      List<Movie> _loadedMovies = [];
-
       data['data']['movies'].forEach((movie) {
         _catMovies.add(
           Movie(
             id: movie['id'],
             title: movie['title'],
             year: movie['year'],
-            coverImg: movie['large_cover_image'],
+            coverImg: movie['medium_cover_image'],
             rating: movie['rating'],
           ),
         );
@@ -73,6 +68,11 @@ class Movies with ChangeNotifier {
     } else {
       throw Exception('error');
     }
+    notifyListeners();
+  }
+
+  void clearCatMovies() {
+    _catMovies.clear();
     notifyListeners();
   }
 }

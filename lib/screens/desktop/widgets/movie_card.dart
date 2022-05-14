@@ -7,6 +7,7 @@ class MovieCard extends StatefulWidget {
   final String title;
   final int year;
   final num rating;
+  final bool isGrid;
 
   const MovieCard({
     Key? key,
@@ -14,6 +15,7 @@ class MovieCard extends StatefulWidget {
     required this.title,
     required this.year,
     required this.rating,
+    this.isGrid = false,
   }) : super(key: key);
 
   @override
@@ -39,11 +41,11 @@ class _MovieCardState extends State<MovieCard> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         curve: Curves.easeIn,
-        margin: const EdgeInsets.only(right: 20),
+        margin: EdgeInsets.only(right: widget.isGrid ? 0 : 20),
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
           color: kSecondaryColorDark,
-          borderRadius: BorderRadius.circular(15.0),
+          borderRadius: BorderRadius.circular(10.0),
           image: DecorationImage(
             image: NetworkImage(widget.imgUrl),
             fit: BoxFit.cover,
