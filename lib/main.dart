@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:chill_hub/providers/menu_buttons.dart';
 import 'package:chill_hub/providers/movie_categories.dart';
 import 'package:chill_hub/providers/movies.dart';
 import 'package:chill_hub/widgets/responsive_layout.dart';
@@ -21,6 +22,7 @@ class ChillHub extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => Movies()),
         ChangeNotifierProvider(create: (context) => MovieCategories()),
+        ChangeNotifierProvider(create: (context) => MenuButtons()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

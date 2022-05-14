@@ -1,8 +1,11 @@
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
+import 'package:chill_hub/providers/menu_buttons.dart';
 import 'package:chill_hub/providers/movie_categories.dart';
 import 'package:chill_hub/providers/movies.dart';
 import 'package:chill_hub/screens/desktop/widgets/latest_movies_widget.dart';
+import 'package:chill_hub/screens/desktop/widgets/menu_btn_widget.dart';
+import 'package:chill_hub/widgets/footer_info.dart';
 import 'package:chill_hub/widgets/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -51,7 +54,7 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
     super.initState();
     _scrollController.addListener(() async {
       if (_scrollController.position.pixels >=
-          _scrollController.position.maxScrollExtent) {
+          _scrollController.position.maxScrollExtent - 400) {
         if (!_loadMore) {
           pageNumber = pageNumber + 1;
           setState(() {
@@ -96,9 +99,102 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
           Expanded(
             child: Container(
               color: kSecondaryColorDark,
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              padding: const EdgeInsets.only(top: 10),
               child: Column(
-                children: const [],
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: Row(
+                      children: [
+                        Icon(
+                          MdiIcons.filmstrip,
+                          color: kBodyTextStyleGrey.color,
+                          size: 18,
+                        ),
+                        const SizedBox(width: 5),
+                        Text(
+                          'Chill Hub',
+                          style: kBodyTextStyleGrey.copyWith(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: Text(
+                      'MENU',
+                      style: kBodyTextStyleGrey.copyWith(
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Consumer<MenuButtons>(
+                    builder: (context, btnData, __) => Column(
+                      children: btnData.buttonsData
+                          .map(
+                            (btn) => MenuBtnWidget(
+                              btn: btn,
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: Text(
+                      'LIBRARY',
+                      style: kBodyTextStyleGrey.copyWith(
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Consumer<MenuButtons>(
+                    builder: (context, btnData, __) => Column(
+                      children: btnData.libButtonsData
+                          .map(
+                            (btn) => MenuBtnWidget(
+                              btn: btn,
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: Text(
+                      'GENERAL',
+                      style: kBodyTextStyleGrey.copyWith(
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Consumer<MenuButtons>(
+                    builder: (context, btnData, __) => Column(
+                      children: btnData.genButtonsData
+                          .map(
+                            (btn) => MenuBtnWidget(
+                              btn: btn,
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ),
+                  const Spacer(),
+                  const FooterInfo(),
+                ],
               ),
             ),
           ),
@@ -116,6 +212,7 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
                   children: [
                     Container(
                       height: 300,
+                      padding: const EdgeInsets.symmetric(vertical: 20),
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: kSecondaryColorDark,
@@ -126,7 +223,25 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
                               Colors.black.withOpacity(.5), BlendMode.srcOver),
                         ),
                       ),
-                      child: const Center(child: Logo()),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          SizedBox(
+                            width: 600,
+                            child: TextField(
+                              style: kBodyTextStyleWhite,
+                              cursorColor: kAccentColor,
+                              decoration: InputDecoration(
+                                filled: true,
+                                border: InputBorder.none,
+                                hintText: 'Search Movie',
+                              ),
+                            ),
+                          ),
+                          // Logo(),
+                          SizedBox(),
+                        ],
+                      ),
                     ),
                     Container(
                       //padding: const EdgeInsets.only(top: 20),
@@ -188,23 +303,38 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
                                               });
                                             },
                                             child: Container(
-                                              height: 40,
+                                              height: 80,
                                               margin: const EdgeInsets.only(
                                                 left: 10,
                                                 bottom: 10,
                                               ),
                                               width: double.infinity,
                                               decoration: BoxDecoration(
-                                                color: category.isSelected
-                                                    ? kAccentColor
-                                                    : kSecondaryColorDark,
                                                 borderRadius:
                                                     BorderRadius.circular(8.0),
+                                                image: DecorationImage(
+                                                  image: AssetImage(
+                                                      category.imgUrl),
+                                                  fit: BoxFit.cover,
+                                                  colorFilter: ColorFilter.mode(
+                                                      Colors.black.withOpacity(
+                                                          category.isSelected
+                                                              ? 0.0
+                                                              : .65),
+                                                      BlendMode.srcOver),
+                                                ),
                                               ),
                                               alignment: Alignment.center,
                                               child: Text(
                                                 category.category,
-                                                style: kBodyTextStyleWhite,
+                                                style: kBodyTextStyleWhite
+                                                    .copyWith(
+                                                  color: category.isSelected
+                                                      ? kSecondaryColor
+                                                      : Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  letterSpacing: 1,
+                                                ),
                                               ),
                                             ),
                                           ),
