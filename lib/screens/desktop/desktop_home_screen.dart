@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
 import 'package:chill_hub/providers/menu_buttons.dart';
@@ -31,7 +34,7 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
   bool _isCatLoading = false;
   bool _loadMore = false;
   String genre = 'All';
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   @override
   void initState() {
     Future.delayed(Duration.zero).then((_) async {
@@ -76,6 +79,13 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
   void dispose() {
     _scrollController.dispose();
     super.dispose();
+  }
+
+  @override
+  void setState(VoidCallback fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
   }
 
   @override
@@ -199,7 +209,7 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
             ),
           ),
           Expanded(
-            flex: 5,
+            flex: 6,
             child: Container(
               color: kPrimaryColorDark,
               // padding: const EdgeInsets.only(left: 15, right: 15),
@@ -212,7 +222,7 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
                   children: [
                     Container(
                       height: 300,
-                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      padding: const EdgeInsets.symmetric(vertical: 0),
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: kSecondaryColorDark,
@@ -224,9 +234,37 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
                         ),
                       ),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          SizedBox(
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Platform.isWindows
+                              ? SizedBox(
+                                  height: 25,
+                                  width: double.infinity,
+                                  child: Row(
+                                    children: [
+                                      Expanded(child: MoveWindow()),
+                                      MinimizeWindowButton(
+                                        colors: WindowButtonColors(
+                                          iconNormal: Colors.white,
+                                          mouseOver: kAccentColor,
+                                        ),
+                                      ),
+                                      MaximizeWindowButton(
+                                          colors: WindowButtonColors(
+                                        iconNormal: Colors.white,
+                                        mouseOver: kAccentColor,
+                                      )),
+                                      CloseWindowButton(
+                                          colors: WindowButtonColors(
+                                        iconNormal: Colors.white,
+                                        mouseOver: Theme.of(context).errorColor,
+                                      )),
+                                    ],
+                                  ),
+                                )
+                              : const SizedBox(),
+                          const SizedBox(height: 15),
+                          const SizedBox(
                             width: 600,
                             child: TextField(
                               style: kBodyTextStyleWhite,
@@ -238,15 +276,15 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
                               ),
                             ),
                           ),
-                          // Logo(),
-                          SizedBox(),
+                          const Spacer(),
+                          const SizedBox(),
                         ],
                       ),
                     ),
                     Container(
                       //padding: const EdgeInsets.only(top: 20),
                       padding:
-                          const EdgeInsets.only(left: 15, right: 15, top: 20),
+                          const EdgeInsets.only(left: 15, right: 15, top: 10),
                       height: 320,
                       child: Row(
                         children: [
