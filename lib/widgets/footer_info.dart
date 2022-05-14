@@ -46,8 +46,8 @@ class _FooterInfoState extends State<FooterInfo> {
               },
               child: Text(
                 'Erick Namukolo',
-                style: kBodyTextStyleWhite.copyWith(
-                  color: _isHovered ? kAccentColor : Colors.white,
+                style: kBodyTextStyleGrey.copyWith(
+                  color: _isHovered ? kAccentColor : kBodyTextStyleGrey.color,
                 ),
               ),
             ),

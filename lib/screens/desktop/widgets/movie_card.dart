@@ -81,16 +81,28 @@ class _MovieCardState extends State<MovieCard> {
               ],
             ),
             const Spacer(),
-            Text(
-              widget.title,
-              style: kBodyTextStyleWhite,
-            ),
-            const SizedBox(height: 5),
-            Text(
-              widget.year.toString(),
-              style: kBodyTextStyleGrey.copyWith(
-                fontWeight: FontWeight.bold,
-                fontSize: 12,
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+              decoration: BoxDecoration(
+                color: kSecondaryColorDark.withOpacity(.8),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.title,
+                    style: kBodyTextStyleWhite,
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    widget.year.toString(),
+                    style: kBodyTextStyleGrey.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
