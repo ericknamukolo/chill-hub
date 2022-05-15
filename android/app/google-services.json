@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1050608125927",
+    "project_id": "chill-hub",
+    "storage_bucket": "chill-hub.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050608125927:android:4fb0fe9c6af81c5b691f42",
+        "android_client_info": {
+          "package_name": "com.example.chill_hub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1050608125927-u78ianvpav4la4iu0ljkmjv2qpl1elj4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZi7jCVOE_naMs7RyP8kkwnpg5dNqQJYo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1050608125927-u78ianvpav4la4iu0ljkmjv2qpl1elj4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1050608125927-veba3al25q1des89f347ad3kc91psfbd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.chillHub"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

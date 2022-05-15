@@ -41,6 +41,7 @@ dependencies:
   google_fonts: ^2.3.2
   url_launcher: ^6.1.2
   bitsdojo_window: ^0.1.1+1
+  firebase_core: ^1.17.0
 
 dev_dependencies:
   flutter_test:

@@ -8,11 +8,20 @@ import 'package:chill_hub/providers/movies.dart';
 import 'package:chill_hub/widgets/responsive_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'screens/desktop/desktop_home_screen.dart';
 
-void main() {
+Future<void> main() async {
   runApp(const ChillHub());
+  WidgetsFlutterBinding.ensureInitialized();
+  if (!Platform.isWindows) {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
+
   if (Platform.isWindows) {
     doWhenWindowReady(() {
       final win = appWindow;
