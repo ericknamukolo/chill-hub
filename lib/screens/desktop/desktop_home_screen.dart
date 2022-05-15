@@ -223,35 +223,33 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
             flex: 6,
             child: Column(
               children: [
-                Platform.isWindows
-                    ? AnimatedContainer(
-                        duration: const Duration(milliseconds: 500),
-                        color: kPrimaryColorDark,
-                        height: _showBar ? 25 : 0,
-                        width: double.infinity,
-                        child: Row(
-                          children: [
-                            Expanded(child: MoveWindow()),
-                            MinimizeWindowButton(
-                              colors: WindowButtonColors(
-                                iconNormal: Colors.white,
-                                mouseOver: kAccentColor,
-                              ),
-                            ),
-                            MaximizeWindowButton(
-                                colors: WindowButtonColors(
-                              iconNormal: Colors.white,
-                              mouseOver: kAccentColor,
-                            )),
-                            CloseWindowButton(
-                                colors: WindowButtonColors(
-                              iconNormal: Colors.white,
-                              mouseOver: Theme.of(context).errorColor,
-                            )),
-                          ],
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 500),
+                  color: kPrimaryColorDark,
+                  height: _showBar ? 25 : 0,
+                  width: double.infinity,
+                  child: Row(
+                    children: [
+                      Expanded(child: MoveWindow()),
+                      MinimizeWindowButton(
+                        colors: WindowButtonColors(
+                          iconNormal: Colors.white,
+                          mouseOver: kAccentColor,
                         ),
-                      )
-                    : const SizedBox(),
+                      ),
+                      MaximizeWindowButton(
+                          colors: WindowButtonColors(
+                        iconNormal: Colors.white,
+                        mouseOver: kAccentColor,
+                      )),
+                      CloseWindowButton(
+                          colors: WindowButtonColors(
+                        iconNormal: Colors.white,
+                        mouseOver: Theme.of(context).errorColor,
+                      )),
+                    ],
+                  ),
+                ),
                 Expanded(
                   child: Container(
                     color: kPrimaryColorDark,
@@ -280,34 +278,31 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
                             child: Column(
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Platform.isWindows
-                                    ? SizedBox(
-                                        height: 25,
-                                        width: double.infinity,
-                                        child: Row(
-                                          children: [
-                                            Expanded(child: MoveWindow()),
-                                            MinimizeWindowButton(
-                                              colors: WindowButtonColors(
-                                                iconNormal: Colors.white,
-                                                mouseOver: kAccentColor,
-                                              ),
-                                            ),
-                                            MaximizeWindowButton(
-                                                colors: WindowButtonColors(
-                                              iconNormal: Colors.white,
-                                              mouseOver: kAccentColor,
-                                            )),
-                                            CloseWindowButton(
-                                                colors: WindowButtonColors(
-                                              iconNormal: Colors.white,
-                                              mouseOver:
-                                                  Theme.of(context).errorColor,
-                                            )),
-                                          ],
+                                SizedBox(
+                                  height: 25,
+                                  width: double.infinity,
+                                  child: Row(
+                                    children: [
+                                      Expanded(child: MoveWindow()),
+                                      MinimizeWindowButton(
+                                        colors: WindowButtonColors(
+                                          iconNormal: Colors.white,
+                                          mouseOver: kAccentColor,
                                         ),
-                                      )
-                                    : const SizedBox(),
+                                      ),
+                                      MaximizeWindowButton(
+                                          colors: WindowButtonColors(
+                                        iconNormal: Colors.white,
+                                        mouseOver: kAccentColor,
+                                      )),
+                                      CloseWindowButton(
+                                          colors: WindowButtonColors(
+                                        iconNormal: Colors.white,
+                                        mouseOver: Theme.of(context).errorColor,
+                                      )),
+                                    ],
+                                  ),
+                                ),
                                 const SizedBox(height: 15),
                                 const SizedBox(
                                   width: 600,
