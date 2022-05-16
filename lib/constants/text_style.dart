@@ -6,10 +6,10 @@ const kTitleTextStyle = TextStyle(
 );
 
 const kBodyTextStyleGrey = TextStyle(
-  fontSize: 14,
+  fontSize: 13,
   color: Color(0xff77787D),
 );
 const kBodyTextStyleWhite = TextStyle(
-  fontSize: 14,
+  fontSize: 13,
   color: Colors.white,
 );

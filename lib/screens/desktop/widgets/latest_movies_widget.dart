@@ -41,10 +41,7 @@ class LatestMoviesWidget extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) => MovieCard(
-                  imgUrl: movieData.latestMovies[index].coverImg,
-                  title: movieData.latestMovies[index].title,
-                  year: movieData.latestMovies[index].year,
-                  rating: movieData.latestMovies[index].rating,
+                  movie: movieData.latestMovies[index],
                 ),
                 itemCount: movieData.latestMovies.length,
                 shrinkWrap: true,

@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:chill_hub/providers/menu_buttons.dart';
 import 'package:chill_hub/providers/movie_categories.dart';
+import 'package:chill_hub/providers/movie_views.dart';
 import 'package:chill_hub/providers/movies.dart';
 import 'package:chill_hub/widgets/responsive_layout.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +44,7 @@ class ChillHub extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => Movies()),
         ChangeNotifierProvider(create: (context) => MovieCategories()),
         ChangeNotifierProvider(create: (context) => MenuButtons()),
+        ChangeNotifierProvider(create: (context) => MovieViews()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
