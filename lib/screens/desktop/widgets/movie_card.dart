@@ -38,11 +38,15 @@ class _MovieCardState extends State<MovieCard> {
         });
       },
       child: GestureDetector(
-        onTap: () {
+        onTap: () async {
           Provider.of<MovieViews>(context, listen: false)
               .toggleMovieDetails(true);
           Provider.of<Movies>(context, listen: false)
               .fetchMovieDetails(widget.movie.id);
+          await Provider.of<Movies>(context, listen: false)
+              .clearRelatedMovies();
+          Provider.of<Movies>(context, listen: false)
+              .fetchRelatedMovies(widget.movie.id);
         },
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),

@@ -3,9 +3,13 @@ import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
 import 'package:chill_hub/providers/movie_views.dart';
 import 'package:chill_hub/providers/movies.dart';
+import 'package:chill_hub/screens/desktop/widgets/movie_card.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class MovieDetails extends StatefulWidget {
   const MovieDetails({
@@ -18,11 +22,11 @@ class MovieDetails extends StatefulWidget {
 
 class _MovieDetailsState extends State<MovieDetails> {
   bool _showBar = false;
+  bool _isLoading = false;
   final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     _scrollController.addListener(() async {
@@ -83,7 +87,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                     children: [
                       Container(
                         height: 350,
-                        padding: const EdgeInsets.symmetric(vertical: 0),
+                        margin: const EdgeInsets.only(bottom: 15),
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: kSecondaryColorDark,
@@ -139,6 +143,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                                   onTap: () {
                                     movie.toggleMovieDetails(false);
                                     mov.clearMovieObj();
+                                    mov.clearCatMovies();
                                     //
                                   },
                                   child: MouseRegion(
@@ -274,7 +279,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                                                   bottom: 5.0),
                                               child: Text(
                                                 mov.movieDetail!.introDes,
-                                                maxLines: 5,
+                                                maxLines: 8,
                                                 overflow: TextOverflow.fade,
                                                 style: kBodyTextStyleWhite,
                                               ),
@@ -316,6 +321,14 @@ class _MovieDetailsState extends State<MovieDetails> {
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
+                                                Text(
+                                                  ' ${mov.movieDetail!.rating}/10',
+                                                  style: kBodyTextStyleWhite
+                                                      .copyWith(
+                                                    color: kAccentColor,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                       const SizedBox(
@@ -332,9 +345,114 @@ class _MovieDetailsState extends State<MovieDetails> {
                                 ],
                               ),
                             ),
+                            Positioned(
+                              bottom: -20,
+                              right: 50,
+                              child: GestureDetector(
+                                onTap: () async {
+                                  var url = Uri.parse(
+                                      'https://www.youtube.com/watch?v=${mov.movieDetail!.trailer}');
+
+                                  if (mov.movieDetail!.trailer.isNotEmpty) {
+                                    await launchUrl(url);
+                                  }
+                                },
+                                child: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: AnimatedContainer(
+                                    duration: const Duration(milliseconds: 500),
+                                    curve: Curves.bounceIn,
+                                    height: mov.movieDetail == null ? 0 : 70,
+                                    width: mov.movieDetail == null ? 0 : 70,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: mov.movieDetail != null
+                                          ? mov.movieDetail!.trailer.isEmpty
+                                              ? Colors.grey
+                                              : const Color(0xffFF0000)
+                                          : Colors.grey,
+                                    ),
+                                    child: mov.movieDetail == null
+                                        ? const SizedBox()
+                                        : const Icon(
+                                            MdiIcons.youtubeTv,
+                                            color: Colors.white,
+                                            size: 30,
+                                          ),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 265),
+                        child: ElevatedButton(
+                          onPressed: mov.movieDetail == null ? null : () {},
+                          style: ElevatedButton.styleFrom(
+                            primary: kAccentColor,
+                            fixedSize: const Size(150, 35),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Text(
+                                'DOWNLOAD ',
+                                style: kBodyTextStyleWhite,
+                              ),
+                              Icon(
+                                Icons.download_rounded,
+                                color: Colors.white,
+                                size: 16.0,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 50, top: 20),
+                        child:
+                            Text('Related Movies', style: kBodyTextStyleGrey),
+                      ),
+                      Container(
+                        height: 320,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 50, vertical: 20),
+                        child: Consumer<Movies>(
+                          builder: (context, movieData, __) => movieData
+                                  .relatedMovies.isEmpty
+                              ? ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (context, index) =>
+                                      Shimmer.fromColors(
+                                    child: Container(
+                                      margin: const EdgeInsets.only(right: 20),
+                                      width: 200,
+                                      //height: 300,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      ),
+                                    ),
+                                    baseColor: kSecondaryColorDark,
+                                    highlightColor: kPrimaryColorDark,
+                                  ),
+                                  itemCount: 10,
+                                  shrinkWrap: true,
+                                )
+                              : Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: movieData.relatedMovies
+                                      .map((movie) => MovieCard(
+                                            movie: movie,
+                                          ))
+                                      .toList(),
+                                ),
+                        ),
+                      )
                     ],
                   ),
                 ),

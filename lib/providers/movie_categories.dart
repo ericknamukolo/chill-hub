@@ -1,6 +1,5 @@
 import 'package:chill_hub/models/movie_category.dart';
 import 'package:chill_hub/providers/movies.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
