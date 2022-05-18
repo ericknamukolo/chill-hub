@@ -92,6 +92,21 @@ class Movies with ChangeNotifier {
       var data = json.decode(response.body);
       if (data['status'] == 'ok') {
         var mov = data['data']['movie'];
+        List<Torrent> _loadedTorrents = [];
+
+        mov['torrents'].forEach((tor) {
+          _loadedTorrents.add(
+            Torrent(
+              hash: tor['hash'],
+              quality: tor['quality'],
+              url: tor['url'],
+              size: tor['size'],
+              type: tor['type'],
+              title: mov['title'],
+            ),
+          );
+        });
+
         movieDetail = MovieDetail(
           bgImg: mov['background_image_original'],
           trailer: mov['yt_trailer_code'],
@@ -103,7 +118,9 @@ class Movies with ChangeNotifier {
           fullDes: mov['description_full'],
           year: mov['year'],
           genres: mov['genres'],
+          torrents: [..._loadedTorrents],
         );
+        _loadedTorrents.clear();
       }
     } on FormatException {
       throw Exception('Server Error');

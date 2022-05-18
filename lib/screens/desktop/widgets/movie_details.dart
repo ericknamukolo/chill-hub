@@ -3,6 +3,7 @@ import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
 import 'package:chill_hub/providers/movie_views.dart';
 import 'package:chill_hub/providers/movies.dart';
+import 'package:chill_hub/screens/desktop/widgets/download_dialog.dart';
 import 'package:chill_hub/screens/desktop/widgets/movie_card.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -389,7 +390,15 @@ class _MovieDetailsState extends State<MovieDetails> {
                       Padding(
                         padding: const EdgeInsets.only(left: 265),
                         child: ElevatedButton(
-                          onPressed: mov.movieDetail == null ? null : () {},
+                          onPressed: mov.movieDetail == null
+                              ? null
+                              : () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => DownloadDialog(
+                                        torrents: mov.movieDetail!.torrents),
+                                  );
+                                },
                           style: ElevatedButton.styleFrom(
                             primary: kAccentColor,
                             fixedSize: const Size(150, 35),
@@ -413,7 +422,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                       const Padding(
                         padding: EdgeInsets.only(left: 50, top: 20),
                         child:
-                            Text('Related Movies', style: kBodyTextStyleGrey),
+                            Text('Suggested Movies', style: kBodyTextStyleGrey),
                       ),
                       Container(
                         height: 320,

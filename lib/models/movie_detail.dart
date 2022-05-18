@@ -9,6 +9,7 @@ class MovieDetail {
   String bgImg;
   String img;
   String trailer;
+  List<Torrent> torrents;
 
   MovieDetail({
     required this.bgImg,
@@ -21,5 +22,24 @@ class MovieDetail {
     required this.fullDes,
     required this.year,
     required this.genres,
+    required this.torrents,
+  });
+}
+
+class Torrent {
+  String hash;
+  String url;
+  String quality;
+  String type;
+  String size;
+  String title;
+
+  Torrent({
+    required this.hash,
+    required this.quality,
+    required this.url,
+    required this.size,
+    required this.type,
+    required this.title,
   });
 }
