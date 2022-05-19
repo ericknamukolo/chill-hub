@@ -26,16 +26,16 @@ class _MovieListState extends State<MovieList> {
   bool _showBar = false;
   String genre = 'All';
   final ScrollController _scrollController = ScrollController();
+  final TextEditingController _search = TextEditingController();
 
   @override
   void initState() {
     Future.delayed(Duration.zero).then((_) async {
       setState(() {
         _isLoading = true;
-      });
-      setState(() {
         _isCatLoading = true;
       });
+
       await Provider.of<Movies>(context, listen: false).fetchLatestMovies();
       setState(() {
         _isLoading = false;
@@ -187,12 +187,13 @@ class _MovieListState extends State<MovieList> {
                             ),
                           ),
                           const SizedBox(height: 15),
-                          const SizedBox(
+                          SizedBox(
                             width: 600,
                             child: TextField(
+                              controller: _search,
                               style: kBodyTextStyleWhite,
                               cursorColor: kAccentColor,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 filled: true,
                                 border: InputBorder.none,
                                 hintText: 'Search Movie',
@@ -200,7 +201,25 @@ class _MovieListState extends State<MovieList> {
                             ),
                           ),
                           const Spacer(),
-                          const SizedBox(),
+                          ElevatedButton(
+                            onPressed: () async {
+                              print(_search.text.toLowerCase());
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: kAccentColor.withOpacity(.3),
+                              fixedSize: const Size(200, 40),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                Text(
+                                  'Search',
+                                  style: kBodyTextStyleWhite,
+                                ),
+                              ],
+                            ),
+                          ),
+                          const Spacer(),
                         ],
                       ),
                     ),
