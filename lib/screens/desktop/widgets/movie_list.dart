@@ -27,6 +27,7 @@ class _MovieListState extends State<MovieList> {
   String genre = 'All';
   final ScrollController _scrollController = ScrollController();
   final TextEditingController _search = TextEditingController();
+  String query = '';
 
   @override
   void initState() {
@@ -191,32 +192,61 @@ class _MovieListState extends State<MovieList> {
                             width: 600,
                             child: TextField(
                               controller: _search,
+                              textAlignVertical: TextAlignVertical.center,
                               style: kBodyTextStyleWhite,
                               cursorColor: kAccentColor,
-                              decoration: const InputDecoration(
+                              onChanged: (newVal) {
+                                setState(() {
+                                  query = newVal;
+                                });
+                              },
+                              decoration: InputDecoration(
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
                                 filled: true,
                                 border: InputBorder.none,
                                 hintText: 'Search Movie',
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      query = '';
+                                      _search.clear();
+                                    });
+                                  },
+                                  icon: Icon(
+                                    Icons.close,
+                                    color: query.isNotEmpty || query != ''
+                                        ? Colors.white
+                                        : Colors.transparent,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                           const Spacer(),
-                          ElevatedButton(
-                            onPressed: () async {
-                              print(_search.text.toLowerCase());
-                            },
-                            style: ElevatedButton.styleFrom(
-                              primary: kAccentColor.withOpacity(.3),
-                              fixedSize: const Size(200, 40),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Text(
-                                  'Search',
-                                  style: kBodyTextStyleWhite,
-                                ),
-                              ],
+                          Consumer<Movies>(
+                            builder: (context, movieData, __) => ElevatedButton(
+                              onPressed: () async {
+                                if (query.isNotEmpty) {
+                                  await movieData.searchMovie(query);
+                                  movieData.searchedMovies.forEach((element) {
+                                    print(element.title);
+                                  });
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                primary: kAccentColor.withOpacity(.3),
+                                fixedSize: const Size(200, 40),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Text(
+                                    'Search',
+                                    style: kBodyTextStyleWhite,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           const Spacer(),

@@ -16,6 +16,9 @@ class Movies with ChangeNotifier {
   //Related Movies
   List<Movie> _relatedMovies = [];
   List<Movie> get relatedMovies => _relatedMovies;
+  //Searched Movies
+  List<Movie> _searchedMovies = [];
+  List<Movie> get searchedMovies => _searchedMovies;
 
   Future<void> fetchLatestMovies() async {
     String url =
@@ -150,6 +153,32 @@ class Movies with ChangeNotifier {
         );
       });
       _relatedMovies = _loadedMovies;
+    } else {
+      throw Exception('error');
+    }
+    notifyListeners();
+  }
+
+  Future<void> searchMovie(String query) async {
+    String url =
+        'https://yts.torrentbay.to/api/v2/list_movies.json?query_term=$query&limit=50';
+    var response = await http.get(Uri.parse(url));
+    var data = json.decode(response.body);
+    if (data['status'] == 'ok') {
+      List<Movie> _loadedMovies = [];
+
+      data['data']['movies'].forEach((movie) {
+        _loadedMovies.add(
+          Movie(
+            id: movie['id'],
+            title: movie['title'],
+            year: movie['year'],
+            coverImg: movie['medium_cover_image'],
+            rating: movie['rating'],
+          ),
+        );
+      });
+      _searchedMovies = _loadedMovies;
     } else {
       throw Exception('error');
     }
