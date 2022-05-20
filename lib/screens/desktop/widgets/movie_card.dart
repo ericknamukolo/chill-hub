@@ -41,6 +41,7 @@ class _MovieCardState extends State<MovieCard> {
         onTap: () async {
           Provider.of<MovieViews>(context, listen: false)
               .toggleMovieDetails(true);
+          Provider.of<MovieViews>(context, listen: false).toggleisSearch(false);
           Provider.of<Movies>(context, listen: false)
               .fetchMovieDetails(widget.movie.id);
           await Provider.of<Movies>(context, listen: false)

@@ -44,30 +44,55 @@ class DownloadDialog extends StatelessWidget {
                         Container(
                           height: 100,
                           margin: const EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.symmetric(vertical: 14),
                           width: double.infinity,
                           decoration: BoxDecoration(
                             color: kSecondaryColorDark,
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                torr.quality,
-                                style: kBodyTextStyleWhite.copyWith(
-                                  color: kAccentColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
+                              Column(
+                                children: [
+                                  Text(
+                                    torr.quality,
+                                    style: kBodyTextStyleWhite.copyWith(
+                                      color: kAccentColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                  Text(
+                                    torr.type,
+                                    style: kBodyTextStyleGrey.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              const SizedBox(height: 5),
-                              Text(
-                                torr.type,
-                                style: kBodyTextStyleGrey.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'S ${torr.seeds}',
+                                    style: kBodyTextStyleGrey.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13,
+                                      color: Colors.green,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 20),
+                                  Text(
+                                    'P ${torr.peers}',
+                                    style: kBodyTextStyleGrey.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13,
+                                      color: Theme.of(context).errorColor,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),

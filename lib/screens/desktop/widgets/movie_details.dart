@@ -23,7 +23,6 @@ class MovieDetails extends StatefulWidget {
 
 class _MovieDetailsState extends State<MovieDetails> {
   bool _showBar = false;
-  bool _isLoading = false;
   final ScrollController _scrollController = ScrollController();
 
   @override

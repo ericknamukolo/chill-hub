@@ -11,6 +11,7 @@ import 'package:chill_hub/screens/desktop/widgets/latest_movies_widget.dart';
 import 'package:chill_hub/screens/desktop/widgets/menu_btn_widget.dart';
 import 'package:chill_hub/screens/desktop/widgets/movie_details.dart';
 import 'package:chill_hub/screens/desktop/widgets/movie_list.dart';
+import 'package:chill_hub/screens/desktop/widgets/movie_search.dart';
 import 'package:chill_hub/widgets/footer_info.dart';
 import 'package:chill_hub/widgets/logo.dart';
 import 'package:flutter/material.dart';
@@ -33,74 +34,8 @@ class DesktopHomeScreen extends StatefulWidget {
 
 class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
   int pageNumber = 1;
-  bool _isLoading = false;
-  bool _isCatLoading = false;
-  bool _loadMore = false;
-  bool _showBar = false;
+
   String genre = 'All';
-  final ScrollController _scrollController = ScrollController();
-  // @override
-  // void initState() {
-  //   Future.delayed(Duration.zero).then((_) async {
-  //     setState(() {
-  //       _isLoading = true;
-  //     });
-  //     setState(() {
-  //       _isCatLoading = true;
-  //     });
-  //     await Provider.of<Movies>(context, listen: false).fetchLatestMovies();
-  //     setState(() {
-  //       _isLoading = false;
-  //     });
-  //     await Provider.of<Movies>(context, listen: false)
-  //         .fetchCatMovies(pageNumber, genre);
-  //     setState(() {
-  //       _isCatLoading = false;
-  //     });
-  //   });
-  //   super.initState();
-  //   _scrollController.addListener(() async {
-  //     if (_scrollController.position.pixels >= 300) {
-  //       setState(() {
-  //         _showBar = true;
-  //       });
-  //     } else {
-  //       setState(() {
-  //         _showBar = false;
-  //       });
-  //     }
-
-  //     if (_scrollController.position.pixels >=
-  //         _scrollController.position.maxScrollExtent - 400) {
-  //       if (!_loadMore) {
-  //         pageNumber = pageNumber + 1;
-  //         setState(() {
-  //           _loadMore = true;
-  //         });
-
-  //         await Provider.of<Movies>(context, listen: false)
-  //             .fetchCatMovies(pageNumber, genre);
-
-  //         setState(() {
-  //           _loadMore = false;
-  //         });
-  //       }
-  //     }
-  //   });
-  // }
-
-  // @override
-  // void dispose() {
-  //   _scrollController.dispose();
-  //   super.dispose();
-  // }
-
-  // @override
-  // void setState(VoidCallback fn) {
-  //   if (mounted) {
-  //     super.setState(fn);
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -215,6 +150,8 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
               Widget _widget;
               if (view.isMovieDetails) {
                 _widget = const MovieDetails();
+              } else if (view.isSearch) {
+                _widget = MovieSearch();
               } else {
                 _widget = const MovieList();
               }

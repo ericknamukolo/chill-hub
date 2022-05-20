@@ -33,6 +33,8 @@ class Torrent {
   String type;
   String size;
   String title;
+  int seeds;
+  int peers;
 
   Torrent({
     required this.hash,
@@ -41,5 +43,7 @@ class Torrent {
     required this.size,
     required this.type,
     required this.title,
+    required this.seeds,
+    required this.peers,
   });
 }

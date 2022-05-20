@@ -20,6 +20,9 @@ class Movies with ChangeNotifier {
   List<Movie> _searchedMovies = [];
   List<Movie> get searchedMovies => _searchedMovies;
 
+  //search is loading
+  bool searchLoading = false;
+
   Future<void> fetchLatestMovies() async {
     String url =
         'https://yts.torrentbay.to/api/v2/list_movies.json?sort_by=year';
@@ -105,6 +108,8 @@ class Movies with ChangeNotifier {
               url: tor['url'],
               size: tor['size'],
               type: tor['type'],
+              peers: tor['peers'],
+              seeds: tor['seeds'],
               title: mov['title'],
             ),
           );
@@ -160,11 +165,14 @@ class Movies with ChangeNotifier {
   }
 
   Future<void> searchMovie(String query) async {
+    searchLoading = true;
     String url =
         'https://yts.torrentbay.to/api/v2/list_movies.json?query_term=$query&limit=50';
     var response = await http.get(Uri.parse(url));
     var data = json.decode(response.body);
-    if (data['status'] == 'ok') {
+
+    if (data['status'] == 'ok' && data['data']['movie_count'] != 0) {
+      searchLoading = false;
       List<Movie> _loadedMovies = [];
 
       data['data']['movies'].forEach((movie) {
@@ -172,7 +180,7 @@ class Movies with ChangeNotifier {
           Movie(
             id: movie['id'],
             title: movie['title'],
-            year: movie['year'],
+            year: data['data']['movie_count'], //number of movies fetched
             coverImg: movie['medium_cover_image'],
             rating: movie['rating'],
           ),
@@ -180,8 +188,14 @@ class Movies with ChangeNotifier {
       });
       _searchedMovies = _loadedMovies;
     } else {
-      throw Exception('error');
+      searchLoading = false;
+      clearSearchedMovies();
     }
+    notifyListeners();
+  }
+
+  Future<void> clearSearchedMovies() async {
+    _searchedMovies.clear();
     notifyListeners();
   }
 

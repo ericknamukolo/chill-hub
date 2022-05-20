@@ -42,6 +42,8 @@ dependencies:
   url_launcher: ^6.1.2
   bitsdojo_window: ^0.1.1+1
   firebase_core: ^1.17.0
+  msix: ^3.6.2
+  flutter_launcher_icons_maker: ^0.10.2
 
 dev_dependencies:
   flutter_test:
@@ -74,3 +76,15 @@ flutter:
     - family: VarelaRound
       fonts:
         - asset: assets/fonts/VarelaRound-Regular.ttf
+
+flutter_icons:
+  windows: true
+  image_path: "assets/logo.png"
+
+msix_config:
+  display_name: Chill Hub
+  publisher_display_name: Erick Namukolo
+  identity_name: com.ericknamukolo.chillhub
+  msix_version: 1.0.0.0
+  logo_path: E:\Projects\Flutter Projects\chill_hub\assets\logo.png
+  capabilities: internetClient

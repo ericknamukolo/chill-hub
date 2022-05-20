@@ -1,6 +1,7 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
+import 'package:chill_hub/providers/movie_views.dart';
 import 'package:chill_hub/providers/movies.dart';
 import 'package:chill_hub/screens/desktop/widgets/latest_movies_widget.dart';
 import 'package:chill_hub/screens/desktop/widgets/movie_card.dart';
@@ -228,10 +229,10 @@ class _MovieListState extends State<MovieList> {
                             builder: (context, movieData, __) => ElevatedButton(
                               onPressed: () async {
                                 if (query.isNotEmpty) {
+                                  Provider.of<MovieViews>(context,
+                                          listen: false)
+                                      .toggleisSearch(true);
                                   await movieData.searchMovie(query);
-                                  movieData.searchedMovies.forEach((element) {
-                                    print(element.title);
-                                  });
                                 }
                               },
                               style: ElevatedButton.styleFrom(
@@ -424,7 +425,7 @@ class _MovieListState extends State<MovieList> {
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 5,
-                                childAspectRatio: 6 / 7, //7 / 8,
+                                childAspectRatio: 6 / 8, //7 / 8,
                                 crossAxisSpacing: 15.0,
                                 mainAxisSpacing: 15.0,
                               ),

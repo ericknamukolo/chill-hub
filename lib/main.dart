@@ -28,7 +28,6 @@ Future<void> main() async {
       final win = appWindow;
       win.title = 'Chill Hub';
       win.minSize = const Size(1200, 700);
-
       win.show();
     });
   }
