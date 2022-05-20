@@ -9,8 +9,10 @@ import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 class MovieSearch extends StatefulWidget {
+  final String? queryString;
   const MovieSearch({
     Key? key,
+    this.queryString,
   }) : super(key: key);
 
   @override
@@ -18,14 +20,11 @@ class MovieSearch extends StatefulWidget {
 }
 
 class _MovieSearchState extends State<MovieSearch> {
-  bool _isCatLoading = false;
-
   bool _showBar = false;
   String genre = 'All';
   final ScrollController _scrollController = ScrollController();
   final TextEditingController _search = TextEditingController();
   String query = '';
-  String searchedMovie = '';
 
   @override
   void dispose() {
@@ -205,7 +204,6 @@ class _MovieSearchState extends State<MovieSearch> {
                                   movieData.clearSearchedMovies();
                                   await movieData.searchMovie(query);
                                   setState(() {
-                                    searchedMovie = query;
                                     query = '';
                                   });
                                 }
@@ -233,9 +231,11 @@ class _MovieSearchState extends State<MovieSearch> {
                     const SizedBox(height: 20),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 50),
-                      child: Text(
-                        'Results for \'$searchedMovie\' (${Provider.of<Movies>(context, listen: false).searchedMovies.length})',
-                        style: kBodyTextStyleGrey,
+                      child: Consumer<Movies>(
+                        builder: (context, searchMovieData, __) => Text(
+                          'Results for \'${searchMovieData.queryString}\' (${searchMovieData.searchedMovies.length})',
+                          style: kBodyTextStyleGrey,
+                        ),
                       ),
                     ),
                     Consumer<Movies>(builder: (context, searchMovieData, __) {
@@ -292,7 +292,7 @@ class _MovieSearchState extends State<MovieSearch> {
                         } else {
                           _widget = Center(
                             child: Text(
-                              'No movies found for the query \'$searchedMovie\'',
+                              'No movies found for the query \'${searchMovieData.queryString}\'',
                               style: kBodyTextStyleGrey,
                             ),
                           );

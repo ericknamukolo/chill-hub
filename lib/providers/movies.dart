@@ -22,6 +22,8 @@ class Movies with ChangeNotifier {
 
   //search is loading
   bool searchLoading = false;
+  //query for searching movie
+  String queryString = '';
 
   Future<void> fetchLatestMovies() async {
     String url =
@@ -166,6 +168,7 @@ class Movies with ChangeNotifier {
 
   Future<void> searchMovie(String query) async {
     searchLoading = true;
+    queryString = query;
     String url =
         'https://yts.torrentbay.to/api/v2/list_movies.json?query_term=$query&limit=50';
     var response = await http.get(Uri.parse(url));
@@ -180,7 +183,7 @@ class Movies with ChangeNotifier {
           Movie(
             id: movie['id'],
             title: movie['title'],
-            year: data['data']['movie_count'], //number of movies fetched
+            year: movie['year'], //number of movies fetched
             coverImg: movie['medium_cover_image'],
             rating: movie['rating'],
           ),

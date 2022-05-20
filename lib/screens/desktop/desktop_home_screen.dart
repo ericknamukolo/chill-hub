@@ -151,7 +151,7 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
               if (view.isMovieDetails) {
                 _widget = const MovieDetails();
               } else if (view.isSearch) {
-                _widget = MovieSearch();
+                _widget = const MovieSearch();
               } else {
                 _widget = const MovieList();
               }
