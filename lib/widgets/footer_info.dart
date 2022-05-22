@@ -1,5 +1,5 @@
-import 'package:chill_hub/constants/colors.dart';
-import 'package:chill_hub/constants/text_style.dart';
+import '../constants/colors.dart';
+import '../constants/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 

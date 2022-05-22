@@ -1,16 +1,15 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:chill_hub/constants/colors.dart';
-import 'package:chill_hub/constants/text_style.dart';
-import 'package:chill_hub/providers/movie_views.dart';
-import 'package:chill_hub/providers/movies.dart';
-import 'package:chill_hub/screens/desktop/widgets/latest_movies_widget.dart';
-import 'package:chill_hub/screens/desktop/widgets/movie_card.dart';
+import '../constants/colors.dart';
+import '../constants/text_style.dart';
+import '../providers/movie_views.dart';
+import '../providers/movies.dart';
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../../providers/movie_categories.dart';
+import '../providers/movie_categories.dart';
+import 'latest_movies_widget.dart';
+import 'movie_card.dart';
 
 class MovieList extends StatefulWidget {
   const MovieList({Key? key}) : super(key: key);

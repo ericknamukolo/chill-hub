@@ -1,27 +1,14 @@
-import 'dart:io';
-
-import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:chill_hub/constants/colors.dart';
-import 'package:chill_hub/constants/text_style.dart';
-import 'package:chill_hub/providers/menu_buttons.dart';
-import 'package:chill_hub/providers/movie_categories.dart';
-import 'package:chill_hub/providers/movie_views.dart';
-import 'package:chill_hub/providers/movies.dart';
-import 'package:chill_hub/screens/desktop/widgets/latest_movies_widget.dart';
-import 'package:chill_hub/screens/desktop/widgets/menu_btn_widget.dart';
-import 'package:chill_hub/screens/desktop/widgets/movie_details.dart';
-import 'package:chill_hub/screens/desktop/widgets/movie_list.dart';
-import 'package:chill_hub/screens/desktop/widgets/movie_search.dart';
-import 'package:chill_hub/widgets/footer_info.dart';
-import 'package:chill_hub/widgets/logo.dart';
+import '../constants/colors.dart';
+import '../constants/text_style.dart';
+import '../providers/menu_buttons.dart';
+import '../providers/movie_views.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:url_launcher/url_launcher.dart';
-
-import 'widgets/movie_card.dart';
+import '../widgets/menu_btn_widget.dart';
+import '../widgets/movie_details.dart';
+import '../widgets/movie_list.dart';
+import '../widgets/movie_search.dart';
 
 class DesktopHomeScreen extends StatefulWidget {
   const DesktopHomeScreen({

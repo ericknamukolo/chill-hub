@@ -1,4 +1,4 @@
-import 'package:chill_hub/models/menu_btn.dart';
+import '../models/menu_btn.dart';
 
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';

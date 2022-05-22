@@ -6,23 +6,13 @@ import 'package:chill_hub/providers/menu_buttons.dart';
 import 'package:chill_hub/providers/movie_categories.dart';
 import 'package:chill_hub/providers/movie_views.dart';
 import 'package:chill_hub/providers/movies.dart';
-import 'package:chill_hub/widgets/responsive_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'firebase_options.dart';
-import 'package:firebase_core/firebase_core.dart';
-
-import 'screens/desktop/desktop_home_screen.dart';
+import 'screens/desktop_home_screen.dart';
 
 Future<void> main() async {
   runApp(const ChillHub());
   WidgetsFlutterBinding.ensureInitialized();
-  if (!Platform.isWindows) {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-  }
-
   if (Platform.isWindows) {
     doWhenWindowReady(() {
       final win = appWindow;
@@ -52,11 +42,7 @@ class ChillHub extends StatelessWidget {
           fontFamily: 'VarelaRound',
           brightness: Brightness.dark,
         ),
-        home: const ResponsiveLayout(
-          desktopBody: DesktopHomeScreen(),
-          mobileBody: Text('Mobile'),
-          tabletBody: Text('Tablet'),
-        ),
+        home: const DesktopHomeScreen(),
       ),
     );
   }

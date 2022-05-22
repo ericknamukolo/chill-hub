@@ -1,6 +1,6 @@
-import 'package:chill_hub/constants/colors.dart';
-import 'package:chill_hub/constants/text_style.dart';
-import 'package:chill_hub/models/movie_detail.dart';
+import '../constants/colors.dart';
+import '../constants/text_style.dart';
+import '../models/movie_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';

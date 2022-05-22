@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:chill_hub/models/movie.dart';
-import 'package:chill_hub/models/movie_detail.dart';
+import '../models/movie.dart';
+import '../models/movie_detail.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';

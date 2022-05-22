@@ -1,9 +1,11 @@
-import 'package:chill_hub/constants/colors.dart';
-import 'package:chill_hub/providers/movies.dart';
-import 'package:chill_hub/screens/desktop/widgets/movie_card.dart';
+import '../constants/colors.dart';
+import '../providers/movies.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
+
+import 'movie_card.dart';
 
 class LatestMoviesWidget extends StatelessWidget {
   const LatestMoviesWidget({
