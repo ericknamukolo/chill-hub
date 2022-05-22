@@ -266,20 +266,12 @@ class _MovieListState extends State<MovieList> {
                             child: Column(
                               children: [
                                 Row(
-                                  children: [
-                                    const Text(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: const [
+                                    Text(
                                       'Latest movies',
                                       style: kTitleTextStyle,
                                     ),
-                                    const Spacer(),
-                                    const Text(
-                                      'See all',
-                                      style: kBodyTextStyleGrey,
-                                    ),
-                                    Icon(
-                                      MdiIcons.chevronRight,
-                                      color: kBodyTextStyleGrey.color,
-                                    )
                                   ],
                                 ),
                                 const SizedBox(height: 10),
@@ -363,6 +355,7 @@ class _MovieListState extends State<MovieList> {
                     Container(
                       padding: const EdgeInsets.only(left: 15, right: 15),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Consumer<MovieCategories>(
                             builder: (context, cat, __) {
@@ -377,15 +370,6 @@ class _MovieListState extends State<MovieList> {
                               );
                             },
                           ),
-                          const Spacer(),
-                          const Text(
-                            'See all',
-                            style: kBodyTextStyleGrey,
-                          ),
-                          Icon(
-                            MdiIcons.chevronRight,
-                            color: kBodyTextStyleGrey.color,
-                          )
                         ],
                       ),
                     ),

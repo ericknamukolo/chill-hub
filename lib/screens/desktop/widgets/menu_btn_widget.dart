@@ -3,6 +3,7 @@ import 'package:chill_hub/constants/text_style.dart';
 import 'package:chill_hub/models/menu_btn.dart';
 import 'package:chill_hub/providers/menu_buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class MenuBtnWidget extends StatelessWidget {
@@ -17,7 +18,10 @@ class MenuBtnWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Provider.of<MenuButtons>(context, listen: false).selectBtn(btn);
+        if (btn.title == 'About') {
+        } else {
+          Provider.of<MenuButtons>(context, listen: false).selectBtn(btn);
+        }
       },
       child: MouseRegion(
         cursor: SystemMouseCursors.click,

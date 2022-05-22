@@ -93,30 +93,30 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
                           .toList(),
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: Text(
-                      'LIBRARY',
-                      style: kBodyTextStyleGrey.copyWith(
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 2,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                  Consumer<MenuButtons>(
-                    builder: (context, btnData, __) => Column(
-                      children: btnData.libButtonsData
-                          .map(
-                            (btn) => MenuBtnWidget(
-                              btn: btn,
-                            ),
-                          )
-                          .toList(),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
+                  // const SizedBox(height: 20),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(left: 10, right: 10),
+                  //   child: Text(
+                  //     'LIBRARY',
+                  //     style: kBodyTextStyleGrey.copyWith(
+                  //       fontWeight: FontWeight.bold,
+                  //       letterSpacing: 2,
+                  //     ),
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 5),
+                  // Consumer<MenuButtons>(
+                  //   builder: (context, btnData, __) => Column(
+                  //     children: btnData.libButtonsData
+                  //         .map(
+                  //           (btn) => MenuBtnWidget(
+                  //             btn: btn,
+                  //           ),
+                  //         )
+                  //         .toList(),
+                  //   ),
+                  // ),
+                  //  const SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     child: Text(
@@ -140,7 +140,7 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
                     ),
                   ),
                   const Spacer(),
-                  const FooterInfo(),
+                  // const FooterInfo(),
                 ],
               ),
             ),

@@ -1,6 +1,7 @@
 import 'package:chill_hub/models/menu_btn.dart';
 
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class MenuButtons with ChangeNotifier {
   List<MenuBtn> buttonsData = [
@@ -11,29 +12,25 @@ class MenuButtons with ChangeNotifier {
     ),
   ];
 
-  List<MenuBtn> libButtonsData = [
-    MenuBtn(
-      icon: Icons.watch_later_rounded,
-      title: 'Watch Later',
-    ),
-    MenuBtn(
-      icon: Icons.favorite_rounded,
-      title: 'Favourites',
-    ),
-    MenuBtn(
-      icon: Icons.download_rounded,
-      title: 'Downloaded',
-    ),
-  ];
+  // List<MenuBtn> libButtonsData = [
+  //   MenuBtn(
+  //     icon: Icons.watch_later_rounded,
+  //     title: 'Watch Later',
+  //   ),
+  //   MenuBtn(
+  //     icon: Icons.favorite_rounded,
+  //     title: 'Favourites',
+  //   ),
+  //   MenuBtn(
+  //     icon: Icons.download_rounded,
+  //     title: 'Downloaded',
+  //   ),
+  // ];
 
   List<MenuBtn> genButtonsData = [
     MenuBtn(
-      icon: Icons.settings,
-      title: 'Settings',
-    ),
-    MenuBtn(
-      icon: Icons.logout_rounded,
-      title: 'Log Out',
+      icon: MdiIcons.information,
+      title: 'About',
     ),
   ];
 
@@ -42,9 +39,7 @@ class MenuButtons with ChangeNotifier {
     buttonsData.forEach((element) {
       _btns.add(element);
     });
-    libButtonsData.forEach((element) {
-      _btns.add(element);
-    });
+
     genButtonsData.forEach((element) {
       _btns.add(element);
     });
