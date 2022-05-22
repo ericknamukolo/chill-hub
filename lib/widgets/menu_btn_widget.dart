@@ -19,6 +19,21 @@ class MenuBtnWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         if (btn.title == 'About') {
+          showDialog(
+              context: context,
+              builder: (context) => Dialog(
+                    child: Container(
+                      height: 70,
+                      color: kPrimaryColorDark,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: const [
+                          Text('About', style: kBodyTextStyleWhite),
+                          Text('Chill Hub V1.0.0', style: kBodyTextStyleGrey),
+                        ],
+                      ),
+                    ),
+                  ));
         } else {
           Provider.of<MenuButtons>(context, listen: false).selectBtn(btn);
         }
