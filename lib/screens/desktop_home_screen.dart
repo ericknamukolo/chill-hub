@@ -1,3 +1,5 @@
+import 'package:chill_hub/widgets/footer_info.dart';
+
 import '../constants/colors.dart';
 import '../constants/text_style.dart';
 import '../providers/menu_buttons.dart';
@@ -127,7 +129,7 @@ class _DesktopHomeScreenState extends State<DesktopHomeScreen> {
                     ),
                   ),
                   const Spacer(),
-                  // const FooterInfo(),
+                  const FooterInfo(),
                 ],
               ),
             ),
