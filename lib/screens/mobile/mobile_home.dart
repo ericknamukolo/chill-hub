@@ -3,6 +3,7 @@ import 'package:chill_hub/constants/text_style.dart';
 import 'package:chill_hub/widgets/mobile_widgets/cutsom_app_bar.dart';
 import 'package:flutter/material.dart';
 
+import 'about_nav_screen.dart';
 import 'home_nav_screen.dart';
 
 class MobileHome extends StatefulWidget {
@@ -34,10 +35,10 @@ class _MobileHome extends State<MobileHome> with TickerProviderStateMixin {
   }
 
   final tabs = [
-    HomeScreen(),
+    const HomeScreen(),
     Container(),
     Container(),
-    Container(),
+    const AboutNavScreen(),
   ];
   @override
   Widget build(BuildContext context) {

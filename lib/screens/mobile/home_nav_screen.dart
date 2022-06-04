@@ -30,17 +30,32 @@ class HomeScreen extends StatelessWidget {
             Consumer<MovieCategories>(
               builder: (context, cat, __) => Container(
                 margin: const EdgeInsets.symmetric(vertical: 10),
-                child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: cat.categories
-                        .mapIndexed(
-                          (i, category) =>
-                              CategoryCard(category: category, i: i),
-                        )
-                        .toList(),
-                  ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: cat.categories
+                            .mapIndexed(
+                              (i, category) =>
+                                  CategoryCard(category: category, i: i),
+                            )
+                            .toList(),
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+                    Text(
+                      cat.categories.firstWhere((c) => c.isSelected).category ==
+                              'All'
+                          ? 'Movies'
+                          : cat.categories
+                              .firstWhere((c) => c.isSelected)
+                              .category,
+                      style: kBodyTitleTextStyle,
+                    ),
+                  ],
                 ),
               ),
             ),

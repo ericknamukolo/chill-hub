@@ -18,7 +18,7 @@ class _MobileSplashScreenState extends State<MobileSplashScreen> {
     super.initState();
     Timer(const Duration(seconds: 4), () {
       Navigator.of(context)
-          .push(CupertinoPageRoute(builder: (context) => const MobileHome()));
+          .push(MaterialPageRoute(builder: (context) => const MobileHome()));
     });
   }
 
