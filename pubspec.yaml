@@ -79,6 +79,8 @@ flutter:
 flutter_icons:
   windows: true
   image_path: "assets/logo.png"
+  ios: true
+  android: true
 
 msix_config:
   display_name: Chill Hub
