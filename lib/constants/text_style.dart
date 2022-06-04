@@ -31,3 +31,9 @@ const kBarTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
   letterSpacing: 1,
 );
+const kBodyTitleTextStyle = TextStyle(
+  color: kAccentColor,
+  fontSize: 13,
+  fontWeight: FontWeight.w600,
+  letterSpacing: 1.5,
+);

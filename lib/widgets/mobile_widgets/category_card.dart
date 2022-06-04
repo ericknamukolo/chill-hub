@@ -8,9 +8,11 @@ import '../../constants/text_style.dart';
 
 class CategoryCard extends StatelessWidget {
   final MovieCategory category;
+  final int i;
   const CategoryCard({
     Key? key,
     required this.category,
+    required this.i,
   }) : super(key: key);
 
   @override
@@ -22,7 +24,7 @@ class CategoryCard extends StatelessWidget {
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
-        margin: const EdgeInsets.only(right: 9),
+        margin: EdgeInsets.only(right: i != 9 ? 10 : 0),
         decoration: BoxDecoration(
           color: category.isSelected ? kAccentColor : kSecondaryColorDark,
           borderRadius: BorderRadius.circular(9.0),

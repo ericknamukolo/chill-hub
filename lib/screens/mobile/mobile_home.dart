@@ -34,7 +34,7 @@ class _MobileHome extends State<MobileHome> with TickerProviderStateMixin {
   }
 
   final tabs = [
-    const HomeScreen(),
+    HomeScreen(),
     Container(),
     Container(),
     Container(),
