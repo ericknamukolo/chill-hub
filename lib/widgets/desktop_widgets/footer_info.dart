@@ -1,9 +1,8 @@
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
-import '../constants/colors.dart';
-import '../constants/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/text_style.dart';
 
 class FooterInfo extends StatefulWidget {
   const FooterInfo({

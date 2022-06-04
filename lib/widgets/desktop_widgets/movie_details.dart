@@ -1,16 +1,14 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
-import '../constants/colors.dart';
-import '../constants/text_style.dart';
-import '../providers/movie_views.dart';
-import '../providers/movies.dart';
 
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-
+import '../../constants/colors.dart';
+import '../../constants/text_style.dart';
+import '../../providers/movie_views.dart';
+import '../../providers/movies.dart';
 import 'download_dialog.dart';
 import 'movie_card.dart';
 

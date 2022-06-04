@@ -1,12 +1,12 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
-import '../constants/colors.dart';
-import '../constants/text_style.dart';
-import '../providers/movie_views.dart';
-import '../providers/movies.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../constants/colors.dart';
+import '../../constants/text_style.dart';
+import '../../providers/movie_views.dart';
+import '../../providers/movies.dart';
 import 'movie_card.dart';
 
 class MovieSearch extends StatefulWidget {

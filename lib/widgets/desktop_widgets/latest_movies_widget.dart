@@ -1,10 +1,10 @@
-import '../constants/colors.dart';
-import '../providers/movies.dart';
+import '../../constants/colors.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../providers/movies.dart';
 import 'movie_card.dart';
 
 class LatestMoviesWidget extends StatelessWidget {
