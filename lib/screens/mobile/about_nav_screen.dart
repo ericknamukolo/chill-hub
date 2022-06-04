@@ -1,4 +1,3 @@
-import 'package:chill_hub/widgets/desktop_widgets/footer_info.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 

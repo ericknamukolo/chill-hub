@@ -1,5 +1,6 @@
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
+import 'package:chill_hub/screens/mobile/search_nav_screen.dart';
 import 'package:chill_hub/widgets/mobile_widgets/cutsom_app_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +38,7 @@ class _MobileHome extends State<MobileHome> with TickerProviderStateMixin {
   final tabs = [
     const HomeScreen(),
     Container(),
-    Container(),
+    const SearchNavScreen(),
     const AboutNavScreen(),
   ];
   @override
