@@ -6,9 +6,10 @@ import 'package:chill_hub/providers/menu_buttons.dart';
 import 'package:chill_hub/providers/movie_categories.dart';
 import 'package:chill_hub/providers/movie_views.dart';
 import 'package:chill_hub/providers/movies.dart';
+import 'package:chill_hub/screens/desktop/desktop_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'screens/desktop_home_screen.dart';
+import 'screens/desktop/desktop_home_screen.dart';
 
 Future<void> main() async {
   runApp(const ChillHub());
@@ -42,7 +43,7 @@ class ChillHub extends StatelessWidget {
           fontFamily: 'VarelaRound',
           brightness: Brightness.dark,
         ),
-        home: const DesktopHomeScreen(),
+        home: const DesktopSplashScreen(),
       ),
     );
   }

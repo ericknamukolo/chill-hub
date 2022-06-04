@@ -1,16 +1,16 @@
 import 'package:chill_hub/widgets/footer_info.dart';
 
-import '../constants/colors.dart';
-import '../constants/text_style.dart';
-import '../providers/menu_buttons.dart';
-import '../providers/movie_views.dart';
+import '../../constants/colors.dart';
+import '../../constants/text_style.dart';
+import '../../providers/menu_buttons.dart';
+import '../../providers/movie_views.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
-import '../widgets/menu_btn_widget.dart';
-import '../widgets/movie_details.dart';
-import '../widgets/movie_list.dart';
-import '../widgets/movie_search.dart';
+import '../../widgets/menu_btn_widget.dart';
+import '../../widgets/movie_details.dart';
+import '../../widgets/movie_list.dart';
+import '../../widgets/movie_search.dart';
 
 class DesktopHomeScreen extends StatefulWidget {
   const DesktopHomeScreen({
