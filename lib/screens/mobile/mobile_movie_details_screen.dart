@@ -1,7 +1,9 @@
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
+import 'package:chill_hub/screens/mobile/trailer_player_screen.dart';
 import 'package:chill_hub/widgets/desktop_widgets/movie_card.dart';
 import 'package:chill_hub/widgets/mobile_widgets/cutsom_app_bar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -43,7 +45,7 @@ class MobileMovieDetails extends StatelessWidget {
                   child: Container(
                     margin: const EdgeInsets.only(right: 10),
                     height: 340,
-                    width: 200,
+                    width: 210,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
                       image: DecorationImage(
@@ -80,6 +82,16 @@ class MobileMovieDetails extends StatelessWidget {
                           content: movie.trailer == ''
                               ? 'Not Available'
                               : 'Available',
+                          click: () {
+                            if (movie.trailer != '') {
+                              Navigator.of(context).push(
+                                CupertinoPageRoute(
+                                  builder: (context) =>
+                                      TrailerPlayerScreen(movie: movie),
+                                ),
+                              );
+                            }
+                          },
                         ),
                       ],
                     ),

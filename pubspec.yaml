@@ -46,6 +46,7 @@ dependencies:
   flutter_launcher_icons_maker: ^0.10.2
   carousel_slider: ^4.1.1
   flutter_glow: ^0.2.0
+  pod_player: ^0.0.5
 
 dev_dependencies:
   flutter_test:
