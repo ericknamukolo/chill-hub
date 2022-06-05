@@ -6,17 +6,19 @@ import '../../constants/text_style.dart';
 
 class MovieDetailsCard extends StatelessWidget {
   final String title;
+  final String content;
   final IconData icon;
   const MovieDetailsCard({
     Key? key,
     required this.title,
     required this.icon,
+    required this.content,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 6),
+      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 6),
       height: 75,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -35,9 +37,12 @@ class MovieDetailsCard extends StatelessWidget {
             title,
             style: kMobileBodyTextStyleGrey,
           ),
-          Text(
-            'Action,Comedy',
-            style: kMobileBodyTextStyleWhite.copyWith(fontSize: 10),
+          FittedBox(
+            child: Text(
+              content,
+              maxLines: 2,
+              style: kMobileBodyTextStyleWhite.copyWith(fontSize: 10),
+            ),
           ),
         ],
       ),

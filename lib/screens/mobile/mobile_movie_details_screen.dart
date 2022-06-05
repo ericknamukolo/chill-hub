@@ -58,22 +58,28 @@ class MobileMovieDetails extends StatelessWidget {
                     height: 340,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         MovieDetailsCard(
                           title: 'Genre',
                           icon: Icons.movie_creation_rounded,
+                          content: movie.genres.join(' | '),
                         ),
                         MovieDetailsCard(
                           title: 'Duration',
                           icon: Icons.timer_rounded,
+                          content: '${movie.runtime} Minutes',
                         ),
                         MovieDetailsCard(
                           title: 'Rating',
                           icon: Icons.star_rounded,
+                          content: '${movie.rating} / 10',
                         ),
                         MovieDetailsCard(
                           title: 'Trailer',
                           icon: MdiIcons.youtube,
+                          content: movie.trailer == ''
+                              ? 'Not Available'
+                              : 'Available',
                         ),
                       ],
                     ),

@@ -43,7 +43,7 @@ class Movies with ChangeNotifier {
             year: movie['year'],
             coverImg: movie['medium_cover_image'],
             rating: movie['rating'],
-            genres: movie['genres'],
+            genres: movie['genres'] ?? ['Unknown'],
             introDes: movie['description_intro'],
             runtime: movie['runtime'],
             trailer: movie['yt_trailer_code'],
@@ -75,20 +75,20 @@ class Movies with ChangeNotifier {
     if (data['status'] == 'ok') {
       List<Torrent> _loadedTorrents = [];
 
-      data['data']['movies']['torrents'].forEach((tor) {
-        _loadedTorrents.add(
-          Torrent(
-            hash: tor['hash'],
-            quality: tor['quality'],
-            url: tor['url'],
-            size: tor['size'],
-            type: tor['type'],
-            peers: tor['peers'],
-            seeds: tor['seeds'],
-            title: '',
-          ),
-        );
-      });
+      // data['data']['movies']['torrents'].forEach((tor) {
+      //   _loadedTorrents.add(
+      //     Torrent(
+      //       hash: tor['hash'],
+      //       quality: tor['quality'],
+      //       url: tor['url'],
+      //       size: tor['size'],
+      //       type: tor['type'],
+      //       peers: tor['peers'],
+      //       seeds: tor['seeds'],
+      //       title: '',
+      //     ),
+      //   );
+      // });
       _loadedTorrents.clear();
       data['data']['movies'].forEach((movie) {
         _catMovies.add(
@@ -98,8 +98,8 @@ class Movies with ChangeNotifier {
             year: movie['year'],
             coverImg: movie['large_cover_image'],
             rating: movie['rating'],
-            genres: movie['genres'],
-            introDes: movie['description_intro'],
+            genres: movie['genres'] ?? ['Unknown'],
+            introDes: movie['synopsis'],
             runtime: movie['runtime'],
             trailer: movie['yt_trailer_code'],
             torrents: [..._loadedTorrents],
@@ -183,7 +183,7 @@ class Movies with ChangeNotifier {
             year: movie['year'],
             coverImg: movie['medium_cover_image'],
             rating: movie['rating'],
-            genres: movie['genres'],
+            genres: movie['genres'] ?? ['Unknown'],
             introDes: movie['description_intro'],
             runtime: movie['runtime'],
             trailer: movie['yt_trailer_code'],
@@ -218,7 +218,7 @@ class Movies with ChangeNotifier {
             year: movie['year'], //number of movies fetched
             coverImg: movie['medium_cover_image'],
             rating: movie['rating'],
-            genres: movie['genres'],
+            genres: movie['genres'] ?? ['Unknown'],
             introDes: movie['description_intro'],
             runtime: movie['runtime'],
             trailer: movie['yt_trailer_code'],
