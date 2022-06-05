@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:collection/collection.dart';
 import '../../providers/movies.dart';
 import '../../widgets/mobile_widgets/category_card.dart';
+import '../../widgets/mobile_widgets/mobile_movie_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -117,24 +118,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            GridView.builder(
-              controller: ScrollController(),
-              padding: const EdgeInsets.only(top: 0),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 3 / 4,
-                crossAxisSpacing: 15.0,
-                mainAxisSpacing: 15.0,
-              ),
-              itemBuilder: (context, index) => Container(
-                decoration: BoxDecoration(
-                  color: kSecondaryColorDark,
-                  borderRadius: BorderRadius.circular(10.0),
+            Consumer<Movies>(
+              builder: (context, mov, __) => GridView.builder(
+                controller: ScrollController(),
+                padding: const EdgeInsets.only(top: 0),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 3 / 4,
+                  crossAxisSpacing: 15.0,
+                  mainAxisSpacing: 15.0,
                 ),
+                itemBuilder: (context, index) =>
+                    MobileMovieCard(movie: mov.catMovies[index]),
+                itemCount: mov.catMovies.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
               ),
-              itemCount: 50,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
             )
           ],
         ),
