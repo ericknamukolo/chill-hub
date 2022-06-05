@@ -9,19 +9,18 @@ import '../../constants/text_style.dart';
 class CategoryCard extends StatelessWidget {
   final MovieCategory category;
   final int i;
+  final Function() click;
   const CategoryCard({
     Key? key,
     required this.category,
     required this.i,
+    required this.click,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Provider.of<MovieCategories>(context, listen: false)
-            .selectCategory(category, context);
-      },
+      onTap: click,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
         margin: EdgeInsets.only(right: i != 9 ? 10 : 0),

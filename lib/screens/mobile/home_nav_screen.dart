@@ -146,8 +146,24 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Row(
                           children: cat.categories
                               .mapIndexed(
-                                (i, category) =>
-                                    CategoryCard(category: category, i: i),
+                                (i, category) => CategoryCard(
+                                  category: category,
+                                  i: i,
+                                  click: () async {
+                                    cat.selectCategory(category, context);
+                                    pageNumber = 1;
+                                    genre = category.category;
+                                    setState(() {
+                                      _isLoading = true;
+                                    });
+                                    await Provider.of<Movies>(context,
+                                            listen: false)
+                                        .fetchCatMovies(pageNumber, genre);
+                                    setState(() {
+                                      _isLoading = false;
+                                    });
+                                  },
+                                ),
                               )
                               .toList(),
                         ),
