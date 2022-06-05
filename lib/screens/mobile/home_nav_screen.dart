@@ -23,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String genre = 'All';
   bool _loadMore = false;
   bool _isLoading = false;
+  bool _showFAB = false;
   //bool _isCatLoading = false;
   final ScrollController _scrollController = ScrollController();
 
@@ -50,6 +51,15 @@ class _HomeScreenState extends State<HomeScreen> {
     });
     super.initState();
     _scrollController.addListener(() async {
+      if (_scrollController.position.pixels >= 100) {
+        setState(() {
+          _showFAB = true;
+        });
+      } else {
+        setState(() {
+          _showFAB = false;
+        });
+      }
       if (_scrollController.position.pixels >=
           _scrollController.position.maxScrollExtent - 400) {
         if (!_loadMore) {
@@ -77,97 +87,133 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      controller: _scrollController,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        child: Column(
-          children: [
-            Row(
-              children: const [
-                Text(
-                  'Categories',
-                  style: kBodyTitleTextStyle,
-                ),
-              ],
-            ),
-            Consumer<MovieCategories>(
-              builder: (context, cat, __) => Container(
-                margin: const EdgeInsets.symmetric(vertical: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SingleChildScrollView(
-                      physics: const BouncingScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: cat.categories
-                            .mapIndexed(
-                              (i, category) =>
-                                  CategoryCard(category: category, i: i),
-                            )
-                            .toList(),
+    return Scaffold(
+      backgroundColor: kPrimaryColorDark,
+      floatingActionButton: _showFAB
+          ? SizedBox(
+              height: 50,
+              width: 50,
+              child: FloatingActionButton(
+                onPressed: () {
+                  if (!_loadMore) {
+                    _scrollController.animateTo(
+                      0.0,
+                      duration: const Duration(seconds: 1),
+                      curve: Curves.easeIn,
+                    );
+                  }
+                },
+                backgroundColor: kAccentColor,
+                child: _loadMore
+                    ? const SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2.0,
+                          color: Colors.white,
+                        ),
+                      )
+                    : const Icon(
+                        Icons.keyboard_arrow_up_rounded,
+                        color: Colors.white,
                       ),
-                    ),
-                    const SizedBox(height: 15),
-                    Text(
-                      cat.categories.firstWhere((c) => c.isSelected).category ==
-                              'All'
-                          ? 'Movies'
-                          : cat.categories
-                              .firstWhere((c) => c.isSelected)
-                              .category,
-                      style: kBodyTitleTextStyle,
-                    ),
-                  ],
+              ),
+            )
+          : null,
+      body: SingleChildScrollView(
+        controller: _scrollController,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          child: Column(
+            children: [
+              Row(
+                children: const [
+                  Text(
+                    'Categories',
+                    style: kBodyTitleTextStyle,
+                  ),
+                ],
+              ),
+              Consumer<MovieCategories>(
+                builder: (context, cat, __) => Container(
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: cat.categories
+                              .mapIndexed(
+                                (i, category) =>
+                                    CategoryCard(category: category, i: i),
+                              )
+                              .toList(),
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      Text(
+                        cat.categories
+                                    .firstWhere((c) => c.isSelected)
+                                    .category ==
+                                'All'
+                            ? 'Movies'
+                            : cat.categories
+                                .firstWhere((c) => c.isSelected)
+                                .category,
+                        style: kBodyTitleTextStyle,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Consumer<Movies>(
-              builder: (context, mov, __) => _isLoading
-                  ? GridView.builder(
-                      controller: ScrollController(),
-                      padding: const EdgeInsets.only(top: 0),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 3 / 4,
-                        crossAxisSpacing: 15.0,
-                        mainAxisSpacing: 15.0,
-                      ),
-                      itemBuilder: (context, index) => Shimmer.fromColors(
-                        child: Container(
-                          // margin: const EdgeInsets.only(right: 20),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
+              Consumer<Movies>(
+                builder: (context, mov, __) => _isLoading
+                    ? GridView.builder(
+                        controller: ScrollController(),
+                        padding: const EdgeInsets.only(top: 0),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 3 / 4,
+                          crossAxisSpacing: 15.0,
+                          mainAxisSpacing: 15.0,
                         ),
-                        baseColor: kSecondaryColorDark,
-                        highlightColor: kPrimaryColorDark,
+                        itemBuilder: (context, index) => Shimmer.fromColors(
+                          child: Container(
+                            // margin: const EdgeInsets.only(right: 20),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                          baseColor: kSecondaryColorDark,
+                          highlightColor: kPrimaryColorDark,
+                        ),
+                        itemCount: 10,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                      )
+                    : GridView.builder(
+                        controller: ScrollController(),
+                        padding: const EdgeInsets.only(top: 0),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 3 / 4,
+                          crossAxisSpacing: 15.0,
+                          mainAxisSpacing: 15.0,
+                        ),
+                        itemBuilder: (context, index) =>
+                            MobileMovieCard(movie: mov.catMovies[index]),
+                        itemCount: mov.catMovies.length,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
                       ),
-                      itemCount: 10,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                    )
-                  : GridView.builder(
-                      controller: ScrollController(),
-                      padding: const EdgeInsets.only(top: 0),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 3 / 4,
-                        crossAxisSpacing: 15.0,
-                        mainAxisSpacing: 15.0,
-                      ),
-                      itemBuilder: (context, index) =>
-                          MobileMovieCard(movie: mov.catMovies[index]),
-                      itemCount: mov.catMovies.length,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                    ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
