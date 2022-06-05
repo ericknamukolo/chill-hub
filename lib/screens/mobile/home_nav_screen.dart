@@ -1,7 +1,5 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
-import 'package:chill_hub/models/movie.dart';
 import 'package:chill_hub/providers/movie_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -34,22 +32,13 @@ class _HomeScreenState extends State<HomeScreen> {
     Future.delayed(Duration.zero).then((_) async {
       setState(() {
         _isLoading = true;
-        // _isCatLoading = true;
       });
 
-      // await Provider.of<Movies>(context, listen: false).fetchLatestMovies();
-      // setState(() {
-      //   _isLoading = false;
-      // });
       await Provider.of<Movies>(context, listen: false)
           .fetchCatMovies(pageNumber, genre);
       setState(() {
         _isLoading = false;
-        // _isCatLoading = true;
       });
-      // setState(() {
-      //   _isCatLoading = false;
-      // });
     });
     super.initState();
     _scrollController.addListener(() async {
