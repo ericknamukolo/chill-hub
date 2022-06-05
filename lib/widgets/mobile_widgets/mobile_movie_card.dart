@@ -1,3 +1,5 @@
+import 'package:chill_hub/screens/mobile/mobile_movie_details_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';
@@ -13,66 +15,80 @@ class MobileMovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-      decoration: BoxDecoration(
-        color: kSecondaryColorDark,
-        borderRadius: BorderRadius.circular(10.0),
-        image: DecorationImage(
-          image: NetworkImage(movie.coverImg),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          CupertinoPageRoute(
+            builder: (context) => MobileMovieDetails(movie: movie),
+          ),
+        );
+      },
+      child: Hero(
+        tag: movie.id,
+        key: Key(movie.id.toString()),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+          decoration: BoxDecoration(
+            color: kSecondaryColorDark,
+            borderRadius: BorderRadius.circular(10.0),
+            image: DecorationImage(
+              image: NetworkImage(movie.coverImg),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: kAccentColor.withOpacity(.5),
-                ),
-                child: Center(
-                  child: Text(
-                    movie.rating.toString(),
-                    style: kBodyTextStyleWhite.copyWith(fontSize: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: kAccentColor.withOpacity(.5),
+                    ),
+                    child: Center(
+                      child: Text(
+                        movie.rating.toString(),
+                        style: kBodyTextStyleWhite.copyWith(fontSize: 10),
+                      ),
+                    ),
                   ),
+                ],
+              ),
+              const Spacer(),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+                decoration: BoxDecoration(
+                  color: kSecondaryColorDark.withOpacity(.8),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      movie.title,
+                      style: kMobileBodyTextStyleWhite,
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      movie.year.toString(),
+                      style: kMobileBodyTextStyleGrey.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 10,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
-          const Spacer(),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-            decoration: BoxDecoration(
-              color: kSecondaryColorDark.withOpacity(.8),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  movie.title,
-                  style: kMobileBodyTextStyleWhite,
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  movie.year.toString(),
-                  style: kMobileBodyTextStyleGrey.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 10,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
