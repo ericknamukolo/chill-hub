@@ -17,8 +17,8 @@ class _MobileSplashScreenState extends State<MobileSplashScreen> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 4), () {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => const MobileHome()));
+      Navigator.of(context).pushReplacement(
+          CupertinoPageRoute(builder: (context) => const MobileHome()));
     });
   }
 
@@ -31,10 +31,11 @@ class _MobileSplashScreenState extends State<MobileSplashScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Center(
-              child: SizedBox(
-            child: Image.asset('assets/logo.png'),
-            height: 70,
-          )),
+            child: SizedBox(
+              child: Image.asset('assets/logo.png'),
+              height: 70,
+            ),
+          ),
           const Center(
             child: SizedBox(
               height: 20,
