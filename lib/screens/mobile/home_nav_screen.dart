@@ -1,5 +1,7 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
+import 'package:chill_hub/models/movie.dart';
 import 'package:chill_hub/providers/movie_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -164,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               .toList(),
                         ),
                       ),
-                      const SizedBox(height: 15),
+                      const SizedBox(height: 10),
                       Text(
                         cat.categories
                                     .firstWhere((c) => c.isSelected)

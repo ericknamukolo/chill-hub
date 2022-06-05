@@ -41,12 +41,25 @@ class _MobileHome extends State<MobileHome> with TickerProviderStateMixin {
     const SearchNavScreen(),
     const AboutNavScreen(),
   ];
+  String getAppBarText() {
+    if (_currentIndex == 0) {
+      return 'Home';
+    } else if (_currentIndex == 1) {
+      return 'Categories';
+    } else if (_currentIndex == 2) {
+      return 'Search';
+    } else if (_currentIndex == 3) {
+      return 'About';
+    }
+    return '';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(
-        title: 'Chill Hub',
-        icon: SizedBox(),
+      appBar: CustomAppBar(
+        title: getAppBarText(),
+        icon: const SizedBox(),
       ),
       backgroundColor: kPrimaryColorDark,
       body: TabBarView(
