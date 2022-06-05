@@ -10,6 +10,8 @@ import 'package:chill_hub/screens/desktop/desktop_splash_screen.dart';
 import 'package:chill_hub/screens/mobile/mobile_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
   runApp(const ChillHub());
@@ -21,6 +23,10 @@ Future<void> main() async {
       win.minSize = const Size(1200, 700);
       win.show();
     });
+  } else {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
   }
 }
 

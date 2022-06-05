@@ -42,6 +42,7 @@ dependencies:
   url_launcher: ^6.1.2
   bitsdojo_window: ^0.1.1+1
   msix: ^3.6.2
+  firebase_core: ^1.17.1
   flutter_launcher_icons_maker: ^0.10.2
 
 dev_dependencies:
