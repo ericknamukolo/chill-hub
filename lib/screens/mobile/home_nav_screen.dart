@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String genre = 'All';
   bool _loadMore = false;
   bool _isLoading = false;
-  bool _showFAB = false;
+
   //bool _isCatLoading = false;
   final ScrollController _scrollController = ScrollController();
 
@@ -51,15 +51,6 @@ class _HomeScreenState extends State<HomeScreen> {
     });
     super.initState();
     _scrollController.addListener(() async {
-      if (_scrollController.position.pixels >= 100) {
-        setState(() {
-          _showFAB = true;
-        });
-      } else {
-        setState(() {
-          _showFAB = false;
-        });
-      }
       if (_scrollController.position.pixels >=
           _scrollController.position.maxScrollExtent - 400) {
         if (!_loadMore) {
@@ -86,40 +77,45 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void setState(VoidCallback fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPrimaryColorDark,
-      floatingActionButton: _showFAB
-          ? SizedBox(
-              height: 50,
-              width: 50,
-              child: FloatingActionButton(
-                onPressed: () {
-                  if (!_loadMore) {
-                    _scrollController.animateTo(
-                      0.0,
-                      duration: const Duration(seconds: 1),
-                      curve: Curves.easeIn,
-                    );
-                  }
-                },
-                backgroundColor: kAccentColor,
-                child: _loadMore
-                    ? const SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2.0,
-                          color: Colors.white,
-                        ),
-                      )
-                    : const Icon(
-                        Icons.keyboard_arrow_up_rounded,
-                        color: Colors.white,
-                      ),
-              ),
-            )
-          : null,
+      floatingActionButton: SizedBox(
+        height: 50,
+        width: 50,
+        child: FloatingActionButton(
+          onPressed: () {
+            if (!_loadMore) {
+              _scrollController.animateTo(
+                0.0,
+                duration: const Duration(seconds: 1),
+                curve: Curves.easeIn,
+              );
+            }
+          },
+          backgroundColor: kAccentColor,
+          child: _loadMore
+              ? const SizedBox(
+                  height: 20,
+                  width: 20,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2.0,
+                    color: Colors.white,
+                  ),
+                )
+              : const Icon(
+                  Icons.keyboard_arrow_up_rounded,
+                  color: Colors.white,
+                ),
+        ),
+      ),
       body: SingleChildScrollView(
         controller: _scrollController,
         child: Container(
