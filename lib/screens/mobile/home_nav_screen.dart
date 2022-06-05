@@ -4,6 +4,7 @@ import 'package:chill_hub/providers/movie_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:collection/collection.dart';
+import 'package:shimmer/shimmer.dart';
 import '../../providers/movies.dart';
 import '../../widgets/mobile_widgets/category_card.dart';
 import '../../widgets/mobile_widgets/mobile_movie_card.dart';
@@ -39,6 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
       // });
       await Provider.of<Movies>(context, listen: false)
           .fetchCatMovies(pageNumber, genre);
+      setState(() {
+        _isLoading = false;
+        // _isCatLoading = true;
+      });
       // setState(() {
       //   _isCatLoading = false;
       // });
@@ -119,21 +124,48 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Consumer<Movies>(
-              builder: (context, mov, __) => GridView.builder(
-                controller: ScrollController(),
-                padding: const EdgeInsets.only(top: 0),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 3 / 4,
-                  crossAxisSpacing: 15.0,
-                  mainAxisSpacing: 15.0,
-                ),
-                itemBuilder: (context, index) =>
-                    MobileMovieCard(movie: mov.catMovies[index]),
-                itemCount: mov.catMovies.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-              ),
+              builder: (context, mov, __) => _isLoading
+                  ? GridView.builder(
+                      controller: ScrollController(),
+                      padding: const EdgeInsets.only(top: 0),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 3 / 4,
+                        crossAxisSpacing: 15.0,
+                        mainAxisSpacing: 15.0,
+                      ),
+                      itemBuilder: (context, index) => Shimmer.fromColors(
+                        child: Container(
+                          // margin: const EdgeInsets.only(right: 20),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                        baseColor: kSecondaryColorDark,
+                        highlightColor: kPrimaryColorDark,
+                      ),
+                      itemCount: 10,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                    )
+                  : GridView.builder(
+                      controller: ScrollController(),
+                      padding: const EdgeInsets.only(top: 0),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 3 / 4,
+                        crossAxisSpacing: 15.0,
+                        mainAxisSpacing: 15.0,
+                      ),
+                      itemBuilder: (context, index) =>
+                          MobileMovieCard(movie: mov.catMovies[index]),
+                      itemCount: mov.catMovies.length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                    ),
             )
           ],
         ),

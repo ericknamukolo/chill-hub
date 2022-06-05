@@ -49,7 +49,7 @@ class MobileMovieCard extends StatelessWidget {
           const Spacer(),
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
             decoration: BoxDecoration(
               color: kSecondaryColorDark.withOpacity(.8),
               borderRadius: BorderRadius.circular(8),
@@ -59,14 +59,14 @@ class MobileMovieCard extends StatelessWidget {
               children: [
                 Text(
                   movie.title,
-                  style: kBodyTextStyleWhite,
+                  style: kMobileBodyTextStyleWhite,
                 ),
                 const SizedBox(height: 5),
                 Text(
                   movie.year.toString(),
-                  style: kBodyTextStyleGrey.copyWith(
+                  style: kMobileBodyTextStyleGrey.copyWith(
                     fontWeight: FontWeight.bold,
-                    fontSize: 12,
+                    fontSize: 10,
                   ),
                 ),
               ],
