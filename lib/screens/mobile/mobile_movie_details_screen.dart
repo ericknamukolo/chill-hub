@@ -33,73 +33,103 @@ class MobileMovieDetails extends StatelessWidget {
           ),
         ),
       ),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        child: Column(
-          children: [
-            Row(
-              // mainAxisSize: MainAxisSize.min,
-              children: [
-                Hero(
-                  tag: movie.id,
-                  child: Container(
-                    margin: const EdgeInsets.only(right: 10),
-                    height: 340,
-                    width: 210,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      image: DecorationImage(
-                        image: NetworkImage(movie.coverImg),
-                        fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                // mainAxisSize: MainAxisSize.min,
+                children: [
+                  Hero(
+                    tag: movie.id,
+                    child: Container(
+                      margin: const EdgeInsets.only(right: 10),
+                      height: 340,
+                      width: 210,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        image: DecorationImage(
+                          image: NetworkImage(movie.coverImg),
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: SizedBox(
-                    height: 340,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        MovieDetailsCard(
-                          title: 'Genre',
-                          icon: Icons.movie_creation_rounded,
-                          content: movie.genres.join(' | '),
-                        ),
-                        MovieDetailsCard(
-                          title: 'Duration',
-                          icon: Icons.timer_rounded,
-                          content: '${movie.runtime} Minutes',
-                        ),
-                        MovieDetailsCard(
-                          title: 'Rating',
-                          icon: Icons.star_rounded,
-                          content: '${movie.rating} / 10',
-                        ),
-                        MovieDetailsCard(
-                          title: 'Trailer',
-                          icon: MdiIcons.youtube,
-                          content: movie.trailer == ''
-                              ? 'Not Available'
-                              : 'Available',
-                          click: () {
-                            if (movie.trailer != '') {
-                              Navigator.of(context).push(
-                                CupertinoPageRoute(
-                                  builder: (context) =>
-                                      TrailerPlayerScreen(movie: movie),
-                                ),
-                              );
-                            }
-                          },
-                        ),
-                      ],
+                  Expanded(
+                    child: SizedBox(
+                      height: 340,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          MovieDetailsCard(
+                            title: 'Genre',
+                            icon: Icons.movie_creation_rounded,
+                            content: movie.genres.join(' | '),
+                          ),
+                          MovieDetailsCard(
+                            title: 'Duration',
+                            icon: Icons.timer_rounded,
+                            content: '${movie.runtime} Minutes',
+                          ),
+                          MovieDetailsCard(
+                            title: 'Rating',
+                            icon: Icons.star_rounded,
+                            content: '${movie.rating} / 10',
+                          ),
+                          MovieDetailsCard(
+                            title: 'Trailer',
+                            icon: MdiIcons.youtube,
+                            content: movie.trailer == ''
+                                ? 'Not Available'
+                                : 'Available',
+                            click: () {
+                              if (movie.trailer != '') {
+                                Navigator.of(context).push(
+                                  CupertinoPageRoute(
+                                    builder: (context) =>
+                                        TrailerPlayerScreen(movie: movie),
+                                  ),
+                                );
+                              }
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Text(
+                '${movie.title} (${movie.year})',
+                style: kBarTextStyle.copyWith(
+                  color: Colors.white,
+                  fontSize: 14,
                 ),
-              ],
-            ),
-          ],
+              ),
+              const SizedBox(height: 5),
+              const Divider(
+                thickness: 2.0,
+                color: kSecondaryColorDark,
+              ),
+              const SizedBox(height: 5),
+              Text(
+                'Synopsis',
+                style: kBarTextStyle.copyWith(
+                  color: Colors.white,
+                  fontSize: 13,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+              const SizedBox(height: 5),
+              Text(
+                movie.introDes,
+                style: kMobileBodyTextStyleGrey,
+              ),
+            ],
+          ),
         ),
       ),
     );
