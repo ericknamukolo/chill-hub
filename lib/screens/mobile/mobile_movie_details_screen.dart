@@ -11,8 +11,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:open_file/open_file.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../../models/movie.dart';
+import '../../widgets/desktop_widgets/download_dialog.dart';
+import '../../widgets/mobile_widgets/mobile_download_dialog.dart';
 import '../../widgets/mobile_widgets/movie_details_card.dart';
 
 class MobileMovieDetails extends StatefulWidget {
@@ -47,6 +50,13 @@ class _MobileMovieDetailsState extends State<MobileMovieDetails> {
   }
 
   @override
+  void setState(VoidCallback fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPrimaryColorDark,
@@ -67,6 +77,12 @@ class _MobileMovieDetailsState extends State<MobileMovieDetails> {
               openFileFromNotification:
                   true, // click on notification to open downloaded file (for Android)
             );
+
+            // showDialog(
+            //     context: context,
+            //     builder: (context) => MobileDownloadDialog(
+            //           torrents: widget.movie.torrents,
+            //         ));
           },
           child: const GlowIcon(
             Icons.download_rounded,
