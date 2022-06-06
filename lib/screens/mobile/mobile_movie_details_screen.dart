@@ -1,3 +1,7 @@
+import 'dart:isolate';
+import 'dart:ui';
+
+import 'package:android_path_provider/android_path_provider.dart';
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
 import 'package:chill_hub/screens/mobile/trailer_player_screen.dart';
@@ -7,15 +11,40 @@ import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../../models/movie.dart';
 import '../../widgets/mobile_widgets/movie_details_card.dart';
 
-class MobileMovieDetails extends StatelessWidget {
+class MobileMovieDetails extends StatefulWidget {
   final Movie movie;
   const MobileMovieDetails({
     Key? key,
     required this.movie,
   }) : super(key: key);
+
+  @override
+  State<MobileMovieDetails> createState() => _MobileMovieDetailsState();
+}
+
+class _MobileMovieDetailsState extends State<MobileMovieDetails> {
+  int progress = 0;
+  ReceivePort receivePort = ReceivePort();
+  @override
+  void initState() {
+    IsolateNameServer.registerPortWithName(receivePort.sendPort, 'download');
+    receivePort.listen((message) {
+      setState(() {
+        progress = message;
+      });
+    });
+    FlutterDownloader.registerCallback(downloadCallback);
+    super.initState();
+  }
+
+  static downloadCallback(id, status, progress) {
+    SendPort sendPort = IsolateNameServer.lookupPortByName('download')!;
+    sendPort.send(progress);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +56,12 @@ class MobileMovieDetails extends StatelessWidget {
         child: FloatingActionButton(
           backgroundColor: kAccentColor,
           onPressed: () async {
+            var downloadsPath = await AndroidPathProvider.downloadsPath;
+
             await FlutterDownloader.enqueue(
-              url: movie.torrents[0].url,
-              savedDir:
-                  'the path of directory where you want to save downloaded files',
+              fileName: '${widget.movie.title}.torrent',
+              url: widget.movie.torrents[0].url,
+              savedDir: downloadsPath,
               showNotification:
                   true, // show download progress in status bar (for Android)
               openFileFromNotification:
@@ -65,7 +96,7 @@ class MobileMovieDetails extends StatelessWidget {
                 // mainAxisSize: MainAxisSize.min,
                 children: [
                   Hero(
-                    tag: movie.id,
+                    tag: widget.movie.id,
                     child: Container(
                       margin: const EdgeInsets.only(right: 10),
                       height: 340,
@@ -73,7 +104,7 @@ class MobileMovieDetails extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
                         image: DecorationImage(
-                          image: NetworkImage(movie.coverImg),
+                          image: NetworkImage(widget.movie.coverImg),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -88,30 +119,30 @@ class MobileMovieDetails extends StatelessWidget {
                           MovieDetailsCard(
                             title: 'Genre',
                             icon: Icons.movie_creation_rounded,
-                            content: movie.genres.join(' | '),
+                            content: widget.movie.genres.join(' | '),
                           ),
                           MovieDetailsCard(
                             title: 'Duration',
                             icon: Icons.timer_rounded,
-                            content: '${movie.runtime} Minutes',
+                            content: '${widget.movie.runtime} Minutes',
                           ),
                           MovieDetailsCard(
                             title: 'Rating',
                             icon: Icons.star_rounded,
-                            content: '${movie.rating} / 10',
+                            content: '${widget.movie.rating} / 10',
                           ),
                           MovieDetailsCard(
                             title: 'Trailer',
                             icon: MdiIcons.youtube,
-                            content: movie.trailer == ''
+                            content: widget.movie.trailer == ''
                                 ? 'Not Available'
                                 : 'Watch Trailer',
                             click: () {
-                              if (movie.trailer != '') {
+                              if (widget.movie.trailer != '') {
                                 Navigator.of(context).push(
                                   CupertinoPageRoute(
-                                    builder: (context) =>
-                                        TrailerPlayerScreen(movie: movie),
+                                    builder: (context) => TrailerPlayerScreen(
+                                        movie: widget.movie),
                                   ),
                                 );
                               }
@@ -125,7 +156,7 @@ class MobileMovieDetails extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                '${movie.title} (${movie.year})',
+                '${widget.movie.title} (${widget.movie.year})',
                 style: kBarTextStyle.copyWith(
                   color: Colors.white,
                   fontSize: 14,
@@ -147,7 +178,7 @@ class MobileMovieDetails extends StatelessWidget {
               ),
               const SizedBox(height: 5),
               Text(
-                movie.introDes,
+                widget.movie.introDes,
                 style: kMobileBodyTextStyleGrey,
               ),
             ],

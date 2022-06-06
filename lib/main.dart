@@ -15,10 +15,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
-  if (Platform.isAndroid || Platform.isIOS) {
-    await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
-  }
-
   runApp(const ChillHub());
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isWindows) {
@@ -29,6 +25,7 @@ Future<void> main() async {
       win.show();
     });
   } else {
+    await FlutterDownloader.initialize();
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );

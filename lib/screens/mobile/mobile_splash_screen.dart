@@ -4,6 +4,7 @@ import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/screens/mobile/mobile_home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class MobileSplashScreen extends StatefulWidget {
   const MobileSplashScreen({Key? key}) : super(key: key);
@@ -16,7 +17,11 @@ class _MobileSplashScreenState extends State<MobileSplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 4), () {
+    Timer(const Duration(seconds: 4), () async {
+      bool permission = await Permission.storage.isGranted;
+      if (!permission) {
+        await Permission.storage.request();
+      }
       Navigator.of(context).pushReplacement(
           CupertinoPageRoute(builder: (context) => const MobileHome()));
     });
