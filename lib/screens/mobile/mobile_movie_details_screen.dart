@@ -1,10 +1,10 @@
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
 import 'package:chill_hub/screens/mobile/trailer_player_screen.dart';
-import 'package:chill_hub/widgets/desktop_widgets/movie_card.dart';
 import 'package:chill_hub/widgets/mobile_widgets/cutsom_app_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import '../../models/movie.dart';
@@ -21,6 +21,28 @@ class MobileMovieDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPrimaryColorDark,
+      floatingActionButton: SizedBox(
+        height: 50,
+        width: 50,
+        child: FloatingActionButton(
+          backgroundColor: kAccentColor,
+          onPressed: () async {
+            await FlutterDownloader.enqueue(
+              url: movie.torrents[0].url,
+              savedDir:
+                  'the path of directory where you want to save downloaded files',
+              showNotification:
+                  true, // show download progress in status bar (for Android)
+              openFileFromNotification:
+                  true, // click on notification to open downloaded file (for Android)
+            );
+          },
+          child: const GlowIcon(
+            Icons.download_rounded,
+            color: Colors.white,
+          ),
+        ),
+      ),
       appBar: CustomAppBar(
         title: 'Movie Details',
         icon: IconButton(
@@ -83,7 +105,7 @@ class MobileMovieDetails extends StatelessWidget {
                             icon: MdiIcons.youtube,
                             content: movie.trailer == ''
                                 ? 'Not Available'
-                                : 'Available',
+                                : 'Watch Trailer',
                             click: () {
                               if (movie.trailer != '') {
                                 Navigator.of(context).push(

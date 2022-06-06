@@ -9,11 +9,16 @@ import 'package:chill_hub/providers/movies.dart';
 import 'package:chill_hub/screens/desktop/desktop_splash_screen.dart';
 import 'package:chill_hub/screens/mobile/mobile_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
+  if (Platform.isAndroid || Platform.isIOS) {
+    await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
+  }
+
   runApp(const ChillHub());
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isWindows) {

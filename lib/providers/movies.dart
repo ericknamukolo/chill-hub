@@ -73,24 +73,26 @@ class Movies with ChangeNotifier {
     var data = json.decode(response.body);
 
     if (data['status'] == 'ok') {
-      List<Torrent> _loadedTorrents = [];
-
       // data['data']['movies']['torrents'].forEach((tor) {
-      //   _loadedTorrents.add(
-      //     Torrent(
-      //       hash: tor['hash'],
-      //       quality: tor['quality'],
-      //       url: tor['url'],
-      //       size: tor['size'],
-      //       type: tor['type'],
-      //       peers: tor['peers'],
-      //       seeds: tor['seeds'],
-      //       title: '',
-      //     ),
-      //   );
+
       // });
-      _loadedTorrents.clear();
+
       data['data']['movies'].forEach((movie) {
+        List<Torrent> _loadedTorrents = [];
+        movie['torrents'].forEach((tor) {
+          _loadedTorrents.add(
+            Torrent(
+              hash: tor['hash'],
+              quality: tor['quality'],
+              url: tor['url'],
+              size: tor['size'],
+              type: tor['type'],
+              peers: tor['peers'],
+              seeds: tor['seeds'],
+              title: '',
+            ),
+          );
+        });
         _catMovies.add(
           Movie(
             id: movie['id'],
@@ -105,8 +107,8 @@ class Movies with ChangeNotifier {
             torrents: [..._loadedTorrents],
           ),
         );
+        _loadedTorrents.clear();
       });
-      // _catMovies = _loadedMovies;
     } else {
       throw Exception('error');
     }
