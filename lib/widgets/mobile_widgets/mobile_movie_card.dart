@@ -52,9 +52,14 @@ class MobileMovieCard extends StatelessWidget {
                       color: kAccentColor.withOpacity(.5),
                     ),
                     child: Center(
-                      child: Text(
-                        movie.rating.toString(),
-                        style: kBodyTextStyleWhite.copyWith(fontSize: 10),
+                      child: DefaultTextStyle(
+                        style: kMobileBodyTextStyleWhite.copyWith(
+                          fontFamily: 'VarelaRound',
+                          fontSize: 10,
+                        ),
+                        child: Text(
+                          movie.rating.toString(),
+                        ),
                       ),
                     ),
                   ),
@@ -71,16 +76,21 @@ class MobileMovieCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      movie.title,
-                      style: kMobileBodyTextStyleWhite,
+                    DefaultTextStyle(
+                      style: kMobileBodyTextStyleWhite.copyWith(
+                        fontFamily: 'VarelaRound',
+                      ),
+                      child: Text(
+                        movie.title,
+                      ),
                     ),
                     const SizedBox(height: 5),
-                    Text(
-                      movie.year.toString(),
+                    DefaultTextStyle(
                       style: kMobileBodyTextStyleGrey.copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 10,
+                        fontFamily: 'VarelaRound',
+                      ),
+                      child: Text(
+                        movie.year.toString(),
                       ),
                     ),
                   ],
