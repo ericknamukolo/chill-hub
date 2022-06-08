@@ -46,18 +46,20 @@ class _HomeScreenState extends State<HomeScreen> {
     _scrollController.addListener(() async {
       if (_scrollController.position.pixels >=
           _scrollController.position.maxScrollExtent - 400) {
-        if (!_loadMore) {
-          pageNumber = pageNumber + 1;
-          setState(() {
-            _loadMore = true;
-          });
+        if (!_isLoading) {
+          if (!_loadMore) {
+            pageNumber = pageNumber + 1;
+            setState(() {
+              _loadMore = true;
+            });
 
-          await Provider.of<Movies>(context, listen: false)
-              .fetchCatMovies(pageNumber, genre);
+            await Provider.of<Movies>(context, listen: false)
+                .fetchCatMovies(pageNumber, genre);
 
-          setState(() {
-            _loadMore = false;
-          });
+            setState(() {
+              _loadMore = false;
+            });
+          }
         }
       }
     });
