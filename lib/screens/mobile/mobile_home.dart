@@ -5,6 +5,7 @@ import 'package:chill_hub/widgets/mobile_widgets/cutsom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'about_nav_screen.dart';
+import 'categories_nav_screen.dart';
 import 'home_nav_screen.dart';
 
 class MobileHome extends StatefulWidget {
@@ -37,7 +38,7 @@ class _MobileHome extends State<MobileHome> with TickerProviderStateMixin {
 
   final tabs = [
     const HomeScreen(),
-    Container(),
+    const CategoriesNavScreen(),
     const SearchNavScreen(),
     const AboutNavScreen(),
   ];
