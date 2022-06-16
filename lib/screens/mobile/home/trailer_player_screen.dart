@@ -3,8 +3,8 @@ import 'package:chill_hub/widgets/mobile_widgets/cutsom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:pod_player/pod_player.dart';
 
-import '../../constants/text_style.dart';
-import '../../models/movie.dart';
+import '../../../constants/text_style.dart';
+import '../../../models/movie.dart';
 
 class TrailerPlayerScreen extends StatefulWidget {
   final Movie movie;

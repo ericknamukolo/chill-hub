@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:android_path_provider/android_path_provider.dart';
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
-import 'package:chill_hub/screens/mobile/trailer_player_screen.dart';
+import 'package:chill_hub/screens/mobile/home/trailer_player_screen.dart';
 import 'package:chill_hub/widgets/mobile_widgets/cutsom_app_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +13,10 @@ import 'package:flutter_glow/flutter_glow.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:open_file/open_file.dart';
 import 'package:permission_handler/permission_handler.dart';
-import '../../models/movie.dart';
-import '../../widgets/desktop_widgets/download_dialog.dart';
-import '../../widgets/mobile_widgets/mobile_download_dialog.dart';
-import '../../widgets/mobile_widgets/movie_details_card.dart';
+import '../../../models/movie.dart';
+import '../../../widgets/desktop_widgets/download_dialog.dart';
+import '../../../widgets/mobile_widgets/mobile_download_dialog.dart';
+import '../../../widgets/mobile_widgets/movie_details_card.dart';
 
 class MobileMovieDetails extends StatefulWidget {
   final Movie movie;

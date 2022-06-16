@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:collection/collection.dart';
 import 'package:shimmer/shimmer.dart';
-import '../../providers/movies.dart';
-import '../../widgets/mobile_widgets/category_card.dart';
-import '../../widgets/mobile_widgets/mobile_movie_card.dart';
+import '../../../providers/movies.dart';
+import '../../../widgets/mobile_widgets/category_card.dart';
+import '../../../widgets/mobile_widgets/mobile_movie_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({

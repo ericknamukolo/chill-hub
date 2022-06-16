@@ -1,12 +1,12 @@
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
-import 'package:chill_hub/screens/mobile/search_nav_screen.dart';
+import 'package:chill_hub/screens/mobile/search/search_nav_screen.dart';
 import 'package:chill_hub/widgets/mobile_widgets/cutsom_app_bar.dart';
 import 'package:flutter/material.dart';
 
-import 'about_nav_screen.dart';
-import 'categories_nav_screen.dart';
-import 'home_nav_screen.dart';
+import 'about/about_nav_screen.dart';
+import 'categories/categories_nav_screen.dart';
+import 'home/home_nav_screen.dart';
 
 class MobileHome extends StatefulWidget {
   const MobileHome({Key? key}) : super(key: key);

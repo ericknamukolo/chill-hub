@@ -1,7 +1,7 @@
 import 'package:chill_hub/providers/movie_categories.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../widgets/mobile_widgets/mobile_category_card.dart';
+import '../../../widgets/mobile_widgets/mobile_category_card.dart';
 
 class CategoriesNavScreen extends StatelessWidget {
   const CategoriesNavScreen({

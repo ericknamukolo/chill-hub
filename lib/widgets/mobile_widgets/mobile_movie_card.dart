@@ -1,4 +1,4 @@
-import 'package:chill_hub/screens/mobile/mobile_movie_details_screen.dart';
+import 'package:chill_hub/screens/mobile/home/mobile_movie_details_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

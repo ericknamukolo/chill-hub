@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../constants/text_style.dart';
+import '../../../constants/text_style.dart';
 
 class AboutNavScreen extends StatelessWidget {
   const AboutNavScreen({
