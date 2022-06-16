@@ -5,11 +5,11 @@ import '../../constants/colors.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final Widget? icon;
+  final bool showClose;
   const CustomAppBar({
     Key? key,
     required this.title,
-    required this.icon,
+    this.showClose = false,
   }) : super(key: key);
 
   @override
@@ -23,7 +23,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(title, style: kBarTextStyle),
       centerTitle: true,
       elevation: 3.0,
-      actions: [icon!],
+      actions: [
+        showClose
+            ? IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: const Icon(
+                  Icons.close,
+                  color: Colors.white,
+                ),
+              )
+            : const SizedBox(),
+      ],
     );
   }
 }

@@ -90,17 +90,9 @@ class _MobileMovieDetailsState extends State<MobileMovieDetails> {
           ),
         ),
       ),
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         title: 'Movie Details',
-        icon: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(
-            Icons.close,
-            color: Colors.white,
-          ),
-        ),
+        showClose: true,
       ),
       body: SingleChildScrollView(
         child: Container(

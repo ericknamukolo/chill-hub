@@ -38,17 +38,9 @@ class _TrailerPlayerScreenState extends State<TrailerPlayerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPrimaryColorDark,
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         title: 'Trailer',
-        icon: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(
-            Icons.close,
-            color: Colors.white,
-          ),
-        ),
+        showClose: true,
       ),
       body: SingleChildScrollView(
         child: Column(

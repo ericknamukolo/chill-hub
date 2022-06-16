@@ -60,7 +60,6 @@ class _MobileHome extends State<MobileHome> with TickerProviderStateMixin {
     return Scaffold(
       appBar: CustomAppBar(
         title: getAppBarText(),
-        icon: const SizedBox(),
       ),
       backgroundColor: kPrimaryColorDark,
       body: TabBarView(
