@@ -42,12 +42,15 @@ class MobileCategoryCard extends StatelessWidget {
             decoration: BoxDecoration(
               color: kSecondaryColorDark.withOpacity(.5),
             ),
-            child: Text(
-              category.category,
+            child: DefaultTextStyle(
               style: kBodyTextStyleWhite.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1,
+                fontFamily: 'VarelaRound',
+              ),
+              child: Text(
+                category.category,
               ),
             ),
           ),

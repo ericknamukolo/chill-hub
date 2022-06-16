@@ -1,5 +1,5 @@
 import 'package:chill_hub/constants/colors.dart';
-import 'package:chill_hub/widgets/mobile_widgets/cutsom_app_bar.dart';
+import 'package:chill_hub/widgets/mobile_widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:pod_player/pod_player.dart';
 

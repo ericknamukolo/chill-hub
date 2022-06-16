@@ -1,7 +1,7 @@
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
 import 'package:chill_hub/screens/mobile/search/search_nav_screen.dart';
-import 'package:chill_hub/widgets/mobile_widgets/cutsom_app_bar.dart';
+import 'package:chill_hub/widgets/mobile_widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'about/about_nav_screen.dart';

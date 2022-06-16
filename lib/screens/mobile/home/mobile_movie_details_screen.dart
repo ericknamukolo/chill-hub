@@ -5,7 +5,7 @@ import 'package:android_path_provider/android_path_provider.dart';
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
 import 'package:chill_hub/screens/mobile/home/trailer_player_screen.dart';
-import 'package:chill_hub/widgets/mobile_widgets/cutsom_app_bar.dart';
+import 'package:chill_hub/widgets/mobile_widgets/custom_app_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
