@@ -52,7 +52,7 @@ dependencies:
   android_path_provider: ^0.3.0
   flutter_downloader: ^1.7.4
   open_file: ^3.2.1
-  flutter_onboarding_slider: ^1.0.7
+  logger: ^1.1.0
 
 dev_dependencies:
   flutter_test:

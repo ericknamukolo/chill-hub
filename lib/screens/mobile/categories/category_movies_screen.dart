@@ -1,16 +1,35 @@
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/models/movie_category.dart';
+import 'package:chill_hub/providers/movies.dart';
 import 'package:chill_hub/widgets/mobile_widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../constants/constants.dart';
 import '../../../constants/text_style.dart';
 
-class CategoryMovieScreen extends StatelessWidget {
+class CategoryMovieScreen extends StatefulWidget {
   final MovieCategory cat;
   const CategoryMovieScreen({
     Key? key,
     required this.cat,
   }) : super(key: key);
+
+  @override
+  State<CategoryMovieScreen> createState() => _CategoryMovieScreenState();
+}
+
+class _CategoryMovieScreenState extends State<CategoryMovieScreen> {
+  int pageNumber = 1;
+
+  @override
+  void initState() {
+    Future.delayed(Duration.zero).then((_) async {
+      await Provider.of<Movies>(context, listen: false)
+          .fetchCatMovies(pageNumber, widget.cat.category);
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +39,13 @@ class CategoryMovieScreen extends StatelessWidget {
       body: Column(
         children: [
           Hero(
-            tag: cat.category,
+            tag: widget.cat.category,
             child: Container(
               height: 180,
               width: double.infinity,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(cat.imgUrl),
+                  image: AssetImage(widget.cat.imgUrl),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -44,7 +63,7 @@ class CategoryMovieScreen extends StatelessWidget {
                     fontFamily: 'VarelaRound',
                   ),
                   child: Text(
-                    cat.category,
+                    widget.cat.category,
                   ),
                 ),
               ),

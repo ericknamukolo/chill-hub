@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:chill_hub/constants/constants.dart';
+
 import '../models/movie.dart';
 import '../models/movie_detail.dart';
 import 'package:flutter/foundation.dart';
@@ -70,13 +72,11 @@ class Movies with ChangeNotifier {
 
     var response = await http.get(Uri.parse(url));
 
-    var data = json.decode(response.body);
+    var data = await json.decode(response.body);
+
+    logger.i(data);
 
     if (data['status'] == 'ok') {
-      // data['data']['movies']['torrents'].forEach((tor) {
-
-      // });
-
       data['data']['movies'].forEach((movie) {
         List<Torrent> _loadedTorrents = [];
         movie['torrents'].forEach((tor) {
