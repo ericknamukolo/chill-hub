@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
 import 'package:chill_hub/providers/movie_categories.dart';
@@ -114,9 +115,27 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         controller: _scrollController,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           child: Column(
             children: [
+              CarouselSlider(
+                items: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: kSecondaryColorDark,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ],
+                options: CarouselOptions(
+                  aspectRatio: 2 / 1,
+                  autoPlay: true,
+                  enableInfiniteScroll: true,
+                  enlargeCenterPage: true,
+                  autoPlayInterval: const Duration(seconds: 6),
+                ),
+              ),
+              const SizedBox(height: 10),
               Row(
                 children: const [
                   Text(

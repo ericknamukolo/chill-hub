@@ -16,7 +16,7 @@ class CategoryMovieScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPrimaryColorDark,
-      appBar: CustomAppBar(title: cat.category, showClose: true),
+      appBar: const CustomAppBar(title: 'Category', showClose: true),
       body: Column(
         children: [
           Hero(

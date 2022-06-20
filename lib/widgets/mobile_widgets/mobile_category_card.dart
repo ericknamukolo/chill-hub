@@ -48,7 +48,7 @@ class MobileCategoryCard extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1,
                 fontFamily: 'VarelaRound',
-              ), ////
+              ), 
               child: Text(
                 category.category,
               ),
