@@ -26,10 +26,10 @@ Future<void> main() async {
     });
   } else {
     await FlutterDownloader.initialize();
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
   }
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
 class ChillHub extends StatelessWidget {
