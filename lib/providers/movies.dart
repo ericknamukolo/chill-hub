@@ -46,7 +46,7 @@ class Movies with ChangeNotifier {
             coverImg: movie['medium_cover_image'],
             rating: movie['rating'],
             genres: movie['genres'] ?? ['Unknown'],
-            introDes: movie['description_intro'],
+            introDes: movie['description_intro'] ?? 'No description',
             runtime: movie['runtime'],
             trailer: movie['yt_trailer_code'],
             torrents: [],
