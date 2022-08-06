@@ -28,12 +28,16 @@ class Movies with ChangeNotifier {
   String queryString = '';
 
   Future<void> fetchLatestMovies() async {
+    String sort = 'download_count';
+    if (Platform.isWindows) {
+      sort = 'year';
+    }
     String url =
-        'https://yts.torrentbay.to/api/v2/list_movies.json?sort_by=year';
+        'https://yts.torrentbay.to/api/v2/list_movies.json?sort_by=$sort';
     var response = await http.get(Uri.parse(url));
 
     var data = json.decode(response.body);
-
+    logger.i(data);
     if (data['status'] == 'ok') {
       List<Movie> _loadedMovies = [];
 
@@ -46,7 +50,7 @@ class Movies with ChangeNotifier {
             coverImg: movie['medium_cover_image'],
             rating: movie['rating'],
             genres: movie['genres'] ?? ['Unknown'],
-            introDes: movie['description_intro'] ?? 'No description',
+            introDes: movie['synopsis'] ?? 'No description',
             runtime: movie['runtime'],
             trailer: movie['yt_trailer_code'],
             torrents: [],

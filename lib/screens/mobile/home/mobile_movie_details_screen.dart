@@ -11,11 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:open_file/open_file.dart';
-import 'package:permission_handler/permission_handler.dart';
 import '../../../models/movie.dart';
-import '../../../widgets/desktop_widgets/download_dialog.dart';
-import '../../../widgets/mobile_widgets/mobile_download_dialog.dart';
 import '../../../widgets/mobile_widgets/movie_details_card.dart';
 
 class MobileMovieDetails extends StatefulWidget {

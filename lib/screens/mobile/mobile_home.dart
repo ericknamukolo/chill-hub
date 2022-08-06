@@ -44,7 +44,7 @@ class _MobileHome extends State<MobileHome> with TickerProviderStateMixin {
   ];
   String getAppBarText() {
     if (_currentIndex == 0) {
-      return 'Home';
+      return 'Chill Hub';
     } else if (_currentIndex == 1) {
       return 'Categories';
     } else if (_currentIndex == 2) {

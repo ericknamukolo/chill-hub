@@ -9,6 +9,7 @@ import 'package:shimmer/shimmer.dart';
 import '../../../providers/movies.dart';
 import '../../../widgets/mobile_widgets/category_card.dart';
 import '../../../widgets/mobile_widgets/mobile_movie_card.dart';
+import '../../../widgets/mobile_widgets/slider_item.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -36,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         _isLoading = true;
       });
-
+      Provider.of<Movies>(context, listen: false).fetchLatestMovies();
       await Provider.of<Movies>(context, listen: false)
           .fetchCatMovies(pageNumber, genre);
       setState(() {
@@ -115,24 +116,29 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         controller: _scrollController,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CarouselSlider(
-                items: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: kSecondaryColorDark,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+              const Text(
+                'Most Downloaded',
+                style: kBodyTitleTextStyle,
+              ),
+              const SizedBox(height: 10),
+              Consumer<Movies>(
+                builder: (context, mov, __) => CarouselSlider(
+                  items: mov.latestMovies
+                      .map(
+                        (movie) => SliderItem(movie: movie),
+                      )
+                      .toList(),
+                  options: CarouselOptions(
+                    aspectRatio: 2 / 1,
+                    autoPlay: true,
+                    enableInfiniteScroll: true,
+                    enlargeCenterPage: true,
+                    autoPlayInterval: const Duration(seconds: 8),
                   ),
-                ],
-                options: CarouselOptions(
-                  aspectRatio: 2 / 1,
-                  autoPlay: true,
-                  enableInfiniteScroll: true,
-                  enlargeCenterPage: true,
-                  autoPlayInterval: const Duration(seconds: 6),
                 ),
               ),
               const SizedBox(height: 10),
