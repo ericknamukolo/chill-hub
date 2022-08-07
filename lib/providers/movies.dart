@@ -47,7 +47,7 @@ class Movies with ChangeNotifier {
             id: movie['id'],
             title: movie['title'],
             year: movie['year'],
-            coverImg: movie['medium_cover_image'],
+            coverImg: movie['large_cover_image'],
             rating: movie['rating'],
             genres: movie['genres'] ?? ['Unknown'],
             introDes: movie['synopsis'] ?? 'No description',
