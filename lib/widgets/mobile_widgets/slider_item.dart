@@ -14,6 +14,12 @@ class SliderItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String durationToString(int minutes) {
+      var d = Duration(minutes: minutes);
+      List<String> parts = d.toString().split(':');
+      return '${parts[0].padLeft(2, '0')} hrs ${parts[1].padLeft(2, '0')} mins';
+    }
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
@@ -52,37 +58,39 @@ class SliderItem extends StatelessWidget {
                 const SizedBox(height: 5),
                 Text(
                   movie.introDes,
-                  maxLines: 4,
+                  maxLines: 5,
                   overflow: TextOverflow.ellipsis,
-                  style: kBodyTextStyleWhite.copyWith(fontSize: 9),
+                  style: kMobileBodyTextStyleGrey,
                 ),
                 const SizedBox(height: 6),
                 SizedBox(
                   height: 10,
                   child: ListView.builder(
-                    itemCount:
-                        movie.genres.length >= 2 ? 2 : movie.genres.length,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, i) => Text(
-                      '${movie.genres[i]} | ',
-                      style: kBodyTextStyleWhite.copyWith(
-                        color: kAccentColor,
-                        fontSize: 9,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
+                      itemCount: movie.genres.length,
+                      // movie.genres.length >= 2 ? 2 : movie.genres.length,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, i) {
+                        bool isLast = i == movie.genres.length - 1;
+                        return Text(
+                          isLast ? movie.genres[i] : '${movie.genres[i]} | ',
+                          style: kMobileBodyTextStyleWhite.copyWith(
+                            color: kAccentColor,
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        );
+                      }),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 5),
                 Row(
                   children: [
                     Text(
-                      '(${movie.runtime} minutes)',
+                      '(${durationToString(int.parse(movie.runtime.toString()))})',
                       style: kBodyTextStyleWhite.copyWith(
                         color: kAccentColor,
-                        fontSize: 9,
+                        fontSize: 10,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -90,7 +98,7 @@ class SliderItem extends StatelessWidget {
                       ' ${movie.rating}/10',
                       style: kBodyTextStyleWhite.copyWith(
                         color: kAccentColor,
-                        fontSize: 9,
+                        fontSize: 10,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

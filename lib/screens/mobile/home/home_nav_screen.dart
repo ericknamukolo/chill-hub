@@ -133,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                       .toList(),
                   options: CarouselOptions(
-                    aspectRatio: 2 / 1,
+                    aspectRatio: 2 / 1.2,
                     autoPlay: true,
                     enableInfiniteScroll: true,
                     enlargeCenterPage: true,
