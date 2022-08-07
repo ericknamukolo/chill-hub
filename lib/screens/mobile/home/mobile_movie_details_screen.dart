@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../models/movie.dart';
 import '../../../widgets/mobile_widgets/movie_details_card.dart';
 
@@ -73,7 +74,10 @@ class _MobileMovieDetailsState extends State<MobileMovieDetails> {
               openFileFromNotification:
                   true, // click on notification to open downloaded file (for Android)
             );
-
+            var url = Uri.parse(widget.movie.torrents[0].url);
+            // await launchUrl(url,
+            //     webOnlyWindowName: 'Wazzap',
+            //     mode: LaunchMode.externalNonBrowserApplication);
             // showDialog(
             //     context: context,
             //     builder: (context) => MobileDownloadDialog(

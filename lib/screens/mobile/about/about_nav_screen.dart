@@ -69,7 +69,7 @@ class AboutNavScreen extends StatelessWidget {
           GestureDetector(
             onTap: () async {
               Uri url = Uri.parse('https://ericknamukolo.github.io/');
-              await launchUrl(url);
+              await launchUrl(url, mode: LaunchMode.externalApplication);
             },
             child: Text(
               'Erick Namukolo',
