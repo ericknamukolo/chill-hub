@@ -72,16 +72,10 @@ class AboutNavScreen extends StatelessWidget {
               await launchUrl(url, mode: LaunchMode.externalApplication);
             },
             child: Text(
-              'Erick Namukolo',
+              '© Erick Namukolo, 2022',
               style: kBodyTextStyleGrey.copyWith(
-                color: kBodyTextStyleGrey.color,
+                fontSize: 12,
               ),
-            ),
-          ),
-          Text(
-            '© Erick Namukolo, 2022',
-            style: kBodyTextStyleGrey.copyWith(
-              fontSize: 12,
             ),
           ),
         ],
