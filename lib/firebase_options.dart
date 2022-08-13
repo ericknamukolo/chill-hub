@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBP-gSn2RmpN5ZuUkBzDdzny0qxXQBj7a8',
-    appId: '1:975147999802:android:06b4d1ba669fe07dc34b03',
+    appId: '1:975147999802:android:4f273e563580e218c34b03',
     messagingSenderId: '975147999802',
     projectId: 'chill-hub-f3f17',
     storageBucket: 'chill-hub-f3f17.appspot.com',
@@ -59,7 +59,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBHy3iQba64Vi_bdcCLZcP-5-6wgecnwy8',
-    appId: '1:975147999802:ios:367ecc05732df04dc34b03',
+    appId: '1:975147999802:ios:20ae052f87858c2ac34b03',
     messagingSenderId: '975147999802',
     projectId: 'chill-hub-f3f17',
     storageBucket: 'chill-hub-f3f17.appspot.com',

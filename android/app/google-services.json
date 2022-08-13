@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:975147999802:android:06b4d1ba669fe07dc34b03",
+        "mobilesdk_app_id": "1:975147999802:android:4f273e563580e218c34b03",
         "android_client_info": {
-          "package_name": "com.example.chill_hub"
+          "package_name": "com.ericknamukolo.chillhub"
         }
       },
       "oauth_client": [
@@ -29,6 +29,13 @@
             {
               "client_id": "975147999802-lf7624249i87s8m14l4ffj16nrinrb74.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "975147999802-e56rhrllqcemgj2o5gs2g8j5r1tgkvg1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.chillHub"
+              }
             }
           ]
         }

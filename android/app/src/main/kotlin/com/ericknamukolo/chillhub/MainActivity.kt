@@ -1,4 +1,4 @@
-package com.example.chill_hub
+package com.ericknamukolo.chillhub
 
 import io.flutter.embedding.android.FlutterActivity
 
