@@ -20,12 +20,6 @@ class MobileMovieCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // AdManager.loadInterstitialAd(onLoaded: (ad) async {
-        //   InterstitialAd loadedAd = ad;
-        //   await loadedAd.show();
-        // }, onAdFailedToLoad: (ad) {
-        //   logger.i('failed $ad');
-        // });
         // AdManager.loadInterstitialVidAd(
         //   onLoaded: (ad) async {
         //     InterstitialAd loadedAd = ad;
@@ -37,6 +31,12 @@ class MobileMovieCard extends StatelessWidget {
             builder: (context) => MobileMovieDetails(movie: movie),
           ),
         );
+        AdManager.loadInterstitialAd(onLoaded: (ad) async {
+          InterstitialAd loadedAd = ad;
+          await loadedAd.show();
+        }, onAdFailedToLoad: (ad) {
+          logger.i('failed $ad');
+        });
       },
       child: Hero(
         tag: movie.id,

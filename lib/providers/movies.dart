@@ -215,7 +215,7 @@ class Movies with ChangeNotifier {
     if (data['status'] == 'ok' && data['data']['movie_count'] != 0) {
       searchLoading = false;
       List<Movie> _loadedMovies = [];
-
+      logger.i(data);
       data['data']['movies'].forEach((movie) {
         _loadedMovies.add(
           Movie(
@@ -225,7 +225,7 @@ class Movies with ChangeNotifier {
             coverImg: movie['medium_cover_image'],
             rating: movie['rating'],
             genres: movie['genres'] ?? ['Unknown'],
-            introDes: movie['description_intro'],
+            introDes: movie['synopsis'] ?? 'No description',
             runtime: movie['runtime'],
             trailer: movie['yt_trailer_code'],
             torrents: [],

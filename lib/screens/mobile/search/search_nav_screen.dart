@@ -1,5 +1,7 @@
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
+import 'package:chill_hub/screens/mobile/search/searched_movie_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SearchNavScreen extends StatelessWidget {
@@ -9,13 +11,17 @@ class SearchNavScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final query = TextEditingController();
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           TextField(
+            controller: query,
             cursorColor: kAccentColor,
+            style: kBodyTextStyleGrey,
+            textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(
               border: InputBorder.none,
               filled: true,
@@ -23,7 +29,14 @@ class SearchNavScreen extends StatelessWidget {
               hintText: 'Search movie..',
               hintStyle: kBodyTextStyleGrey,
               suffixIcon: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    CupertinoPageRoute(
+                      builder: (context) =>
+                          SearchedMovieScreen(query: query.text),
+                    ),
+                  );
+                },
                 icon: Icon(
                   Icons.search_rounded,
                   color: kBodyTextStyleGrey.color,
