@@ -29,38 +29,38 @@ class AboutNavScreen extends StatelessWidget {
               fontSize: 12,
             ),
           ),
-          GestureDetector(
-            onTap: () async {
-              Uri url = Uri.parse('https://ko-fi.com/erickmndev');
-              await launchUrl(url);
-            },
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              padding: const EdgeInsets.symmetric(vertical: 5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.0),
-                color: const Color(0xff29abe0),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.coffee_rounded,
-                    size: 20,
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    'Ko-Fi',
-                    style: kBodyTextStyleWhite.copyWith(
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 3,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          // GestureDetector(
+          //   onTap: () async {
+          //     Uri url = Uri.parse('https://ko-fi.com/erickmndev');
+          //     await launchUrl(url);
+          //   },
+          //   child: AnimatedContainer(
+          //     duration: const Duration(milliseconds: 300),
+          //     margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+          //     padding: const EdgeInsets.symmetric(vertical: 5),
+          //     decoration: BoxDecoration(
+          //       borderRadius: BorderRadius.circular(5.0),
+          //       color: const Color(0xff29abe0),
+          //     ),
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       children: [
+          //         const Icon(
+          //           Icons.coffee_rounded,
+          //           size: 20,
+          //         ),
+          //         const SizedBox(width: 8),
+          //         Text(
+          //           'Ko-Fi',
+          //           style: kBodyTextStyleWhite.copyWith(
+          //             fontWeight: FontWeight.bold,
+          //             letterSpacing: 3,
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
           const Spacer(),
           const Text(
             'Designed & Built by',
