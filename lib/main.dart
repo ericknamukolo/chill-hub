@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:bot_toast/bot_toast.dart';
 
 Future<void> main() async {
   runApp(const ChillHub());
@@ -47,6 +48,10 @@ class ChillHub extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        builder: BotToastInit(),
+        navigatorObservers: [
+          BotToastNavigatorObserver(),
+        ],
         scrollBehavior: MyCustomScrollBehavior(),
         theme: ThemeData(
           fontFamily: 'VarelaRound',

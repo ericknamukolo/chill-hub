@@ -2,10 +2,12 @@ import 'dart:isolate';
 import 'dart:ui';
 
 import 'package:android_path_provider/android_path_provider.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
 import 'package:chill_hub/screens/mobile/home/trailer_player_screen.dart';
 import 'package:chill_hub/widgets/mobile_widgets/custom_app_bar.dart';
+import 'package:chill_hub/widgets/mobile_widgets/custom_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
@@ -73,8 +75,13 @@ class _MobileMovieDetailsState extends State<MobileMovieDetails> {
                   true, // show download progress in status bar (for Android)
               openFileFromNotification:
                   true, // click on notification to open downloaded file (for Android)
-            );
-            var url = Uri.parse(widget.movie.torrents[0].url);
+            ).then((_) => BotToast.showCustomNotification(
+                  duration: const Duration(seconds: 4),
+                  toastBuilder: (context) => const CustomToast(
+                      message: 'Torrent file downloaded successfully',
+                      type: 'success'),
+                ));
+
             // await launchUrl(url,
             //     webOnlyWindowName: 'Wazzap',
             //     mode: LaunchMode.externalNonBrowserApplication);

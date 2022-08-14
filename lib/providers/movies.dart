@@ -42,6 +42,21 @@ class Movies with ChangeNotifier {
       List<Movie> _loadedMovies = [];
 
       data['data']['movies'].forEach((movie) {
+        List<Torrent> _loadedTorrents = [];
+        movie['torrents'].forEach((tor) {
+          _loadedTorrents.add(
+            Torrent(
+              hash: tor['hash'],
+              quality: tor['quality'],
+              url: tor['url'],
+              size: tor['size'],
+              type: tor['type'],
+              peers: tor['peers'],
+              seeds: tor['seeds'],
+              title: '',
+            ),
+          );
+        });
         _loadedMovies.add(
           Movie(
             id: movie['id'],
@@ -53,7 +68,7 @@ class Movies with ChangeNotifier {
             introDes: movie['synopsis'] ?? 'No description',
             runtime: movie['runtime'],
             trailer: movie['yt_trailer_code'],
-            torrents: [],
+            torrents: [..._loadedTorrents],
           ),
         );
       });
