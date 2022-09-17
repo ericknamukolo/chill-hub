@@ -47,6 +47,7 @@ class ChillHub extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => MovieViews()),
       ],
       child: MaterialApp(
+        title: 'Chill Hub',
         debugShowCheckedModeBanner: false,
         builder: BotToastInit(),
         navigatorObservers: [
