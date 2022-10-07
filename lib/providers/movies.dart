@@ -37,7 +37,7 @@ class Movies with ChangeNotifier {
     var response = await http.get(Uri.parse(url));
 
     var data = json.decode(response.body);
-    logger.i(data);
+    // logger.i(data);
     if (data['status'] == 'ok') {
       List<Movie> _loadedMovies = [];
 
@@ -93,7 +93,7 @@ class Movies with ChangeNotifier {
 
     var data = await json.decode(response.body);
 
-    logger.i(data);
+   // logger.i(data);
 
     if (data['status'] == 'ok') {
       data['data']['movies'].forEach((movie) {
@@ -230,7 +230,7 @@ class Movies with ChangeNotifier {
     if (data['status'] == 'ok' && data['data']['movie_count'] != 0) {
       searchLoading = false;
       List<Movie> _loadedMovies = [];
-      logger.i(data);
+    //  logger.i(data);
       data['data']['movies'].forEach((movie) {
         _loadedMovies.add(
           Movie(

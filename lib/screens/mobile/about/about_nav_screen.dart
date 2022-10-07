@@ -78,6 +78,21 @@ class AboutNavScreen extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(height: 5.0),
+          GestureDetector(
+            onTap: () async {
+              Uri url =
+                  Uri.parse('https://chill-hub-privacy-policy.netlify.app/');
+              await launchUrl(url, mode: LaunchMode.externalApplication);
+            },
+            child: Text(
+              'Privacy Policy',
+              style: kBodyTextStyleGrey.copyWith(
+                fontSize: 12,
+                decoration: TextDecoration.underline,
+              ),
+            ),
+          ),
         ],
       ),
     );

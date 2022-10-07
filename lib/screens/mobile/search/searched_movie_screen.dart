@@ -35,7 +35,7 @@ class _SearchedMovieScreenState extends State<SearchedMovieScreen> {
 
   @override
   Widget build(BuildContext context) {
-    logger.e(_isLoading);
+    //logger.e(_isLoading);
     return Scaffold(
       backgroundColor: kPrimaryColorDark,
       appBar: const CustomAppBar(title: 'Search', showClose: true),
