@@ -1,4 +1,3 @@
-import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
@@ -45,33 +44,33 @@ class _MovieSearchState extends State<MovieSearch> {
     return Scaffold(
       body: Column(
         children: [
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 500),
-            color: kPrimaryColorDark,
-            height: _showBar ? 25 : 0,
-            width: double.infinity,
-            child: Row(
-              children: [
-                Expanded(child: MoveWindow()),
-                MinimizeWindowButton(
-                  colors: WindowButtonColors(
-                    iconNormal: Colors.white,
-                    mouseOver: kAccentColor,
-                  ),
-                ),
-                MaximizeWindowButton(
-                    colors: WindowButtonColors(
-                  iconNormal: Colors.white,
-                  mouseOver: kAccentColor,
-                )),
-                CloseWindowButton(
-                    colors: WindowButtonColors(
-                  iconNormal: Colors.white,
-                  mouseOver: Theme.of(context).errorColor,
-                )),
-              ],
-            ),
-          ),
+          // AnimatedContainer(
+          //   duration: const Duration(milliseconds: 500),
+          //   color: kPrimaryColorDark,
+          //   height: _showBar ? 25 : 0,
+          //   width: double.infinity,
+          //   child: Row(
+          //     children: [
+          //       Expanded(child: MoveWindow()),
+          //       MinimizeWindowButton(
+          //         colors: WindowButtonColors(
+          //           iconNormal: Colors.white,
+          //           mouseOver: kAccentColor,
+          //         ),
+          //       ),
+          //       MaximizeWindowButton(
+          //           colors: WindowButtonColors(
+          //         iconNormal: Colors.white,
+          //         mouseOver: kAccentColor,
+          //       )),
+          //       CloseWindowButton(
+          //           colors: WindowButtonColors(
+          //         iconNormal: Colors.white,
+          //         mouseOver: Theme.of(context).errorColor,
+          //       )),
+          //     ],
+          //   ),
+          // ),
           Expanded(
             child: Container(
               color: kPrimaryColorDark,
@@ -99,31 +98,31 @@ class _MovieSearchState extends State<MovieSearch> {
                       child: Column(
                         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SizedBox(
-                            height: 25,
-                            width: double.infinity,
-                            child: Row(
-                              children: [
-                                Expanded(child: MoveWindow()),
-                                MinimizeWindowButton(
-                                  colors: WindowButtonColors(
-                                    iconNormal: Colors.white,
-                                    mouseOver: kAccentColor,
-                                  ),
-                                ),
-                                MaximizeWindowButton(
-                                    colors: WindowButtonColors(
-                                  iconNormal: Colors.white,
-                                  mouseOver: kAccentColor,
-                                )),
-                                CloseWindowButton(
-                                    colors: WindowButtonColors(
-                                  iconNormal: Colors.white,
-                                  mouseOver: Theme.of(context).errorColor,
-                                )),
-                              ],
-                            ),
-                          ),
+                          // SizedBox(
+                          //   height: 25,
+                          //   width: double.infinity,
+                          //   child: Row(
+                          //     children: [
+                          //       Expanded(child: MoveWindow()),
+                          //       MinimizeWindowButton(
+                          //         colors: WindowButtonColors(
+                          //           iconNormal: Colors.white,
+                          //           mouseOver: kAccentColor,
+                          //         ),
+                          //       ),
+                          //       MaximizeWindowButton(
+                          //           colors: WindowButtonColors(
+                          //         iconNormal: Colors.white,
+                          //         mouseOver: kAccentColor,
+                          //       )),
+                          //       CloseWindowButton(
+                          //           colors: WindowButtonColors(
+                          //         iconNormal: Colors.white,
+                          //         mouseOver: Theme.of(context).errorColor,
+                          //       )),
+                          //     ],
+                          //   ),
+                          // ),
                           const SizedBox(height: 15),
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -211,7 +210,7 @@ class _MovieSearchState extends State<MovieSearch> {
                                 _search.clear();
                               },
                               style: ElevatedButton.styleFrom(
-                                primary: kAccentColor.withOpacity(.3),
+                                backgroundColor: kAccentColor.withOpacity(.3),
                                 fixedSize: const Size(200, 40),
                               ),
                               child: Row(

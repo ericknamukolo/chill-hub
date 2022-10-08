@@ -1,4 +1,3 @@
-import 'package:bitsdojo_window/bitsdojo_window.dart';
 
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -48,33 +47,33 @@ class _MovieDetailsState extends State<MovieDetails> {
       body: Consumer<Movies>(
         builder: (context, mov, __) => Column(
           children: [
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 500),
-              color: kPrimaryColorDark,
-              height: _showBar ? 25 : 0,
-              width: double.infinity,
-              child: Row(
-                children: [
-                  Expanded(child: MoveWindow()),
-                  MinimizeWindowButton(
-                    colors: WindowButtonColors(
-                      iconNormal: Colors.white,
-                      mouseOver: kAccentColor,
-                    ),
-                  ),
-                  MaximizeWindowButton(
-                      colors: WindowButtonColors(
-                    iconNormal: Colors.white,
-                    mouseOver: kAccentColor,
-                  )),
-                  CloseWindowButton(
-                      colors: WindowButtonColors(
-                    iconNormal: Colors.white,
-                    mouseOver: Theme.of(context).errorColor,
-                  )),
-                ],
-              ),
-            ),
+            // AnimatedContainer(
+            //   duration: const Duration(milliseconds: 500),
+            //   color: kPrimaryColorDark,
+            //   height: _showBar ? 25 : 0,
+            //   width: double.infinity,
+            //   child: Row(
+            //     children: [
+            //       Expanded(child: MoveWindow()),
+            //       MinimizeWindowButton(
+            //         colors: WindowButtonColors(
+            //           iconNormal: Colors.white,
+            //           mouseOver: kAccentColor,
+            //         ),
+            //       ),
+            //       MaximizeWindowButton(
+            //           colors: WindowButtonColors(
+            //         iconNormal: Colors.white,
+            //         mouseOver: kAccentColor,
+            //       )),
+            //       CloseWindowButton(
+            //           colors: WindowButtonColors(
+            //         iconNormal: Colors.white,
+            //         mouseOver: Theme.of(context).errorColor,
+            //       )),
+            //     ],
+            //   ),
+            // ),
             Expanded(
               child: Container(
                 color: kPrimaryColorDark,
@@ -104,36 +103,36 @@ class _MovieDetailsState extends State<MovieDetails> {
                         child: Stack(
                           clipBehavior: Clip.none,
                           children: [
-                            Positioned(
-                              top: 0,
-                              left: 0,
-                              right: 0,
-                              child: SizedBox(
-                                height: 25,
-                                width: double.infinity,
-                                child: Row(
-                                  children: [
-                                    Expanded(child: MoveWindow()),
-                                    MinimizeWindowButton(
-                                      colors: WindowButtonColors(
-                                        iconNormal: Colors.white,
-                                        mouseOver: kAccentColor,
-                                      ),
-                                    ),
-                                    MaximizeWindowButton(
-                                        colors: WindowButtonColors(
-                                      iconNormal: Colors.white,
-                                      mouseOver: kAccentColor,
-                                    )),
-                                    CloseWindowButton(
-                                        colors: WindowButtonColors(
-                                      iconNormal: Colors.white,
-                                      mouseOver: Theme.of(context).errorColor,
-                                    )),
-                                  ],
-                                ),
-                              ),
-                            ),
+                            // Positioned(
+                            //   top: 0,
+                            //   left: 0,
+                            //   right: 0,
+                            //   child: SizedBox(
+                            //     height: 25,
+                            //     width: double.infinity,
+                            //     child: Row(
+                            //       children: [
+                            //         Expanded(child: MoveWindow()),
+                            //         MinimizeWindowButton(
+                            //           colors: WindowButtonColors(
+                            //             iconNormal: Colors.white,
+                            //             mouseOver: kAccentColor,
+                            //           ),
+                            //         ),
+                            //         MaximizeWindowButton(
+                            //             colors: WindowButtonColors(
+                            //           iconNormal: Colors.white,
+                            //           mouseOver: kAccentColor,
+                            //         )),
+                            //         CloseWindowButton(
+                            //             colors: WindowButtonColors(
+                            //           iconNormal: Colors.white,
+                            //           mouseOver: Theme.of(context).errorColor,
+                            //         )),
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
                             Positioned(
                               top: 40,
                               right: 15,

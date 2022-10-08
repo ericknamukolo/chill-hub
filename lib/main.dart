@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:ui';
-import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:chill_hub/providers/menu_buttons.dart';
 import 'package:chill_hub/providers/movie_categories.dart';
 import 'package:chill_hub/providers/movie_views.dart';
@@ -19,12 +18,12 @@ Future<void> main() async {
   runApp(const ChillHub());
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isWindows) {
-    doWhenWindowReady(() {
-      final win = appWindow;
-      win.title = 'Chill Hub';
-      win.minSize = const Size(1200, 700);
-      win.show();
-    });
+    // doWhenWindowReady(() {
+    //   final win = appWindow;
+    //   win.title = 'Chill Hub';
+    //   win.minSize = const Size(1200, 700);
+    //   win.show();
+    // });
   } else {
     MobileAds.instance.initialize();
     await FlutterDownloader.initialize();

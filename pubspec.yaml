@@ -40,7 +40,7 @@ dependencies:
   material_design_icons_flutter: ^5.0.6595
   google_fonts: ^2.3.2
   url_launcher: ^6.1.2
-  bitsdojo_window: ^0.1.1+1
+  # bitsdojo_window: ^0.1.1+1
   msix: ^3.6.2
   firebase_core: ^1.17.1
   flutter_launcher_icons_maker: ^0.10.2

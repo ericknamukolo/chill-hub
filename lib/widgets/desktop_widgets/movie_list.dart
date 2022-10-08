@@ -1,5 +1,3 @@
-import 'package:bitsdojo_window/bitsdojo_window.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
@@ -109,33 +107,33 @@ class _MovieListState extends State<MovieList> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Column(
         children: [
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 500),
-            color: kPrimaryColorDark,
-            height: _showBar ? 25 : 0,
-            width: double.infinity,
-            child: Row(
-              children: [
-                Expanded(child: MoveWindow()),
-                MinimizeWindowButton(
-                  colors: WindowButtonColors(
-                    iconNormal: Colors.white,
-                    mouseOver: kAccentColor,
-                  ),
-                ),
-                MaximizeWindowButton(
-                    colors: WindowButtonColors(
-                  iconNormal: Colors.white,
-                  mouseOver: kAccentColor,
-                )),
-                CloseWindowButton(
-                    colors: WindowButtonColors(
-                  iconNormal: Colors.white,
-                  mouseOver: Theme.of(context).errorColor,
-                )),
-              ],
-            ),
-          ),
+          // AnimatedContainer(
+          //   duration: const Duration(milliseconds: 500),
+          //   color: kPrimaryColorDark,
+          //   height: _showBar ? 25 : 0,
+          //   width: double.infinity,
+          //   child: Row(
+          //     children: [
+          //       Expanded(child: MoveWindow()),
+          //       MinimizeWindowButton(
+          //         colors: WindowButtonColors(
+          //           iconNormal: Colors.white,
+          //           mouseOver: kAccentColor,
+          //         ),
+          //       ),
+          //       MaximizeWindowButton(
+          //           colors: WindowButtonColors(
+          //         iconNormal: Colors.white,
+          //         mouseOver: kAccentColor,
+          //       )),
+          //       CloseWindowButton(
+          //           colors: WindowButtonColors(
+          //         iconNormal: Colors.white,
+          //         mouseOver: Theme.of(context).errorColor,
+          //       )),
+          //     ],
+          //   ),
+          // ),
           Expanded(
             child: Container(
               color: kPrimaryColorDark,
@@ -163,31 +161,31 @@ class _MovieListState extends State<MovieList> {
                       child: Column(
                         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SizedBox(
-                            height: 25,
-                            width: double.infinity,
-                            child: Row(
-                              children: [
-                                Expanded(child: MoveWindow()),
-                                MinimizeWindowButton(
-                                  colors: WindowButtonColors(
-                                    iconNormal: Colors.white,
-                                    mouseOver: kAccentColor,
-                                  ),
-                                ),
-                                MaximizeWindowButton(
-                                    colors: WindowButtonColors(
-                                  iconNormal: Colors.white,
-                                  mouseOver: kAccentColor,
-                                )),
-                                CloseWindowButton(
-                                    colors: WindowButtonColors(
-                                  iconNormal: Colors.white,
-                                  mouseOver: Theme.of(context).errorColor,
-                                )),
-                              ],
-                            ),
-                          ),
+                          // SizedBox(
+                          //   height: 25,
+                          //   width: double.infinity,
+                          //   child: Row(
+                          //     children: [
+                          //       Expanded(child: MoveWindow()),
+                          //       MinimizeWindowButton(
+                          //         colors: WindowButtonColors(
+                          //           iconNormal: Colors.white,
+                          //           mouseOver: kAccentColor,
+                          //         ),
+                          //       ),
+                          //       MaximizeWindowButton(
+                          //           colors: WindowButtonColors(
+                          //         iconNormal: Colors.white,
+                          //         mouseOver: kAccentColor,
+                          //       )),
+                          //       CloseWindowButton(
+                          //           colors: WindowButtonColors(
+                          //         iconNormal: Colors.white,
+                          //         mouseOver: Theme.of(context).errorColor,
+                          //       )),
+                          //     ],
+                          //   ),
+                          // ),
                           const SizedBox(height: 15),
                           SizedBox(
                             width: 600,
