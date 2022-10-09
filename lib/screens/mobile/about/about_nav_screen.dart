@@ -87,7 +87,7 @@ class _AboutNavScreenState extends State<AboutNavScreen> {
           ),
           GestureDetector(
             onTap: () async {
-              Uri url = Uri.parse('https://ericknamukolo.github.io/');
+              Uri url = Uri.parse('https://ericknamukolo.com');
               await launchUrl(url, mode: LaunchMode.externalApplication);
             },
             child: Text(
