@@ -15,22 +15,15 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:bot_toast/bot_toast.dart';
 
 Future<void> main() async {
-  runApp(const ChillHub());
   WidgetsFlutterBinding.ensureInitialized();
-  if (Platform.isWindows) {
-    // doWhenWindowReady(() {
-    //   final win = appWindow;
-    //   win.title = 'Chill Hub';
-    //   win.minSize = const Size(1200, 700);
-    //   win.show();
-    // });
-  } else {
+  if (Platform.isAndroid || Platform.isIOS) {
     MobileAds.instance.initialize();
     await FlutterDownloader.initialize();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
   }
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  runApp(const ChillHub());
 }
 
 class ChillHub extends StatelessWidget {
@@ -57,9 +50,9 @@ class ChillHub extends StatelessWidget {
           fontFamily: 'VarelaRound',
           brightness: Brightness.dark,
         ),
-        home: Platform.isWindows || Platform.isMacOS
-            ? const DesktopSplashScreen()
-            : const MobileSplashScreen(),
+        home: Platform.isAndroid || Platform.isIOS
+            ? const MobileSplashScreen()
+            : const DesktopSplashScreen(),
       ),
     );
   }

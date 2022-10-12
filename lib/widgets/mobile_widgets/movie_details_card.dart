@@ -8,12 +8,14 @@ class MovieDetailsCard extends StatelessWidget {
   final String title;
   final String content;
   final IconData icon;
+  final bool isAvailable;
   final Function()? click;
   const MovieDetailsCard({
     Key? key,
     required this.title,
     required this.icon,
     required this.content,
+    this.isAvailable = false,
     this.click,
   }) : super(key: key);
 
@@ -34,7 +36,7 @@ class MovieDetailsCard extends StatelessWidget {
           children: [
             GlowIcon(
               icon,
-              glowColor: Colors.white,
+              glowColor: isAvailable ? const Color(0xffFF0000) : Colors.white,
               size: 28,
             ),
             Text(
@@ -43,7 +45,7 @@ class MovieDetailsCard extends StatelessWidget {
             ),
             FittedBox(
               child: Text(
-                content,
+                isAvailable ? content.toUpperCase() : content,
                 maxLines: 2,
                 style: kMobileBodyTextStyleWhite.copyWith(fontSize: 10),
               ),

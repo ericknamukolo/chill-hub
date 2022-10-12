@@ -1,12 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../constants/text_style.dart';
 
-class AboutNavScreen extends StatelessWidget {
+class AboutNavScreen extends StatefulWidget {
   const AboutNavScreen({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<AboutNavScreen> createState() => _AboutNavScreenState();
+}
+
+class _AboutNavScreenState extends State<AboutNavScreen> {
+  String version = '';
+  @override
+  void initState() {
+    Future.delayed(Duration.zero).then((_) async {
+      PackageInfo packageInfo = await PackageInfo.fromPlatform();
+      setState(() {
+        version = packageInfo.version;
+      });
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +87,7 @@ class AboutNavScreen extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () async {
-              Uri url = Uri.parse('https://ericknamukolo.github.io/');
+              Uri url = Uri.parse('https://ericknamukolo.com');
               await launchUrl(url, mode: LaunchMode.externalApplication);
             },
             child: Text(
@@ -78,6 +97,7 @@ class AboutNavScreen extends StatelessWidget {
               ),
             ),
           ),
+
           const SizedBox(height: 5.0),
           GestureDetector(
             onTap: () async {
@@ -91,6 +111,13 @@ class AboutNavScreen extends StatelessWidget {
                 fontSize: 12,
                 decoration: TextDecoration.underline,
               ),
+            ),
+          ),
+          const SizedBox(height: 5.0),
+          Text(
+            'v $version',
+            style: kBodyTextStyleGrey.copyWith(
+              fontSize: 10,
             ),
           ),
         ],

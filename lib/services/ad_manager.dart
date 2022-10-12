@@ -8,7 +8,7 @@ class AdManager {
       {required Function(dynamic) onLoaded,
       required Function(dynamic) onAdFailedToLoad}) {
     InterstitialAd.load(
-      adUnitId: testAd,
+      adUnitId: realAd,
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: onLoaded,
