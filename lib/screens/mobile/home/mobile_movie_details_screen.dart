@@ -152,6 +152,7 @@ class _MobileMovieDetailsState extends State<MobileMovieDetails> {
                             content: widget.movie.trailer == ''
                                 ? 'Not Available'
                                 : 'Watch Trailer',
+                            isAvailable: widget.movie.trailer != '',
                             click: () {
                               if (widget.movie.trailer != '') {
                                 Navigator.of(context).push(
