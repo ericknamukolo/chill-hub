@@ -5,11 +5,13 @@ import 'package:android_path_provider/android_path_provider.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
+import 'package:chill_hub/screens/mobile/home/player_screen.dart';
 import 'package:chill_hub/screens/mobile/home/trailer_player_screen.dart';
 import 'package:chill_hub/widgets/mobile_widgets/custom_app_bar.dart';
 import 'package:chill_hub/widgets/mobile_widgets/custom_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -81,15 +83,6 @@ class _MobileMovieDetailsState extends State<MobileMovieDetails> {
                       message: 'Torrent file downloaded successfully',
                       type: 'success'),
                 ));
-
-            // await launchUrl(url,
-            //     webOnlyWindowName: 'Wazzap',
-            //     mode: LaunchMode.externalNonBrowserApplication);
-            // showDialog(
-            //     context: context,
-            //     builder: (context) => MobileDownloadDialog(
-            //           torrents: widget.movie.torrents,
-            //         ));
           },
           child: const GlowIcon(
             Icons.download_rounded,
@@ -169,6 +162,21 @@ class _MobileMovieDetailsState extends State<MobileMovieDetails> {
                     ),
                   ),
                 ],
+              ),
+              const SizedBox(height: 10),
+              MovieDetailsCard(
+                title: 'Watch NOW',
+                icon: Icons.play_arrow_rounded,
+                click: () async {
+                  await Clipboard.setData(
+                      ClipboardData(text: widget.movie.torrents[0].url));
+                  Navigator.of(context).push(
+                    CupertinoPageRoute(
+                      builder: (context) =>
+                          PlayerScreen(title: widget.movie.title),
+                    ),
+                  );
+                },
               ),
               const SizedBox(height: 10),
               Text(
