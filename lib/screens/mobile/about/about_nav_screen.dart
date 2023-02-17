@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../constants/colors.dart';
 import '../../../constants/text_style.dart';
 
 class AboutNavScreen extends StatefulWidget {
@@ -14,13 +15,13 @@ class AboutNavScreen extends StatefulWidget {
 }
 
 class _AboutNavScreenState extends State<AboutNavScreen> {
-  String version = '';
+  PackageInfo? info;
   @override
   void initState() {
     Future.delayed(Duration.zero).then((_) async {
       PackageInfo packageInfo = await PackageInfo.fromPlatform();
       setState(() {
-        version = packageInfo.version;
+        info = packageInfo;
       });
     });
 
@@ -85,16 +86,15 @@ class _AboutNavScreenState extends State<AboutNavScreen> {
             'Designed & Built by',
             style: kBodyTextStyleWhite,
           ),
-          GestureDetector(
-            onTap: () async {
+          TextButton(
+            onPressed: () async {
               Uri url = Uri.parse('https://ericknamukolo.com');
               await launchUrl(url, mode: LaunchMode.externalApplication);
             },
             child: Text(
-              '© Erick Namukolo, 2022',
+              '© Erick Namukolo, ${DateTime.now().year}',
               style: kBodyTextStyleGrey.copyWith(
-                fontSize: 12,
-              ),
+                  fontSize: 12, color: kAccentColor),
             ),
           ),
 
@@ -115,7 +115,7 @@ class _AboutNavScreenState extends State<AboutNavScreen> {
           ),
           const SizedBox(height: 5.0),
           Text(
-            'v $version',
+            'v ${info?.version} #${info?.buildNumber}',
             style: kBodyTextStyleGrey.copyWith(
               fontSize: 10,
             ),
