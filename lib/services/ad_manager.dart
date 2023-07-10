@@ -1,19 +1,33 @@
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-String testAd = 'ca-app-pub-3940256099942544/1033173712';
-String realAd = 'ca-app-pub-4667865994695089/4708178147';
+import '../constants/ad_units.dart';
 
 class AdManager {
-  static void loadInterstitialAd(
-      {required Function(dynamic) onLoaded,
-      required Function(dynamic) onAdFailedToLoad}) {
+  static void loadInterstitialAd({required String adUnit}) {
     InterstitialAd.load(
-      adUnitId: realAd,
+      adUnitId: adUnit,
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
-        onAdLoaded: onLoaded,
-        onAdFailedToLoad: onAdFailedToLoad,
+        onAdLoaded: (ad) async {
+          InterstitialAd loadedAd = ad;
+          await loadedAd.show();
+        },
+        onAdFailedToLoad: (ad) {},
       ),
+    );
+  }
+
+  static void loadAppOpenAd() {
+    AppOpenAd.load(
+      adUnitId: AdUnits.appOpen,
+      request: const AdRequest(),
+      adLoadCallback: AppOpenAdLoadCallback(
+          onAdLoaded: (ad) async {
+            AppOpenAd loadedAd = ad;
+            await loadedAd.show();
+          },
+          onAdFailedToLoad: (ad) {}),
+      orientation: AppOpenAd.orientationPortrait,
     );
   }
 }

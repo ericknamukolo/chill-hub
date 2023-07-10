@@ -13,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../../models/movie.dart';
 import '../../../widgets/mobile_widgets/movie_details_card.dart';
 
@@ -81,15 +80,6 @@ class _MobileMovieDetailsState extends State<MobileMovieDetails> {
                       message: 'Torrent file downloaded successfully',
                       type: 'success'),
                 ));
-
-            // await launchUrl(url,
-            //     webOnlyWindowName: 'Wazzap',
-            //     mode: LaunchMode.externalNonBrowserApplication);
-            // showDialog(
-            //     context: context,
-            //     builder: (context) => MobileDownloadDialog(
-            //           torrents: widget.movie.torrents,
-            //         ));
           },
           child: const GlowIcon(
             Icons.download_rounded,
@@ -171,6 +161,12 @@ class _MobileMovieDetailsState extends State<MobileMovieDetails> {
                 ],
               ),
               const SizedBox(height: 10),
+              // MovieDetailsCard(
+              //   title: 'Watch NOW',
+              //   icon: Icons.play_arrow_rounded,
+              //   click: () async {},
+              // ),
+              // const SizedBox(height: 10),
               Text(
                 '${widget.movie.title} (${widget.movie.year})',
                 style: kBarTextStyle.copyWith(

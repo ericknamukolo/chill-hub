@@ -6,7 +6,7 @@ import '../../constants/text_style.dart';
 
 class MovieDetailsCard extends StatelessWidget {
   final String title;
-  final String content;
+  final String? content;
   final IconData icon;
   final bool isAvailable;
   final Function()? click;
@@ -14,7 +14,7 @@ class MovieDetailsCard extends StatelessWidget {
     Key? key,
     required this.title,
     required this.icon,
-    required this.content,
+    this.content,
     this.isAvailable = false,
     this.click,
   }) : super(key: key);
@@ -43,13 +43,15 @@ class MovieDetailsCard extends StatelessWidget {
               title,
               style: kMobileBodyTextStyleGrey,
             ),
-            FittedBox(
-              child: Text(
-                isAvailable ? content.toUpperCase() : content,
-                maxLines: 2,
-                style: kMobileBodyTextStyleWhite.copyWith(fontSize: 10),
-              ),
-            ),
+            content == null
+                ? const SizedBox()
+                : FittedBox(
+                    child: Text(
+                      isAvailable ? content!.toUpperCase() : content!,
+                      maxLines: 2,
+                      style: kMobileBodyTextStyleWhite.copyWith(fontSize: 10),
+                    ),
+                  ),
           ],
         ),
       ),

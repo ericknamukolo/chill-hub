@@ -104,6 +104,8 @@ class _CategoryMovieScreenState extends State<CategoryMovieScreen> {
                           mainAxisSpacing: 15.0,
                         ),
                         itemBuilder: (context, index) => Shimmer.fromColors(
+                          baseColor: kSecondaryColorDark,
+                          highlightColor: kPrimaryColorDark,
                           child: Container(
                             // margin: const EdgeInsets.only(right: 20),
                             decoration: BoxDecoration(
@@ -111,8 +113,6 @@ class _CategoryMovieScreenState extends State<CategoryMovieScreen> {
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                           ),
-                          baseColor: kSecondaryColorDark,
-                          highlightColor: kPrimaryColorDark,
                         ),
                         itemCount: 10,
                         shrinkWrap: true,

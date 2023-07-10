@@ -1,9 +1,5 @@
-import 'package:chill_hub/constants/constants.dart';
 import 'package:chill_hub/screens/mobile/home/mobile_movie_details_screen.dart';
-import 'package:chill_hub/services/ad_manager.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-
 import '../../constants/colors.dart';
 import '../../constants/text_style.dart';
 import '../../models/movie.dart';
@@ -24,12 +20,6 @@ class MobileMovieCard extends StatelessWidget {
             builder: (context) => MobileMovieDetails(movie: movie),
           ),
         );
-        AdManager.loadInterstitialAd(onLoaded: (ad) async {
-          InterstitialAd loadedAd = ad;
-          await loadedAd.show();
-        }, onAdFailedToLoad: (ad) {
-          //  logger.i('failed $ad');
-        });
       },
       child: Hero(
         tag: movie.id,

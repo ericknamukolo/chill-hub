@@ -6,6 +6,7 @@ import 'package:chill_hub/providers/movie_views.dart';
 import 'package:chill_hub/providers/movies.dart';
 import 'package:chill_hub/screens/desktop/desktop_splash_screen.dart';
 import 'package:chill_hub/screens/mobile/mobile_splash_screen.dart';
+import 'package:chill_hub/services/ad_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +24,7 @@ Future<void> main() async {
       options: DefaultFirebaseOptions.currentPlatform,
     );
   }
+  AdManager.loadAppOpenAd();
   runApp(const ChillHub());
 }
 
@@ -47,6 +49,7 @@ class ChillHub extends StatelessWidget {
         ],
         scrollBehavior: MyCustomScrollBehavior(),
         theme: ThemeData(
+          useMaterial3: true,
           fontFamily: 'VarelaRound',
           brightness: Brightness.dark,
         ),
