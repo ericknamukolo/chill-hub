@@ -1,10 +1,6 @@
-import 'dart:isolate';
-import 'dart:ui';
-import 'package:android_path_provider/android_path_provider.dart';
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
 import 'package:chill_hub/widgets/mobile_widgets/custom_app_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -24,20 +20,6 @@ class MobileMovieDetails extends StatefulWidget {
 }
 
 class _MobileMovieDetailsState extends State<MobileMovieDetails> {
-  int progress = 0;
-  ReceivePort receivePort = ReceivePort();
-  @override
-  void initState() {
-    IsolateNameServer.registerPortWithName(receivePort.sendPort, 'download');
-    receivePort.listen((message) {
-      setState(() {
-        progress = message;
-      });
-    });
-
-    super.initState();
-  }
-
   @override
   void setState(VoidCallback fn) {
     if (mounted) {
@@ -54,24 +36,7 @@ class _MobileMovieDetailsState extends State<MobileMovieDetails> {
         width: 50,
         child: FloatingActionButton(
           backgroundColor: kAccentColor,
-          onPressed: () async {
-            var downloadsPath = await AndroidPathProvider.downloadsPath;
-
-            // await FlutterDownloader.enqueue(
-            //   fileName: '${widget.movie.title}.torrent',
-            //   url: widget.movie.torrents[0].url,
-            //   savedDir: downloadsPath,
-            //   showNotification:
-            //       true, // show download progress in status bar (for Android)
-            //   openFileFromNotification:
-            //       true, // click on notification to open downloaded file (for Android)
-            // ).then((_) => BotToast.showCustomNotification(
-            //       duration: const Duration(seconds: 4),
-            //       toastBuilder: (context) => const CustomToast(
-            //           message: 'Torrent file downloaded successfully',
-            //           type: 'success'),
-            //     ));
-          },
+          onPressed: () async {},
           child: const GlowIcon(
             Icons.download_rounded,
             color: Colors.white,

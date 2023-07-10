@@ -45,9 +45,7 @@ dependencies:
   flutter_launcher_icons_maker: ^0.10.2
   carousel_slider: ^4.1.1
   flutter_glow: ^0.3.0
-  path_provider: ^2.0.10
   permission_handler: ^10.2.0
-  android_path_provider: ^0.3.0
   logger: ^1.1.0
   google_mobile_ads: ^3.0.0
   bot_toast: ^4.0.2
