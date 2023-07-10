@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import '../../constants/colors.dart';
 import '../../constants/text_style.dart';
 import '../../models/movie_detail.dart';
@@ -89,7 +91,8 @@ class DownloadDialog extends StatelessWidget {
                                     style: kBodyTextStyleGrey.copyWith(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 13,
-                                      color: Theme.of(context).errorColor,
+                                      color:
+                                          Theme.of(context).colorScheme.error,
                                     ),
                                   ),
                                 ],
@@ -105,12 +108,12 @@ class DownloadDialog extends StatelessWidget {
                             Navigator.of(context).pop();
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: kAccentColor,
+                            backgroundColor: kAccentColor,
                             fixedSize: const Size.fromHeight(35),
                           ),
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
+                            children: [
                               Text(
                                 'DOWNLOAD',
                                 style: kBodyTextStyleWhite,
@@ -128,7 +131,7 @@ class DownloadDialog extends StatelessWidget {
                             await launchUrl(url);
                             Navigator.of(context).pop();
                           },
-                          icon: const Icon(
+                          icon: Icon(
                             MdiIcons.magnet,
                             color: Colors.red,
                           ),

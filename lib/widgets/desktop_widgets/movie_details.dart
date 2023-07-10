@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
@@ -373,7 +372,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                                     ),
                                     child: mov.movieDetail == null
                                         ? const SizedBox()
-                                        : const Icon(
+                                        : Icon(
                                             MdiIcons.youtubeTv,
                                             color: Colors.white,
                                             size: 30,
@@ -398,12 +397,12 @@ class _MovieDetailsState extends State<MovieDetails> {
                                   );
                                 },
                           style: ElevatedButton.styleFrom(
-                            primary: kAccentColor,
+                            backgroundColor: kAccentColor,
                             fixedSize: const Size(150, 35),
                           ),
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
+                            children: [
                               Text(
                                 'DOWNLOAD ',
                                 style: kBodyTextStyleWhite,
@@ -433,6 +432,8 @@ class _MovieDetailsState extends State<MovieDetails> {
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder: (context, index) =>
                                       Shimmer.fromColors(
+                                    baseColor: kSecondaryColorDark,
+                                    highlightColor: kPrimaryColorDark,
                                     child: Container(
                                       margin: const EdgeInsets.only(right: 20),
                                       width: 200,
@@ -443,8 +444,6 @@ class _MovieDetailsState extends State<MovieDetails> {
                                             BorderRadius.circular(10.0),
                                       ),
                                     ),
-                                    baseColor: kSecondaryColorDark,
-                                    highlightColor: kPrimaryColorDark,
                                   ),
                                   itemCount: 10,
                                   shrinkWrap: true,
