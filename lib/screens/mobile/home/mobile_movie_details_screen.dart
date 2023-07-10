@@ -1,18 +1,10 @@
-import 'dart:isolate';
-import 'dart:ui';
-
-import 'package:android_path_provider/android_path_provider.dart';
-import 'package:bot_toast/bot_toast.dart';
 import 'package:chill_hub/constants/colors.dart';
 import 'package:chill_hub/constants/text_style.dart';
-import 'package:chill_hub/screens/mobile/home/trailer_player_screen.dart';
 import 'package:chill_hub/widgets/mobile_widgets/custom_app_bar.dart';
-import 'package:chill_hub/widgets/mobile_widgets/custom_toast.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import '../../../constants/constants.dart';
 import '../../../models/movie.dart';
 import '../../../widgets/mobile_widgets/movie_details_card.dart';
 
@@ -28,25 +20,6 @@ class MobileMovieDetails extends StatefulWidget {
 }
 
 class _MobileMovieDetailsState extends State<MobileMovieDetails> {
-  int progress = 0;
-  ReceivePort receivePort = ReceivePort();
-  @override
-  void initState() {
-    IsolateNameServer.registerPortWithName(receivePort.sendPort, 'download');
-    receivePort.listen((message) {
-      setState(() {
-        progress = message;
-      });
-    });
-    FlutterDownloader.registerCallback(downloadCallback);
-    super.initState();
-  }
-
-  static downloadCallback(id, status, progress) {
-    SendPort sendPort = IsolateNameServer.lookupPortByName('download')!;
-    sendPort.send(progress);
-  }
-
   @override
   void setState(VoidCallback fn) {
     if (mounted) {
@@ -63,24 +36,7 @@ class _MobileMovieDetailsState extends State<MobileMovieDetails> {
         width: 50,
         child: FloatingActionButton(
           backgroundColor: kAccentColor,
-          onPressed: () async {
-            var downloadsPath = await AndroidPathProvider.downloadsPath;
-
-            await FlutterDownloader.enqueue(
-              fileName: '${widget.movie.title}.torrent',
-              url: widget.movie.torrents[0].url,
-              savedDir: downloadsPath,
-              showNotification:
-                  true, // show download progress in status bar (for Android)
-              openFileFromNotification:
-                  true, // click on notification to open downloaded file (for Android)
-            ).then((_) => BotToast.showCustomNotification(
-                  duration: const Duration(seconds: 4),
-                  toastBuilder: (context) => const CustomToast(
-                      message: 'Torrent file downloaded successfully',
-                      type: 'success'),
-                ));
-          },
+          onPressed: () async {},
           child: const GlowIcon(
             Icons.download_rounded,
             color: Colors.white,
@@ -145,12 +101,8 @@ class _MobileMovieDetailsState extends State<MobileMovieDetails> {
                             isAvailable: widget.movie.trailer != '',
                             click: () {
                               if (widget.movie.trailer != '') {
-                                Navigator.of(context).push(
-                                  CupertinoPageRoute(
-                                    builder: (context) => TrailerPlayerScreen(
-                                        movie: widget.movie),
-                                  ),
-                                );
+                                logger.i(widget.movie.trailer);
+                                Links.goToLink(widget.movie.trailer);
                               }
                             },
                           ),

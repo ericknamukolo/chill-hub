@@ -32,7 +32,7 @@ class Logo extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 2),
-        const Icon(
+        Icon(
           MdiIcons.filmstrip,
           color: kSecondaryColor,
           size: 60,
