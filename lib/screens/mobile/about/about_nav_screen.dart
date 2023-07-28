@@ -49,38 +49,6 @@ class _AboutNavScreenState extends State<AboutNavScreen> {
               fontSize: 12,
             ),
           ),
-          // GestureDetector(
-          //   onTap: () async {
-          //     Uri url = Uri.parse('https://ko-fi.com/erickmndev');
-          //     await launchUrl(url);
-          //   },
-          //   child: AnimatedContainer(
-          //     duration: const Duration(milliseconds: 300),
-          //     margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-          //     padding: const EdgeInsets.symmetric(vertical: 5),
-          //     decoration: BoxDecoration(
-          //       borderRadius: BorderRadius.circular(5.0),
-          //       color: const Color(0xff29abe0),
-          //     ),
-          //     child: Row(
-          //       mainAxisAlignment: MainAxisAlignment.center,
-          //       children: [
-          //         const Icon(
-          //           Icons.coffee_rounded,
-          //           size: 20,
-          //         ),
-          //         const SizedBox(width: 8),
-          //         Text(
-          //           'Ko-Fi',
-          //           style: kBodyTextStyleWhite.copyWith(
-          //             fontWeight: FontWeight.bold,
-          //             letterSpacing: 3,
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // ),
           const Spacer(),
           const Text(
             'Designed & Built by',
@@ -97,7 +65,6 @@ class _AboutNavScreenState extends State<AboutNavScreen> {
                   fontSize: 12, color: kAccentColor),
             ),
           ),
-
           const SizedBox(height: 5.0),
           GestureDetector(
             onTap: () async {
@@ -118,6 +85,38 @@ class _AboutNavScreenState extends State<AboutNavScreen> {
             'v ${info?.version} #${info?.buildNumber}',
             style: kBodyTextStyleGrey.copyWith(
               fontSize: 10,
+            ),
+          ),
+          GestureDetector(
+            onTap: () async {},
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              padding: const EdgeInsets.symmetric(vertical: 5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30.0),
+                color: const Color(0xff29abe0),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.coffee_rounded,
+                      size: 20,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Buy me a coffe 😗',
+                      style: kBodyTextStyleWhite.copyWith(
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 3,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ],

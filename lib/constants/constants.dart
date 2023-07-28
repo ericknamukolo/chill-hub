@@ -8,6 +8,7 @@ class Links {
   }
 }
 
+String revenueCatAPIKey = 'goog_zYCCcQArBRzRSZzkkrHKNvjpvSO';
 var logger = Logger(
   printer: PrettyPrinter(
     colors: true,

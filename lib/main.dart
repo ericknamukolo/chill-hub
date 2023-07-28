@@ -4,6 +4,7 @@ import 'package:chill_hub/providers/menu_buttons.dart';
 import 'package:chill_hub/providers/movie_categories.dart';
 import 'package:chill_hub/providers/movie_views.dart';
 import 'package:chill_hub/providers/movies.dart';
+import 'package:chill_hub/providers/subscriptions.dart';
 import 'package:chill_hub/screens/desktop/desktop_splash_screen.dart';
 import 'package:chill_hub/screens/mobile/mobile_splash_screen.dart';
 import 'package:chill_hub/services/ad_manager.dart';
@@ -18,7 +19,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isAndroid || Platform.isIOS) {
     MobileAds.instance.initialize();
-
+    await Subscriptions.init();
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
