@@ -22,6 +22,8 @@ class Subscriptions {
             message: 'Product has already been purchased', type: 'error');
       } else if (errCode == PurchasesErrorCode.purchaseCancelledError) {
         Toast.showToast(message: 'Purchase cancelled', type: 'error');
+      } else {
+        Toast.showToast(message: 'An error occured', type: 'error');
       }
     }
   }
