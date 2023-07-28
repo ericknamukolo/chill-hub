@@ -23,7 +23,7 @@ Future<void> main() async {
     await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform);
   }
-  AdManager.loadAppOpenAd();
+  //AdManager.loadAppOpenAd();
   runApp(const ChillHub());
 }
 
