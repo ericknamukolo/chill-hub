@@ -50,6 +50,7 @@ dependencies:
   google_mobile_ads: ^3.0.0
   bot_toast: ^4.0.2
   package_info_plus: ^4.0.0
+  purchases_flutter: ^5.4.0
 
 dev_dependencies:
   change_app_package_name: ^1.1.0
