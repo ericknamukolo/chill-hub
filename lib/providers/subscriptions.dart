@@ -8,10 +8,11 @@ class Subscriptions {
     await Purchases.setup(revenueCatAPIKey);
   }
 
-  static Future<List<Offering>> getOffers() async {
+  static Future getOffers() async {
     try {
       final offerings = await Purchases.getOfferings();
-      return offerings.all.values.toList();
+      var res = await Purchases.purchasePackage(offerings.current!.lifetime!);
+      logger.i(res);
     } catch (e) {
       rethrow;
     }

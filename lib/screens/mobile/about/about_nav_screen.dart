@@ -1,3 +1,4 @@
+import 'package:chill_hub/providers/subscriptions.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -88,7 +89,9 @@ class _AboutNavScreenState extends State<AboutNavScreen> {
             ),
           ),
           GestureDetector(
-            onTap: () async {},
+            onTap: () async {
+              await Subscriptions.getOffers();
+            },
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 300),
               margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),

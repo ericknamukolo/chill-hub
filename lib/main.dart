@@ -21,8 +21,7 @@ Future<void> main() async {
     MobileAds.instance.initialize();
     await Subscriptions.init();
     await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
+        options: DefaultFirebaseOptions.currentPlatform);
   }
   AdManager.loadAppOpenAd();
   runApp(const ChillHub());
