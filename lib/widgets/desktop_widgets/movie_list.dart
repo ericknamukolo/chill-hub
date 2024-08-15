@@ -234,12 +234,12 @@ class _MovieListState extends State<MovieList> {
                                 }
                               },
                               style: ElevatedButton.styleFrom(
-                                primary: kAccentColor.withOpacity(.3),
+                                backgroundColor: kAccentColor.withOpacity(.3),
                                 fixedSize: const Size(200, 40),
                               ),
-                              child: Row(
+                              child: const Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
+                                children: [
                                   Text(
                                     'Search',
                                     style: kBodyTextStyleWhite,
@@ -263,9 +263,9 @@ class _MovieListState extends State<MovieList> {
                             flex: 3,
                             child: Column(
                               children: [
-                                Row(
+                                const Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  children: const [
+                                  children: [
                                     Text(
                                       'Latest movies',
                                       style: kTitleTextStyle,
@@ -386,6 +386,8 @@ class _MovieListState extends State<MovieList> {
                               ),
                               itemBuilder: (context, index) =>
                                   Shimmer.fromColors(
+                                baseColor: kSecondaryColorDark,
+                                highlightColor: kPrimaryColorDark,
                                 child: Container(
                                   margin: const EdgeInsets.only(right: 20),
                                   decoration: BoxDecoration(
@@ -393,8 +395,6 @@ class _MovieListState extends State<MovieList> {
                                     borderRadius: BorderRadius.circular(10.0),
                                   ),
                                 ),
-                                baseColor: kSecondaryColorDark,
-                                highlightColor: kPrimaryColorDark,
                               ),
                               itemCount: 20,
                               shrinkWrap: true,

@@ -49,7 +49,7 @@ class _FooterInfoState extends State<FooterInfo> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5.0),
                   color: _isBtnHovered
-                      ? Theme.of(context).errorColor
+                      ? Colors.redAccent
                       : const Color(0xff29abe0),
                 ),
                 child: Row(
