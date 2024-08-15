@@ -43,7 +43,7 @@ dependencies:
   msix: ^3.6.2
   firebase_core: ^2.6.1
   flutter_launcher_icons_maker: ^0.10.2
-  carousel_slider: ^4.1.1
+  carousel_slider: ^5.0.0
   flutter_glow: ^0.3.0
   permission_handler: ^10.2.0
   logger: ^1.1.0
