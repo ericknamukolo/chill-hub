@@ -32,8 +32,7 @@ class Movies with ChangeNotifier {
     if (Platform.isWindows) {
       sort = 'year';
     }
-    String url =
-        'https://yts.torrentbay.to/api/v2/list_movies.json?sort_by=$sort';
+    String url = 'https://yts.mx/api/v2/list_movies.json?sort_by=$sort';
     var response = await http.get(Uri.parse(url));
 
     var data = json.decode(response.body);
@@ -82,18 +81,17 @@ class Movies with ChangeNotifier {
   Future<void> fetchCatMovies(int pageNumber, String genre) async {
     String url;
     if (genre == 'All') {
-      url =
-          'https://yts.torrentbay.to/api/v2/list_movies.json?page=$pageNumber&limit=50';
+      url = 'https://yts.mx/api/v2/list_movies.json?page=$pageNumber&limit=50';
     } else {
       url =
-          'https://yts.torrentbay.to/api/v2/list_movies.json?page=$pageNumber&limit=50&genre=$genre';
+          'https://yts.mx/api/v2/list_movies.json?page=$pageNumber&limit=50&genre=$genre';
     }
 
     var response = await http.get(Uri.parse(url));
 
     var data = await json.decode(response.body);
 
-   // logger.i(data);
+    // logger.i(data);
 
     if (data['status'] == 'ok') {
       data['data']['movies'].forEach((movie) {
@@ -141,8 +139,7 @@ class Movies with ChangeNotifier {
 
   Future<void> fetchMovieDetails(int id) async {
     try {
-      String url =
-          'https://yts.torrentbay.to/api/v2/movie_details.json?movie_id=$id';
+      String url = 'https://yts.mx/api/v2/movie_details.json?movie_id=$id';
 
       var response = await http.get(Uri.parse(url));
       var data = json.decode(response.body);
@@ -190,8 +187,7 @@ class Movies with ChangeNotifier {
   }
 
   Future<void> fetchRelatedMovies(int id) async {
-    String url =
-        'https://yts.torrentbay.to/api/v2/movie_suggestions.json?movie_id=$id';
+    String url = 'https://yts.mx/api/v2/movie_suggestions.json?movie_id=$id';
     var response = await http.get(Uri.parse(url));
     var data = json.decode(response.body);
     if (data['status'] == 'ok') {
@@ -223,14 +219,14 @@ class Movies with ChangeNotifier {
     searchLoading = true;
     queryString = query;
     String url =
-        'https://yts.torrentbay.to/api/v2/list_movies.json?query_term=$query&limit=50';
+        'https://yts.mx/api/v2/list_movies.json?query_term=$query&limit=50';
     var response = await http.get(Uri.parse(url));
     var data = json.decode(response.body);
 
     if (data['status'] == 'ok' && data['data']['movie_count'] != 0) {
       searchLoading = false;
       List<Movie> _loadedMovies = [];
-    //  logger.i(data);
+      //  logger.i(data);
       data['data']['movies'].forEach((movie) {
         _loadedMovies.add(
           Movie(
