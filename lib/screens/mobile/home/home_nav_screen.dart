@@ -142,8 +142,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-              Row(
-                children: const [
+              const Row(
+                children: [
                   Text(
                     'Categories',
                     style: kBodyTitleTextStyle,
@@ -213,6 +213,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           mainAxisSpacing: 15.0,
                         ),
                         itemBuilder: (context, index) => Shimmer.fromColors(
+                          baseColor: kSecondaryColorDark,
+                          highlightColor: kPrimaryColorDark,
                           child: Container(
                             // margin: const EdgeInsets.only(right: 20),
                             decoration: BoxDecoration(
@@ -220,8 +222,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                           ),
-                          baseColor: kSecondaryColorDark,
-                          highlightColor: kPrimaryColorDark,
                         ),
                         itemCount: 10,
                         shrinkWrap: true,

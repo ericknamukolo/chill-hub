@@ -31,18 +31,18 @@ class _MobileMovieDetailsState extends State<MobileMovieDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPrimaryColorDark,
-      floatingActionButton: SizedBox(
-        height: 50,
-        width: 50,
-        child: FloatingActionButton(
-          backgroundColor: kAccentColor,
-          onPressed: () async {},
-          child: const GlowIcon(
-            Icons.download_rounded,
-            color: Colors.white,
-          ),
-        ),
-      ),
+      // floatingActionButton: SizedBox(
+      //   height: 50,
+      //   width: 50,
+      //   child: FloatingActionButton(
+      //     backgroundColor: kAccentColor,
+      //     onPressed: () async {},
+      //     child: const GlowIcon(
+      //       Icons.download_rounded,
+      //       color: Colors.white,
+      //     ),
+      //   ),
+      // ),
       appBar: const CustomAppBar(
         title: 'Movie Details',
         showClose: true,
